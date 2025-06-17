@@ -14,7 +14,7 @@
 
 	<jsp:include page="header.jsp" />
 
-	<div class="container">
+	<div class="top_container">
 		<form action="../lend/lend_top.jsp" method="post">
  			<button class="top_button">貸出</button>
 		</form>
