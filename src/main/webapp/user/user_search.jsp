@@ -44,37 +44,37 @@
 					<tr>
 				    	<th>会員ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_name" value="${user.userId}">
+				    		<input class="input_form" type="text" name="user_name" value="${userId}">
 				    	</td>
 				    </tr>
 					<tr>
 				    	<th>氏名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_name" value="${user.userName}">
+				    		<input class="input_form" type="text" name="user_name" value="${userName}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>住所</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_address" value="${user.address}">
+				    		<input class="input_form" type="text" name="user_address" value="${address}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>電話番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_tel" value="${user.tel}">
+				    		<input class="input_form" type="text" name="user_tel" value="${tel}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email" value="${user.email}">
+				    		<input class="input_form" type="text" name="user_email" value="${email}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>生年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="user_birthday" value="${user.birthday}">
+				    		<input class="input_form" type="date" name="user_birthday" value="${birthday}">
 				    	</td>
 				    </tr>
 				</table>				
