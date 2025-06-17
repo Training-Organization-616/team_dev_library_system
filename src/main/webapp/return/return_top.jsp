@@ -37,8 +37,8 @@
 		</div>
 		
 		<div class="input_table">
-			<form action="/team_dev_library_system/UserServlet" method="post">
-				<input type="hidden" name="action" value="add">
+			<form action="/team_dev_library_system/ReturnServlet" method="post">
+				<input type="hidden" name="action" value="return">
 				<table>
 					<tr>
 				    	<th>貸出ID</th>
