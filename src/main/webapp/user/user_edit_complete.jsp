@@ -28,7 +28,7 @@
 		<div class="menu_name">会員情報変更</div>
 	</div>
 	
-	<div class="user_container">
+	<div class="container">
 		<div>
 			<p>会員情報を変更しました</p>
 			<p>トップページへ遷移します</p>
@@ -38,11 +38,11 @@
 			<ul>
 				<li>会員ID：${user.userId}</li>
 				<li>氏名：${user.userName}</li>
-				<li>住所：${user.userAdress}</li>
-				<li>電話番号：${user.userTel}</li>
-				<li>E-Mail：${user.userEmail}</li>
-				<li>生年月日：${user.userBirthday}</li>
-				<li>入会年月日：${user.userAdmissionDate}</li>
+				<li>住所：${user.address}</li>
+				<li>電話番号：${user.tel}</li>
+				<li>E-Mail：${user.email}</li>
+				<li>生年月日：${user.birthday}</li>
+				<li>入会年月日：${user.admissionDate}</li>
 			</ul>
 		</div>
 		

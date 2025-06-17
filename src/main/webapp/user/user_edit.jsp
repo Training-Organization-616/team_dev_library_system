@@ -27,7 +27,7 @@
 		<div class="menu_name">会員情報変更</div>
 	</div>
 	
-	<div class="user_container">
+	<div class="container">
 		<div>
 			<p>変更項目を入力してください</p>
 		</div>
@@ -55,25 +55,25 @@
 				    <tr>
 				    	<th>住所</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_address" value="${user.userAddress}">
+				    		<input class="input_form" type="text" name="user_address" value="${user.address}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>電話番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_tel" value="${user.userTel}">
+				    		<input class="input_form" type="text" name="user_tel" value="${user.tel}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email" value="${user.userEmail}">
+				    		<input class="input_form" type="text" name="user_email" value="${user.email}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>生年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="user_birthday" value="${user.userBirthday}">
+				    		<input class="input_form" type="date" name="user_birthday" value="${user.birthday}">
 				    	</td>
 				    </tr>
 				</table>				

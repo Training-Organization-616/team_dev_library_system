@@ -1,6 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+	String userId = "";
+	if (request.getAttribute("userId") != null) {
+		userId = (String)request.getAttribute("userId");
+	}
+
+	String userName = "";
+	if (request.getAttribute("userName") != null) {
+		userName = (String)request.getAttribute("userName");
+	}
+	
+	String address = "";
+	if (request.getAttribute("address") != null) {
+		address = (String)request.getAttribute("address");
+	}
+	
+	String tel = "";
+	if (request.getAttribute("tel") != null) {
+		tel = (String)request.getAttribute("tel");
+	}
+	
+	String email = "";
+	if (request.getAttribute("email") != null) {
+		email = (String)request.getAttribute("email");
+	}
+	
+	String birthday = "";
+	if (request.getAttribute("birthday") != null) {
+		birthday = (String)request.getAttribute("birthday");
+	}
+%>
     
 <!DOCTYPE html>
 <html>
@@ -28,7 +60,7 @@
 		<div class="menu_name">新規検索</div>
 	</div>
 	
-	<div class="user_container">
+	<div class="container">
 		<div>
 			<p>検索する会員情報を入力してください</p>
 		</div>
@@ -56,25 +88,25 @@
 				    <tr>
 				    	<th>住所</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_address" value="${user.userAddress}">
+				    		<input class="input_form" type="text" name="user_address" value="${user.address}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>電話番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_tel" value="${user.userTel}">
+				    		<input class="input_form" type="text" name="user_tel" value="${user.tel}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email" value="${user.userEmail}">
+				    		<input class="input_form" type="text" name="user_email" value="${user.email}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>生年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="user_birthday" value="${user.userBirthday}">
+				    		<input class="input_form" type="date" name="user_birthday" value="${user.birthday}">
 				    	</td>
 				    </tr>
 				</table>				
@@ -98,7 +130,7 @@
 					    <tr>
 					    	<td>${user.userId}</td>
 					    	<td>${user.userName}</td>
-					    	<td>${user.userEmail}</td>
+					    	<td>${user.email}</td>
 					    	<td>
 					    		<form action="/team_dev_library_system/UserServlet" method="post">
 				    				<button class="edit_button">変更</button>

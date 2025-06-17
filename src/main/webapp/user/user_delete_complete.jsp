@@ -28,7 +28,7 @@
 		<div class="menu_name">会員情報削除</div>
 	</div>
 	
-	<div class="user_container">
+	<div class="container">
 		<div>
 			<p>会員情報を削除しました</p>
 			<p>トップページへ遷移します</p>

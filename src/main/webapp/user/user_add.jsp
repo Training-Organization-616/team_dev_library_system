@@ -1,6 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%
+	String userName = "";
+	if (request.getAttribute("userName") != null) {
+		userName = (String)request.getAttribute("userName");
+	}
+	
+	String address = "";
+	if (request.getAttribute("address") != null) {
+		address = (String)request.getAttribute("address");
+	}
+	
+	String tel = "";
+	if (request.getAttribute("tel") != null) {
+		tel = (String)request.getAttribute("tel");
+	}
+	
+	String email = "";
+	if (request.getAttribute("email") != null) {
+		email = (String)request.getAttribute("email");
+	}
+	
+	String birthday = "";
+	if (request.getAttribute("birthday") != null) {
+		birthday = (String)request.getAttribute("birthday");
+	}
+%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +54,7 @@
 		<div class="menu_name">新規会員登録</div>
 	</div>
 	
-	<div class="user_container">
+	<div class="container">
 		<div>
 			<p>登録する会員情報を入力してください</p>
 		</div>
@@ -43,31 +70,31 @@
 					<tr>
 				    	<th>氏名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_name">
+				    		<input class="input_form" type="text" name="user_name" value="<%= userName %>">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>住所</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_address">
+				    		<input class="input_form" type="text" name="user_address" value="<%= address %>">
 				    	</td>
 				    </tr>
 				    			<tr>
 				    	<th>電話番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_tel">
+				    		<input class="input_form" type="text" name="user_tel" value="<%= tel %>">
 				    	</td>
 				    </tr>
-				    			<tr>
+				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email">
+				    		<input class="input_form" type="text" name="user_email" value="<%= email %>">
 				    	</td>
 				    </tr>
-				    			<tr>
+				    <tr>
 				    	<th>生年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="user_birthday">
+				    		<input class="input_form" type="date" name="user_birthday" value="<%= birthday %>">
 				    	</td>
 				    </tr>
 				</table>				
