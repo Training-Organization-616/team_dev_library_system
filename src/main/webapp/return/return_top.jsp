@@ -1,30 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	String lendId = "";
-	if (request.getAttribute("lendId") != null) {
-		lendId = (String)request.getAttribute("lendId");
-	}
-	
-	String userId = "";
-	if (request.getAttribute("userId") != null) {
-		userId = (String)request.getAttribute("userId");
-	}
-	
-	String bookId = "";
-	if (request.getAttribute("bookId") != null) {
-		bookId = (String)request.getAttribute("bookId");
-	}
-%>
-    
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
-	<link href="style.css" rel="stylesheet">
+	<link href="../style.css" rel="stylesheet">
 </head>
 
 <body>

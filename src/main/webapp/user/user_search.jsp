@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
-	<link href="style.css" rel="stylesheet">
+	<link href="../style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 			<%-- imageフォルダに画像を入れて画像の名前を画像名に入れてください --%>
 			<%-- 画像じゃない場合はリンク？ボタン？への変更をお願いします --%>
 		</div>
-		<div class="menu_name">新規検索</div>
+		<div class="menu_name">会員検索</div>
 	</div>
 	
 	<div class="container">

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
-	<link href="style.css" rel="stylesheet">
+	<link href="../style.css" rel="stylesheet">
 </head>
 
 <body>
