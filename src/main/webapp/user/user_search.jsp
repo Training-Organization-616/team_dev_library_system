@@ -1,38 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%
-	String userId = "";
-	if (request.getAttribute("userId") != null) {
-		userId = (String)request.getAttribute("userId");
-	}
-
-	String userName = "";
-	if (request.getAttribute("userName") != null) {
-		userName = (String)request.getAttribute("userName");
-	}
-	
-	String address = "";
-	if (request.getAttribute("address") != null) {
-		address = (String)request.getAttribute("address");
-	}
-	
-	String tel = "";
-	if (request.getAttribute("tel") != null) {
-		tel = (String)request.getAttribute("tel");
-	}
-	
-	String email = "";
-	if (request.getAttribute("email") != null) {
-		email = (String)request.getAttribute("email");
-	}
-	
-	String birthday = "";
-	if (request.getAttribute("birthday") != null) {
-		birthday = (String)request.getAttribute("birthday");
-	}
-%>
     
 <!DOCTYPE html>
 <html>

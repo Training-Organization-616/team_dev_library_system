@@ -1,33 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	String userName = "";
-	if (request.getAttribute("userName") != null) {
-		userName = (String)request.getAttribute("userName");
-	}
-	
-	String address = "";
-	if (request.getAttribute("address") != null) {
-		address = (String)request.getAttribute("address");
-	}
-	
-	String tel = "";
-	if (request.getAttribute("tel") != null) {
-		tel = (String)request.getAttribute("tel");
-	}
-	
-	String email = "";
-	if (request.getAttribute("email") != null) {
-		email = (String)request.getAttribute("email");
-	}
-	
-	String birthday = "";
-	if (request.getAttribute("birthday") != null) {
-		birthday = (String)request.getAttribute("birthday");
-	}
-%>
-    
 <!DOCTYPE html>
 <html>
 
@@ -70,31 +43,31 @@
 					<tr>
 				    	<th>氏名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_name" value="<%= userName %>">
+				    		<input class="input_form" type="text" name="user_name" value="${user.userName}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>住所</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_address" value="<%= address %>">
+				    		<input class="input_form" type="text" name="user_address" value="${user.address}">
 				    	</td>
 				    </tr>
 				    			<tr>
 				    	<th>電話番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_tel" value="<%= tel %>">
+				    		<input class="input_form" type="text" name="user_tel" value="${user.tel}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="email" name="user_email" value="<%= email %>">
+				    		<input class="input_form" type="email" name="user_email" value="${usre.email}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>生年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="user_birthday" value="<%= birthday %>">
+				    		<input class="input_form" type="date" name="user_birthday" value="${user.birthday}">
 				    	</td>
 				    </tr>
 				</table>				
