@@ -88,7 +88,7 @@
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email" value="<%= email %>">
+				    		<input class="input_form" type="email" name="user_email" value="<%= email %>">
 				    	</td>
 				    </tr>
 				    <tr>

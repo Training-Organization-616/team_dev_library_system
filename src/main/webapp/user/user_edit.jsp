@@ -67,7 +67,7 @@
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email" value="${user.email}">
+				    		<input class="input_form" type="email" name="user_email" value="${user.email}">
 				    	</td>
 				    </tr>
 				    <tr>
