@@ -36,10 +36,10 @@
 		
 		<div>
 			<ul>
-				<li>貸出ID：${book.lendId}</li>
-				<li>会員ID：${book.userId}</li>
-				<li>資料ID：${book.bookId}</li>
-				<li>資料名：${book.title}</li>
+				<li>貸出ID：${lendId}</li>
+				<li>会員ID：${userId}</li>
+				<li>資料ID：${bookId}</li>
+				<li>資料名：${title}</li>
 			</ul>
 		</div>
 	
