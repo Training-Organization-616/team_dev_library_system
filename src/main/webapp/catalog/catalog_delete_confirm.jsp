@@ -11,18 +11,18 @@
 </head>
 
 <body>
-
+<%--★ここはリンクの変更をしていません --%>
 	<jsp:include page="../top/header.jsp" />
 
 	<div class="menu_container">
 		<div class="menu">
 			<jsp:include page="../top/menu.jsp" />
-			<%-- メニューはいったんぜんぶ表示してます --%>
+			
 		</div>
+	<div class="holder">
 		<div class="menu_image">
-			<img src="../image/画像名">
-			<%-- imageフォルダに画像を入れて画像の名前を画像名に入れてください --%>
-			<%-- 画像じゃない場合はリンク？ボタン？への変更をお願いします --%>
+			<img src="/team_dev_library_system/image/menu_icon.png">
+			
 		</div>
 		<div class="menu_name">資料削除</div>
 	</div>

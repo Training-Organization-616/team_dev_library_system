@@ -42,7 +42,7 @@
 		</div>
 	
 		<div class="transfar_link">				
-			<form action="return_top.jsp" method="post">
+			<form action="/team_dev_library_system/return/return_top.jsp" method="post">
  				<button>続けて返却</button>
 				
 			</form>
