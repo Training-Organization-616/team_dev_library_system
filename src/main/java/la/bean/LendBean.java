@@ -14,11 +14,12 @@ public class LendBean implements Serializable {
 	private String memo; //備考
 
 	//デフォルトコンストラクタ
-	LendBean() {
+	public LendBean() {
 	}
 
 	//コンストラクタ
-	LendBean(int lendId, int userId, int bookId, String lendDate, String dueDate, String returnDate, String memo) {
+	public LendBean(int lendId, int userId, int bookId, String lendDate, String dueDate, String returnDate,
+			String memo) {
 		this.lendId = lendId;
 		this.userId = userId;
 		this.bookId = bookId;
