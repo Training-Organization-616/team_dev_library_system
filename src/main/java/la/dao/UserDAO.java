@@ -31,7 +31,7 @@ public class UserDAO {
 	public List<UserBean> findUser(int userId, String userName, String address, int tel, String email, Date birthday)
 			throws DAOException {
 
-		String sql = "SELECT * FROM users WHERE cancel_date IS NULL ";
+		String sql = "SELECT * FROM users WHERE cancel_date IS NULL";
 		if (userId > 0) {
 			sql = sql + " AND user_id = ?";
 		}

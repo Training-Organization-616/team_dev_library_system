@@ -61,14 +61,14 @@ public class UserServlet extends HttpServlet {
 				Date birthday = (Date) request.getAttribute("birthday");
 
 				//バリデーション
+				String message = "";
 				if (userName == null || userName.length() == 0 || address == null || address.length() == 0
 						|| tel == -1 || email == null || email.length() == 0
 						|| birthday == null) {
-					request.setAttribute("message", "すべて必須項目です");
-					gotoPage(request, response, "./user/user_add.jsp");
-					return;
+					request.setAttribute("message", "すべて必須項目です<br>");
+
 				}
-				String message = "";
+
 				if (userName.length() > 50) {
 					message += "氏名は50文字以内で入力してください<br>";
 				} else {
@@ -109,14 +109,15 @@ public class UserServlet extends HttpServlet {
 
 			} else if (action.equals("search")) {
 				//パラメータ取得
-				Object userIdAttr = request.getAttribute("user_Id");
-				int userId = (userIdAttr != null) ? (int) userIdAttr : 0;
-				String userName = Optional.ofNullable((String) request.getAttribute("user_name")).orElse(null);
-				String address = Optional.ofNullable((String) request.getAttribute("user_address")).orElse(null);
-				Object telAttr = request.getAttribute("user_tel");
+				//jspから取得ができない
+				String userIdAttr = request.getParameter("user_id");
+				int userId = (userIdAttr != null) ? Integer.parseInt(userIdAttr) : 0;
+				String userName = safeGetString(request.getParameter("user_name"));
+				String address = safeGetString(request.getParameter("user_address"));
+				Object telAttr = request.getParameter("user_tel");
 
 				int tel = safeGetInt(telAttr);
-				String email = Optional.ofNullable((String) request.getAttribute("user_email")).orElse(null);
+				String email = safeGetString(request.getParameter("user_email"));
 				Date birthday = Optional.ofNullable((Date) request.getAttribute("user_birthday")).orElse(null);
 
 				List<UserBean> list = dao.findUser(userId, userName, address, tel, email, birthday);
