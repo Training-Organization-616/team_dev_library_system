@@ -35,16 +35,16 @@ public class UserDAO {
 		if (userId > 0) {
 			sql = sql + " AND user_id = ?";
 		}
-		if (userName != null) {
+		if (userName != "") {
 			sql = sql + " AND name = ?";
 		}
-		if (address != null) {
+		if (address != "") {
 			sql = sql + " AND address = ?";
 		}
 		if (tel > 0) {
 			sql = sql + " AND tel = ?";
 		}
-		if (email != null) {
+		if (email != "") {
 			sql = sql + " AND email = ?";
 		}
 		if (birthday != null) {
@@ -58,16 +58,16 @@ public class UserDAO {
 			if (userId > 0) {
 				st.setInt(index++, userId);
 			}
-			if (userName != null) {
+			if (userName != "") {
 				st.setString(index++, userName);
 			}
-			if (address != null) {
+			if (address != "") {
 				st.setString(index++, address);
 			}
 			if (tel > 0) {
 				st.setInt(index++, tel);
 			}
-			if (email != null) {
+			if (email != "") {
 				st.setString(index++, email);
 			}
 			if (birthday != null) {
@@ -98,7 +98,7 @@ public class UserDAO {
 	}
 
 	//一件のデータを取得
-	public List<UserBean> findUserId(int userId) throws DAOException {
+	public List<UserBean> findOneUser(int userId) throws DAOException {
 		String sql = "SELECT * FROM users WHERE user_id = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql)) {
@@ -145,7 +145,7 @@ public class UserDAO {
 	}
 
 	//登録
-	public void addUser(String userName, String address, int tel, String email, Date birthday,
+	public List<UserBean> addUser(String userName, String address, int tel, String email, Date birthday,
 			Date admissionDate) throws DAOException, ParseException {
 		String sql = "INSERT INTO users(name,address,tel,email,birthday,admission_date) VALUES(?,?,?,?,?,?)";
 
@@ -162,6 +162,37 @@ public class UserDAO {
 			e.printStackTrace();
 			throw new DAOException("データベース接続に失敗しました。");
 		}
+
+		sql = "SELECT * FROM users WHERE email = ?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql)) {
+			st.setString(1, email);
+			try (ResultSet rs = st.executeQuery()) {
+				List<UserBean> list = new ArrayList<UserBean>();
+				if (rs.next()) {
+					int id = rs.getInt("user_id");
+					String name = rs.getString("name");
+					String userAddress = rs.getString("address");
+					int userTel = rs.getInt("tel");
+					String userEmail = rs.getString("email");
+					String userBirthday = rs.getString("birthday");
+					String dateAdmission = rs.getString("admission_date");
+					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday,
+							dateAdmission);
+
+					list.add(bean);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("データベース接続に失敗しました。");
+		}
+
 	}
 
 	//情報更新
