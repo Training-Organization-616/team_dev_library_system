@@ -28,11 +28,14 @@
 	</div>
 	
 	<div class="container">
-		<form action="user_add.jsp" method="post">
+		<form action="/team_dev_library_system/user/user_add.jsp" method="post">
+		<%-- リンクに/team_dev_library_system/user追加しました！これで一度試していただければと思います。 --%>
+		<%-- ↑jspからjspへの移動には必要みたいです --%>
+		<%-- 以降は★マークつけておきますね。確認お願いします！ --%> 
  			<button class="top_button">新規会員登録</button>
 		</form>
 		
-		<form action="user_search.jsp" method="post">
+		<form action="/team_dev_library_system/user/user_search.jsp" method="post"><%--★ --%>
  			<button class="top_button">会員検索</button>
 		</form>
 	</div>

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<%--★ここはリンクの変更をしていません --%>
+
 	<jsp:include page="../top/header.jsp" />
 
 	<div class="holder">

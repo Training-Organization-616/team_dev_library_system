@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<%--★ここはリンクの変更はしていません --%>
+
 	<jsp:include page="../top/header.jsp" />
 
 	<div class="menu_container">
