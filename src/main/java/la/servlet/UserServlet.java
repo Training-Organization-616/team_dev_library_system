@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,10 +28,12 @@ public class UserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		try {
 			UserDAO dao = new UserDAO();
 			//入力日をDate型に
 			Date today = new Date(System.currentTimeMillis());
+			System.out.println(today);
 
 			//actionのリクエストパラメータを取得
 			String action = request.getParameter("action");
@@ -48,19 +49,25 @@ public class UserServlet extends HttpServlet {
 			} else if (action.equals("return_search")) {
 
 				int userId = (int) request.getAttribute("user_id");
-				List<UserBean> list = dao.findUserId(userId);
+				List<UserBean> list = dao.findOneUser(userId);
 				request.setAttribute("user", list);
 				gotoPage(request, response, "./user/user_search.jsp");
 				return;
 			} else if (action.equals("add")) {
 
-				String userName = safeGetString(request.getAttribute("name"));
-				String address = safeGetString(request.getAttribute("address"));
-				int tel = safeGetInt(request.getAttribute("tel"));
-				String email = safeGetString(request.getAttribute("email"));
-				Date birthday = (Date) request.getAttribute("birthday");
+				String userName = safeGetString(request.getParameter("user_name"));
+				String address = safeGetString(request.getParameter("user_address"));
+				String telAttr = request.getParameter("user_tel");
+				int tel = safeGetInt(telAttr);
+				String email = safeGetString(request.getParameter("user_email"));
+				String birthdayStr = request.getParameter("user_birthday");
+				Date birthday = null;
+				if (!birthdayStr.equals("")) {
+					birthday = setDate(birthdayStr);
+				}
 
 				//バリデーション
+
 				String message = "";
 				if (userName == null || userName.length() == 0 || address == null || address.length() == 0
 						|| tel == -1 || email == null || email.length() == 0
@@ -102,23 +109,67 @@ public class UserServlet extends HttpServlet {
 					gotoPage(request, response, "./user/user_add.jsp");
 					return;
 				} else {
-					dao.addUser(userName, address, tel, email, birthday, today);//java.text.ParseException: Unparseable date: ""というエラー
+					List<UserBean> list = dao.addUser(userName, address, tel, email, birthday, today);
+					request.setAttribute("user", list);
 					gotoPage(request, response, "./user/user_add_complete.jsp");
 					return;
 				}
 
 			} else if (action.equals("search")) {
 				//パラメータ取得
-				//jspから取得ができない
 				String userIdAttr = request.getParameter("user_id");
-				int userId = (userIdAttr != null) ? Integer.parseInt(userIdAttr) : 0;
+				String userStock = userIdAttr;
+				int userId = safeGetInt(userIdAttr);
 				String userName = safeGetString(request.getParameter("user_name"));
 				String address = safeGetString(request.getParameter("user_address"));
-				Object telAttr = request.getParameter("user_tel");
-
+				String telAttr = request.getParameter("user_tel");
+				String telStock = telAttr;
 				int tel = safeGetInt(telAttr);
 				String email = safeGetString(request.getParameter("user_email"));
-				Date birthday = Optional.ofNullable((Date) request.getAttribute("user_birthday")).orElse(null);
+				String birthdayStr = request.getParameter("user_birthday");
+				Date birthday = null;
+				if (!birthdayStr.equals("")) {
+					birthday = setDate(birthdayStr);
+				}
+				System.out.println(birthday);
+				//バリデーション
+
+				String message = "";
+
+				if (userId == -2) {
+					message += "IDは数字で入力してください<br>";
+				} else if (userId != -1) {
+					userId = Integer.parseInt(userStock);
+					request.setAttribute("userId", userId);
+				}
+
+				if (userName.length() > 50) {
+					message += "氏名は50文字以内で入力してください<br>";
+				} else {
+					request.setAttribute("userName", userName);
+				}
+				if (address.length() > 100) {
+					message += "住所は100文字以内で入力してください<br>";
+				} else {
+					request.setAttribute("address", address);
+				}
+				if (tel == -2) {
+					message += "電話番号は数字で入力してください<br>";
+				} else {
+					tel = Integer.parseInt(telStock);
+					request.setAttribute("tel", tel);
+				}
+				if (email.length() > 100) {
+					message += "メールアドレスは100文字以内で入力してください<br>";
+				} else {
+					request.setAttribute("email", email);
+				}
+
+				if (!message.isEmpty()) {
+					request.setAttribute("message", message);
+					gotoPage(request, response, "./user/user_search.jsp");
+					return;
+				}
 
 				List<UserBean> list = dao.findUser(userId, userName, address, tel, email, birthday);
 				//該当判定
@@ -130,8 +181,11 @@ public class UserServlet extends HttpServlet {
 				gotoPage(request, response, "./user/user_search.jsp");
 			} else if (action.equals("edit_page")) {
 				//変更ボタンから変更ページに遷移
-				int userId = (int) request.getAttribute("userId");
-				List<UserBean> list = dao.findUserId(userId);
+				String userIdAttr = request.getParameter("user_id");
+				int userId = safeGetInt(userIdAttr);
+
+				List<UserBean> list = dao.findOneUser(userId);
+
 				request.setAttribute("user", list);
 				request.setAttribute("userId", userId);
 				gotoPage(request, response, "./user/user_edit.jsp");
@@ -147,14 +201,15 @@ public class UserServlet extends HttpServlet {
 				gotoPage(request, response, "./user/user_edit_complete.jsp");
 			} else if (action.equals("delete_page")) {
 				//削除確認画面
-				request.setAttribute("userId", safeGetInt(request.getAttribute("userId")));
-				request.setAttribute("userName", safeGetString(request.getAttribute("userName")));
-				request.setAttribute("address", safeGetString(request.getAttribute("address")));
-				request.setAttribute("tel", safeGetInt(request.getAttribute("tel")));
-				request.setAttribute("email", safeGetString(request.getAttribute("email")));
-				request.setAttribute("birthday", safeGetString(request.getAttribute("birthday")));
-				request.setAttribute("admissionDate", safeGetString(request.getAttribute("admissionDate")));
+				request.setAttribute("userId", request.getParameter("userId"));
+				request.setAttribute("userName", request.getParameter("userName"));
+				request.setAttribute("address", request.getParameter("address"));
+				request.setAttribute("tel", request.getParameter("tel"));
+				request.setAttribute("email", request.getParameter("email"));
+				request.setAttribute("birthday", request.getParameter("birthday"));
+				request.setAttribute("admissionDate", request.getParameter("admissionDate"));
 				gotoPage(request, response, "./user/user_delete.jsp");
+
 			} else if (action.equals("delete")) {
 				//削除
 				//退会
@@ -164,7 +219,8 @@ public class UserServlet extends HttpServlet {
 				String address = safeGetString(request.getAttribute("address"));
 				int tel = safeGetInt(request.getAttribute("tel"));
 				String email = safeGetString(request.getAttribute("email"));
-				Date birthday = (Date) request.getAttribute("birthday");
+				String birthdayStr = request.getParameter("birthday");
+				Date birthday = setDate(birthdayStr);
 				if (dao.isUserLend(userId)) {
 					request.setAttribute("message", "この会員は借りている本が存在するので削除することが出来ません");
 					gotoPage(request, response, "./user/user_search.jsp");
@@ -189,14 +245,17 @@ public class UserServlet extends HttpServlet {
 
 	//数値系の入力がない場合-1を代入
 	private int safeGetInt(Object value) {
-
 		if (value == null) {
-			return -1;
+			return -1; // 未入力扱い
 		}
-		if (value instanceof Integer) {
-			return (Integer) value;
-		} else {
-			return -2;
+		try {
+			String str = value.toString().trim();
+			if (str.isEmpty()) {
+				return -1; // 未入力扱い
+			}
+			return Integer.parseInt(str);
+		} catch (NumberFormatException e) {
+			return -2; // 数字以外が入力された場合
 		}
 	}
 
@@ -206,6 +265,15 @@ public class UserServlet extends HttpServlet {
 			return value.toString();
 		} else {
 			return "";
+		}
+	}
+
+	public Date setDate(String strDate) {
+		if (!strDate.equals(null)) {
+			Date date = Date.valueOf(strDate);
+			return date;
+		} else {
+			return null;
 		}
 	}
 
