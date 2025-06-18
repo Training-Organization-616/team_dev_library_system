@@ -28,7 +28,7 @@ public class UserDAO {
 	}
 
 	//検索
-	public List<UserBean> findUser(int userId, String userName, String address, int tel, String email, Date birthday)
+	public List<UserBean> findUser(int userId, String userName, String address, String tel, String email, Date birthday)
 			throws DAOException {
 
 		String sql = "SELECT * FROM users WHERE cancel_date IS NULL";
@@ -41,7 +41,7 @@ public class UserDAO {
 		if (address != "") {
 			sql = sql + " AND address = ?";
 		}
-		if (tel > 0) {
+		if (tel != "") {
 			sql = sql + " AND tel = ?";
 		}
 		if (email != "") {
@@ -64,8 +64,8 @@ public class UserDAO {
 			if (address != "") {
 				st.setString(index++, address);
 			}
-			if (tel > 0) {
-				st.setInt(index++, tel);
+			if (tel != "") {
+				st.setString(index++, tel);
 			}
 			if (email != "") {
 				st.setString(index++, email);
@@ -79,7 +79,7 @@ public class UserDAO {
 					int id = rs.getInt("user_id");
 					String name = rs.getString("name");
 					String userAddress = rs.getString("address");
-					int userTel = rs.getInt("tel");
+					String userTel = rs.getString("tel");
 					String userEmail = rs.getString("email");
 					String userBirthday = rs.getString("birthday");
 					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday);
@@ -109,7 +109,7 @@ public class UserDAO {
 					int id = rs.getInt("user_id");
 					String name = rs.getString("name");
 					String userAddress = rs.getString("address");
-					int userTel = rs.getInt("tel");
+					String userTel = rs.getString("tel");
 					String userEmail = rs.getString("email");
 					String userBirthday = rs.getString("birthday");
 					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday);
@@ -145,7 +145,7 @@ public class UserDAO {
 	}
 
 	//登録
-	public List<UserBean> addUser(String userName, String address, int tel, String email, Date birthday,
+	public List<UserBean> addUser(String userName, String address, String tel, String email, Date birthday,
 			Date admissionDate) throws DAOException, ParseException {
 		String sql = "INSERT INTO users(name,address,tel,email,birthday,admission_date) VALUES(?,?,?,?,?,?)";
 
@@ -153,7 +153,7 @@ public class UserDAO {
 				PreparedStatement st = con.prepareStatement(sql)) {
 			st.setString(1, userName);
 			st.setString(2, address);
-			st.setInt(3, tel);
+			st.setString(3, tel);
 			st.setString(4, email);
 			st.setDate(5, birthday);
 			st.setDate(6, admissionDate);
@@ -173,7 +173,7 @@ public class UserDAO {
 					int id = rs.getInt("user_id");
 					String name = rs.getString("name");
 					String userAddress = rs.getString("address");
-					int userTel = rs.getInt("tel");
+					String userTel = rs.getString("tel");
 					String userEmail = rs.getString("email");
 					String userBirthday = rs.getString("birthday");
 					String dateAdmission = rs.getString("admission_date");
@@ -196,7 +196,7 @@ public class UserDAO {
 	}
 
 	//情報更新
-	public void updateUser(int userId, String userName, String address, int tel, String email,
+	public void updateUser(int userId, String userName, String address, String tel, String email,
 			Date birthday, Date updateDate) throws DAOException {
 		String sql = "UPDATE users SET name = ? , address = ?, tel = ? , email = ? , birthday = ? , update_date = ? WHERE user_id = ?";
 
@@ -206,7 +206,7 @@ public class UserDAO {
 
 			st.setString(1, userName);
 			st.setString(2, address);
-			st.setInt(3, tel);
+			st.setString(3, tel);
 			st.setString(4, email);
 			st.setDate(5, birthday);
 			st.setDate(6, updateDate);

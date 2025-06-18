@@ -43,7 +43,7 @@
 					<tr>
 				    	<th>会員ID</th>
 				    	<td>
-				    		${user.user_id}
+				    		${user.userId}
 				    	</td>
 				    </tr>
 					<tr>
