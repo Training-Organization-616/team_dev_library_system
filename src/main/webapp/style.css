@@ -1,2 +1,124 @@
 @charset "UTF-8";
 
+/*全体*/
+body {
+	/*背景色*/
+	background-color: white;
+}
+
+/*header*/
+/*headerの背景*/
+.top_link {
+	/*背景色*/
+	background-color: #A5a58d;
+	/*余白*/
+	padding: 4%;
+}
+
+/*headerの文字*/
+a {
+	/*文字の色*/
+	color: white;
+	/*下線なし*/
+	text-decoration: none;
+	/*文字のサイズ*/
+	font-size: 30px;
+}
+
+/*top*/
+
+/*top画面のボタン*/
+.top_button {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*横並び等間隔*/
+	margin-right: 50px;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 80px 70px;
+
+
+}
+
+.top_button-default {
+	/*文字数に関係なくボタンの大きさ統一　修正必要*/
+	width: 70px;
+	height: 80px;
+}
+
+.top_container {
+	/*背景色*/
+	background-color: white;
+	/*上、下、左に余白*/
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 18%;
+	/*横並び*/
+	display: flex;
+	/*中央配置*/
+	text-align: center;
+
+}
+
+/*フッター背景色変化なし　修正必要*/
+.footer {
+	/*背景色*/
+	background-color: #A5a58d;
+}
+
+/*menu*/
+
+/*menu背景*/
+.menu_container {
+	background-color: #Cb997e;
+	color: white;
+	/*下、右の余白*/
+	padding-top: 10px;
+	padding-bottom: 100%;
+	padding-right: 50px;
+	/*すべて左寄せ*/
+	float: left;
+
+}
+
+/*menuボタン*/
+.menu_button {
+	background-color: #Cb997e;
+	/*枠線なし*/
+	border: none;
+	color: white;
+	padding: 20px;
+}
+
+
+/*見出しの名前*/
+.menu_name {
+	background-color: #B7b7a4;
+	color: white;
+	padding: 10px;
+	padding-right: 95%;
+
+
+}
+
+img {
+	max-width: 100%;
+	/* 親要素の幅に合わせる */
+	height: auto;
+	/* 高さを自動調整 */
+}
+
+.menu_image {
+	background-color: #B7b7a4;
+
+}
+
+.holder {
+	padding-top: 10px;
+	/*横並び*/
+	display: flex;
+
+}

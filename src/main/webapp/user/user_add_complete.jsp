@@ -19,10 +19,10 @@
 			<jsp:include page="../top/menu.jsp" />
 			<%-- メニューはいったんぜんぶ表示してます --%>
 		</div>
+	<div class="holder">
 		<div class="menu_image">
-			<img src="../image/画像名">
-			<%-- imageフォルダに画像を入れて画像の名前を画像名に入れてください --%>
-			<%-- 画像じゃない場合はリンク？ボタン？への変更をお願いします --%>
+			<img src="/team_dev_library_system/image/menu_icon.png">
+			
 		</div>
 		<div class="menu_name">新規会員登録</div>
 	</div>

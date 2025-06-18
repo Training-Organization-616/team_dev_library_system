@@ -1,8 +1,6 @@
 package la.bean;
 
-import java.io.Serializable;
-
-public class StockBean implements Serializable{
+public class StockBean {
 
 	private int bookId;
 	private int isbn;
@@ -11,13 +9,13 @@ public class StockBean implements Serializable{
 	private String disposalDate;
 	private String memo;
 	private int stock;
-	
-	
-	StockBean(){}
-	
-	StockBean(int bookId , int isbn , String title ,
-			String arrivalDate , String disposalDate , String memo , int stock){
-		
+
+	public StockBean() {
+	}
+
+	public StockBean(int bookId, int isbn, String title,
+			String arrivalDate, String disposalDate, String memo, int stock) {
+
 		this.bookId = bookId;
 		this.isbn = isbn;
 		this.title = title;
@@ -30,6 +28,7 @@ public class StockBean implements Serializable{
 	public int getBookId() {
 		return bookId;
 	}
+
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
@@ -37,6 +36,7 @@ public class StockBean implements Serializable{
 	public int getIsbn() {
 		return isbn;
 	}
+
 	public void setIsbn(int isbn) {
 		this.isbn = isbn;
 	}
@@ -44,6 +44,7 @@ public class StockBean implements Serializable{
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -51,6 +52,7 @@ public class StockBean implements Serializable{
 	public String getArrivalDate() {
 		return arrivalDate;
 	}
+
 	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
@@ -58,6 +60,7 @@ public class StockBean implements Serializable{
 	public String getDisposalDate() {
 		return disposalDate;
 	}
+
 	public void setDisposalDate(String disposalDate) {
 		this.disposalDate = disposalDate;
 	}
@@ -65,6 +68,7 @@ public class StockBean implements Serializable{
 	public String getMemo() {
 		return memo;
 	}
+
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
@@ -72,6 +76,7 @@ public class StockBean implements Serializable{
 	public int getStock() {
 		return stock;
 	}
+
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
