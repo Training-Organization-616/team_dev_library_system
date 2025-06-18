@@ -37,11 +37,11 @@
 				<li>資料ID：${book.bookId}</li>
 				<li>ISBN番号：${book.isbn}</li>
 				<li>資料名：${book.title}</li>
-				<li>分類コード：${book.code}</li>
+				<li>分類コード：${book.code }</li>
 				<li>著者：${book.author}</li>
 				<li>出版社：${book.publicher}</li>
 				<li>出版日：${book.publicationDate}</li>
-				<li>入荷年月日：${arrivalDate}</li>
+				<li>入荷年月日：${book.arrivalDate}</li>
 				<%-- 入荷年月日はリストにできない想定（catalogBeanじゃないので単体でフォワードされる想定）で書いてます --%>
 				<%-- 必要に応じて修正お願いします --%>
 			</ul>

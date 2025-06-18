@@ -7,9 +7,9 @@ public class CategoryBean implements Serializable{
 	private int code;
 	private String codeName;
 	
-	CategoryBean(){}
+	public CategoryBean(){}
 	
-	CategoryBean(int code , String codeName){
+	public CategoryBean(int code , String codeName){
 		
 		this.code = code;
 		this.codeName = codeName;

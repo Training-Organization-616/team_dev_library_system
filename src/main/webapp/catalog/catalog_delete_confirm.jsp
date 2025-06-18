@@ -41,7 +41,7 @@
 				<li>著者：${book.author}</li>
 				<li>出版社：${book.publicher}</li>
 				<li>出版日：${book.publicationDate}</li>
-				<li>入荷年月日：${arrivalDate}</li>
+				<li>入荷年月日：${book.arrivalDate}</li>
 				<li>廃棄年月日：${disposalDate}</li>
 				<li>備考：${memo}</li>
 			</ul>
@@ -49,7 +49,17 @@
 		
 		<div>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
-				<input type="hidden" name="action" value="delete">				
+				<input type="hidden" name="action" value="delete">
+				<input type="hidden" name="book_id" value="${book.bookId}">
+   				<input type="hidden" name="isbn" value="${book.isbn}">
+   				<input type="hidden" name="title" value="${book.title}">
+   				<input type="hidden" name="code" value="${book.code}">
+   				<input type="hidden" name="author" value="${book.author}">
+   				<input type="hidden" name="publicher" value="${book.publicher}">
+   				<input type="hidden" name="publication_date" value="${book.publicationDate}">
+   				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">
+   				<input type="hidden" name="disposal_date" value="${disposalDate}">
+   				<input type="hidden" name="memo" value="${memo}">				
 				<button class="general_button edit_button">削除</button>
 			</form>	
 			<form action="/team_dev_library_system/CatalogServlet" method="post">

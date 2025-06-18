@@ -131,6 +131,13 @@
 				    				<button class="edit_button">変更</button>
 				    				<input type="hidden" name="action" value="edit_page">
 				    				<input type="hidden" name="book_id" value="${book.bookId}">
+				    				<input type="hidden" name="isbn" value="${book.isbn}">
+				    				<input type="hidden" name="title" value="${book.title}">
+				    				<input type="hidden" name="code" value="${book.code}">
+				    				<input type="hidden" name="author" value="${book.author}">
+				    				<input type="hidden" name="publicher" value="${book.publicher}">
+				    				<input type="hidden" name="publication_date" value="${book.publicationDate}">
+				    				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">
 			    				</form>
 					    	</td>
 					    	<td>
@@ -138,6 +145,13 @@
 				    				<button class="edit_button">削除</button>
 				    				<input type="hidden" name="action" value="delete_page">
 				    				<input type="hidden" name="book_id" value="${book.bookId}">
+				    				<input type="hidden" name="isbn" value="${book.isbn}">
+				    				<input type="hidden" name="title" value="${book.title}">
+				    				<input type="hidden" name="code" value="${book.code}">
+				    				<input type="hidden" name="author" value="${book.author}">
+				    				<input type="hidden" name="publicher" value="${book.publicher}">
+				    				<input type="hidden" name="publication_date" value="${book.publicationDate}">
+				    				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">
 			    				</form>
 					    	</td>
 					    </tr>

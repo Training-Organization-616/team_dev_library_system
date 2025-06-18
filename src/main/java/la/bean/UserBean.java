@@ -16,6 +16,17 @@ public class UserBean {
 	}
 
 	//登録
+	public UserBean(int userId, String userName, String address, int tel, String email, String birthday,
+			String admissionDate) {
+		this.userId = userId;
+		this.userName = userName;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.birthday = birthday;
+		this.admissionDate = admissionDate;
+	}
+
 	public UserBean(int userId, String userName, String address, int tel, String email, String birthday) {
 		this.userId = userId;
 		this.userName = userName;

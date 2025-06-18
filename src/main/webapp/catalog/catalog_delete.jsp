@@ -98,7 +98,7 @@
 				    <tr>
 				    	<th>入荷年月日</th>
 				    	<td>
-				    		${arrivalDate}
+				    		${book.arrivalDate}
 				    		<%-- これも入荷年月日はリストにできない想定で書いています --%>
 				    	</td>
 				    </tr>
@@ -112,11 +112,19 @@
 				    <tr>
 				    	<th>備考</th>
 				    	<td>
-				    		<textarea>${memo}</textarea>
+				    		<textarea name = "memo">${memo}</textarea>
 				    		<%-- 備考も同上です --%>
 				    	</td>
 				    </tr>
-				</table>				
+				</table>		
+				<input type="hidden" name="book_id" value="${book.bookId}">
+   				<input type="hidden" name="isbn" value="${book.isbn}">
+   				<input type="hidden" name="title" value="${book.title}">
+   				<input type="hidden" name="code" value="${book.code}">
+   				<input type="hidden" name="author" value="${book.author}">
+   				<input type="hidden" name="publicher" value="${book.publicher}">
+   				<input type="hidden" name="publication_date" value="${book.publicationDate}">
+   				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">		
 				<button class="general_button edit_button">削除</button>
 			</form>
 			

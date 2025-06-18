@@ -15,7 +15,6 @@ public class StockBean {
 
 	public StockBean(int bookId, int isbn, String title,
 			String arrivalDate, String disposalDate, String memo, int stock) {
-
 		this.bookId = bookId;
 		this.isbn = isbn;
 		this.title = title;

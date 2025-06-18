@@ -44,6 +44,7 @@
 				    	<th>資料ID</th>
 				    	<td>
 				    		${book.bookId}
+				    		<input type="hidden" name="book_id" value="${book.bookId}">
 				    	</td>
 				    </tr>
 					<tr>
@@ -74,16 +75,16 @@
 				    				<c:when test="${book.code == 8}"><option value="8" selected>言語</option></c:when>
 				    				<c:when test="${book.code == 9}"><option value="9" selected>文学</option></c:when>
 			    				</c:choose>
-				    			<option value="0">総記</option>
-				    			<option value="1">哲学</option>
-				    			<option value="2">歴史</option>
-				    			<option value="3">社会科学</option>
-				    			<option value="4">自然科学</option>
-				    			<option value="5">技術</option>
-				    			<option value="6">産業</option>
-				    			<option value="7">芸術</option>
-				    			<option value="8">言語</option>
-				    			<option value="9">文学</option>
+<!--				    			<option value="0">総記</option>-->
+<!--				    			<option value="1">哲学</option>-->
+<!--				    			<option value="2">歴史</option>-->
+<!--				    			<option value="3">社会科学</option>-->
+<!--				    			<option value="4">自然科学</option>-->
+<!--				    			<option value="5">技術</option>-->
+<!--				    			<option value="6">産業</option>-->
+<!--				    			<option value="7">芸術</option>-->
+<!--				    			<option value="8">言語</option>-->
+<!--				    			<option value="9">文学</option>-->
 				    		</select>
 				    	</td>
 				    </tr>
@@ -108,7 +109,7 @@
 				    <tr>
 				    	<th>入荷年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="arrival_date" value="${arrivalDate}">
+				    		<input class="input_form" type="date" name="arrival_date" value="${book.arrivalDate}">
 				    		<%-- これも入荷年月日はリストにできない想定で書いています --%>
 				    	</td>
 				    </tr>
