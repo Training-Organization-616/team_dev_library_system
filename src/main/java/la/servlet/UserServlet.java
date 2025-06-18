@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet {
 			} else if (action.equals("return_search")) {
 
 				int userId = (int) request.getAttribute("user_id");
-				List<UserBean> list = dao.findOneUser(userId);
+				UserBean list = dao.findOneUser(userId);
 				request.setAttribute("user", list);
 				gotoPage(request, response, "./user/user_search.jsp");
 				return;
@@ -178,7 +178,7 @@ public class UserServlet extends HttpServlet {
 				if (list.isEmpty()) {
 					request.setAttribute("message", "該当する会員情報が見つかりませんでした。");
 				} else {
-					session.setAttribute("users", list);
+					request.setAttribute("users", list);
 				}
 				gotoPage(request, response, "./user/user_search.jsp");
 			} else if (action.equals("edit_page")) {
@@ -186,7 +186,7 @@ public class UserServlet extends HttpServlet {
 				String userIdAttr = request.getParameter("user_id");
 				int userId = safeGetInt(userIdAttr);
 
-				List<UserBean> list = dao.findOneUser(userId);
+				UserBean list = dao.findOneUser(userId);
 
 				request.setAttribute("user", list);
 				request.setAttribute("userId", userId);
@@ -194,39 +194,40 @@ public class UserServlet extends HttpServlet {
 				gotoPage(request, response, "./user/user_edit.jsp");
 			} else if (action.equals("update")) {
 				//更新を実行し変更完了画面を表示
-				int userId = safeGetInt(request.getAttribute("userId"));
-				String userName = safeGetString(request.getAttribute("userName"));
-				String address = safeGetString(request.getAttribute("address"));
-				String tel = safeGetString(request.getAttribute("tel"));
-				String email = safeGetString(request.getAttribute("email"));
-				Date birthday = (Date) request.getAttribute("birthday");
+				int userId = safeGetInt(request.getParameter("user_id"));
+				String userName = safeGetString(request.getParameter("user_name"));
+				String address = safeGetString(request.getParameter("user_address"));
+				String tel = safeGetString(request.getParameter("user_tel"));
+				String email = safeGetString(request.getParameter("user_email"));
+				String birthdayStr = request.getParameter("user_birthday");
+				Date birthday = null;
+				if (!birthdayStr.equals("")) {
+					birthday = setDate(birthdayStr);
+				}
+
 				dao.updateUser(userId, userName, address, tel, email, birthday, today);
+				UserBean list = dao.findOneUser(userId);
+				request.setAttribute("user", list);
 				gotoPage(request, response, "./user/user_edit_complete.jsp");
 			} else if (action.equals("delete_page")) {
 				//削除確認画面
-				request.setAttribute("userId", request.getParameter("userId"));
-				request.setAttribute("userName", request.getParameter("userName"));
-				request.setAttribute("address", request.getParameter("address"));
-				request.setAttribute("tel", request.getParameter("tel"));
-				request.setAttribute("email", request.getParameter("email"));
-				request.setAttribute("birthday", request.getParameter("birthday"));
-				request.setAttribute("admissionDate", request.getParameter("admissionDate"));
+				String userIdAttr = request.getParameter("user_id");
+				int userId = safeGetInt(userIdAttr);
+				UserBean list = dao.findOneUser(userId);
+				request.setAttribute("user", list);
 				gotoPage(request, response, "./user/user_delete.jsp");
 
 			} else if (action.equals("delete")) {
 				//削除
 				//退会
 
-				int userId = safeGetInt(request.getParameter("userId"));
-				String userName = safeGetString(request.getParameter("userName"));
-				String address = safeGetString(request.getParameter("address"));
-				String tel = safeGetString(request.getParameter("tel"));
-				String email = safeGetString(request.getParameter("email"));
-				String birthdayStr = request.getParameter("birthday");
-				Date birthday = setDate(birthdayStr);
+				String userIdAttr = request.getParameter("user_id");
+				int userId = safeGetInt(userIdAttr);
+
 				if (dao.isUserLend(userId)) {
 					request.setAttribute("message", "この会員は借りている本が存在するので削除することが出来ません");
 					gotoPage(request, response, "./user/user_search.jsp");
+					return;
 				}
 				dao.deleteUser(userId, today);
 				gotoPage(request, response, "./user/user_delete_complete.jsp");
@@ -271,6 +272,7 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
+	//日付をdate型に
 	public Date setDate(String strDate) {
 		if (!strDate.equals(null)) {
 			Date date = Date.valueOf(strDate);

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
-	<link href="../style.css" rel="stylesheet">
+	<link href="/team_dev_library_system/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,6 +44,7 @@
 				    	<th>会員ID</th>
 				    	<td>
 				    		${user.userId}
+				    		<input type="hidden" name="user_id" value = "${user.userId}">
 				    	</td>
 				    </tr>
 					<tr>

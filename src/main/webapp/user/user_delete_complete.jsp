@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
-	<link href="../style.css" rel="stylesheet">
+	<link href="/team_dev_library_system/style.css" rel="stylesheet">
 	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/top/top.jsp">
 </head>
 
@@ -38,11 +38,11 @@
 			<ul>
 				<li>会員ID：${user.userId}</li>
 				<li>氏名：${user.userName}</li>
-				<li>住所：${user.userAdress}</li>
-				<li>電話番号：${user.userTel}</li>
-				<li>E-Mail：${user.userEmail}</li>
-				<li>生年月日：${user.userBirthday}</li>
-				<li>入会年月日：${user.userAdmissionDate}</li>
+				<li>住所：${user.adress}</li>
+				<li>電話番号：${user.tel}</li>
+				<li>E-Mail：${user.email}</li>
+				<li>生年月日：${user.birthday}</li>
+				<li>入会年月日：${user.admissionDate}</li>
 			</ul>
 		</div>
 		

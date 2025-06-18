@@ -50,6 +50,7 @@ public class UserDAO {
 		if (birthday != null) {
 			sql = sql + " AND birthday = ?";
 		}
+		sql = sql + " ORDER BY user_id";
 		System.out.println(sql);
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -98,24 +99,29 @@ public class UserDAO {
 	}
 
 	//一件のデータを取得
-	public List<UserBean> findOneUser(int userId) throws DAOException {
+	public UserBean findOneUser(int userId) throws DAOException {
 		String sql = "SELECT * FROM users WHERE user_id = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql)) {
 			st.setInt(1, userId);
 			try (ResultSet rs = st.executeQuery()) {
-				List<UserBean> list = new ArrayList<UserBean>();
-				while (rs.next()) {
+
+				if (rs.next()) {
 					int id = rs.getInt("user_id");
 					String name = rs.getString("name");
 					String userAddress = rs.getString("address");
 					String userTel = rs.getString("tel");
 					String userEmail = rs.getString("email");
 					String userBirthday = rs.getString("birthday");
-					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday);
-					list.add(bean);
+					String userAdmissionDate = rs.getString("admission_date");
+					String useUpdateDate = rs.getString("update_date");
+					String userCancelDate = rs.getString("cancel_date");
+					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday,
+							userAdmissionDate, useUpdateDate, userCancelDate);
+					return bean;
 				}
-				return list;
+				return null;
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
@@ -179,8 +185,8 @@ public class UserDAO {
 					String dateAdmission = rs.getString("admission_date");
 					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday,
 							dateAdmission);
-
 					list.add(bean);
+
 				}
 				return list;
 			} catch (SQLException e) {

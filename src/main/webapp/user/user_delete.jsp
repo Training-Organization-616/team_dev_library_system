@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
-	<link href="../style.css" rel="stylesheet">
+	<link href="/team_dev_library_system/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -46,7 +46,8 @@
 
 		<div>
 			<form action="/team_dev_library_system/UserServlet" method="post">
-				<input type="hidden" name="action" value="delete">				
+				<input type="hidden" name="action" value="delete">	
+				<input type="hidden" name="user_id" value="${user.userId}">				
 				<button class="general_button edit_button">削除</button>
 			</form>	
 			<form action="/team_dev_library_system/UserServlet" method="post">
