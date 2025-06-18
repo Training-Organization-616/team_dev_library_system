@@ -34,13 +34,13 @@
 		
 		<div>
 			<ul>
-				<li>会員ID：${user.userId}</li>
-				<li>氏名：${user.userName}</li>
-				<li>住所：${user.address}</li>
-				<li>電話番号：${user.tel}</li>
-				<li>E-Mail：${user.email}</li>
-				<li>生年月日：${user.birthday}</li>
-				<li>入会年月日：${user.admissionDate}</li>
+				<li>会員ID：${user[0].userId}</li>
+				<li>氏名：${user[0].userName}</li>
+				<li>住所：${user[0].address}</li>
+				<li>電話番号：${user[0].tel}</li>
+				<li>E-Mail：${user[0].email}</li>
+				<li>生年月日：${user[0].birthday}</li>
+				<li>入会年月日：${user[0].admissionDate}</li>
 			</ul>
 		</div>
 	

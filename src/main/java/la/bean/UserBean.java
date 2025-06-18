@@ -4,7 +4,7 @@ public class UserBean {
 	private int userId;
 	private String userName;
 	private String address;
-	private int tel;
+	private String tel;
 	private String email;
 	private String birthday;
 	private String admissionDate;
@@ -16,7 +16,7 @@ public class UserBean {
 	}
 
 	//登録
-	public UserBean(int userId, String userName, String address, int tel, String email, String birthday,
+	public UserBean(int userId, String userName, String address, String tel, String email, String birthday,
 			String admissionDate) {
 		this.userId = userId;
 		this.userName = userName;
@@ -27,7 +27,7 @@ public class UserBean {
 		this.admissionDate = admissionDate;
 	}
 
-	public UserBean(int userId, String userName, String address, int tel, String email, String birthday) {
+	public UserBean(int userId, String userName, String address, String tel, String email, String birthday) {
 		this.userId = userId;
 		this.userName = userName;
 		this.address = address;
@@ -37,7 +37,7 @@ public class UserBean {
 	}
 
 	//登録以外
-	public UserBean(int userId, String userName, String address, int tel, String email, String birthday,
+	public UserBean(int userId, String userName, String address, String tel, String email, String birthday,
 			String admissionDate, String updateDate, String cancelDate) {
 		this.userId = userId;
 		this.userName = userName;
@@ -77,11 +77,11 @@ public class UserBean {
 		this.address = address;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
