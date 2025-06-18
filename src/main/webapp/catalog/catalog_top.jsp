@@ -14,7 +14,7 @@
 
 	<jsp:include page="../top/header.jsp" />
 
-	<div class="holder">
+	
 		<div class="menu">
 			<jsp:include page="../top/menu.jsp" />
 			
