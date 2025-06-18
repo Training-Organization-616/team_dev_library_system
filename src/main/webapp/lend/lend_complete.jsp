@@ -43,7 +43,7 @@
 		</div>
 	
 		<div class="transfar_link">				
-			<form action="lend_top.jsp" method="post">
+			<form action="/team_dev_library_system/lend_top.jsp" method="post">
  				<button>続けて貸出</button>
 			</form>
 		</div>
