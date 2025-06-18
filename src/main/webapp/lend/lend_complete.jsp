@@ -29,35 +29,24 @@
 	
 	<div class="container">
 		<div>
-			<p>会員ID、資料IDを入力してください</p>
+			<p>貸出が完了しました</p>
 		</div>
 		
-		<div class="message">
-			${message}
+		<div>
+			<ul>
+				<li>貸出ID：${lendId}</li>
+				<li>会員ID：${userId}</li>
+				<li>資料ID：${bookId}</li>
+				<li>資料名：${title}</li>
+				<li>返却期限：${dueDate}</li>
+			</ul>
 		</div>
-		
-		<div class="input_table">
-			<form action="/team_dev_library_system/LendServlet" method="post">
-				<input type="hidden" name="action" value="lend">
-				<table>
-				    <tr>
-				    	<th>会員ID</th>
-				    	<td>
-				    		<input class="input_form" type="text" name="user_id" value="${userId}">
-				    	</td>
-				    </tr>
-				    <tr>
-				    	<th>資料ID</th>
-				    	<td>
-				    		<input class="input_form" type="text" name="book_id" value="${bookId}">
-				    	</td>
-				    </tr>
-				</table>				
-				<button class="general_button">貸出</button>
+	
+		<div class="transfar_link">				
+			<form action="lend_top.jsp" method="post">
+ 				<button>続けて貸出</button>
 			</form>
-			
-		</div>	
-	</div>
+		</div>
 
 	<jsp:include page="../top/footer.jsp" />
 
