@@ -30,26 +30,28 @@ public class UserDAO {
 	//検索
 	public List<UserBean> findUser(int userId, String userName, String address, int tel, String email, Date birthday)
 			throws DAOException {
-		String sql = "SELECT * FROM users WHERE 1=1";
+
+		String sql = "SELECT * FROM users WHERE cancel_date IS NULL ";
 		if (userId > 0) {
-			sql += " AND user_id = ?";
+			sql = sql + " AND user_id = ?";
 		}
 		if (userName != null) {
-			sql += " AND name = ?";
+			sql = sql + " AND name = ?";
 		}
 		if (address != null) {
-			sql += " AND address = ?";
+			sql = sql + " AND address = ?";
 		}
 		if (tel > 0) {
-			sql += " AND tel = ?";
+			sql = sql + " AND tel = ?";
 		}
 		if (email != null) {
-			sql += " AND email = ?";
+			sql = sql + " AND email = ?";
 		}
 		if (birthday != null) {
-			sql += " AND birthday = ?";
+			sql = sql + " AND birthday = ?";
 		}
-		sql += " AND cancel_date IS NULL";//退会者は非表示
+		System.out.println(sql);
+
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql)) {
 			int index = 1;

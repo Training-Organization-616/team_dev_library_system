@@ -109,15 +109,15 @@ public class UserServlet extends HttpServlet {
 
 			} else if (action.equals("search")) {
 				//パラメータ取得
-				Object userIdAttr = request.getAttribute("userId");
+				Object userIdAttr = request.getAttribute("user_Id");
 				int userId = (userIdAttr != null) ? (int) userIdAttr : 0;
 				String userName = Optional.ofNullable((String) request.getAttribute("user_name")).orElse(null);
-				String address = Optional.ofNullable((String) request.getAttribute("address")).orElse(null);
-				Object telAttr = request.getAttribute("tel");
+				String address = Optional.ofNullable((String) request.getAttribute("user_address")).orElse(null);
+				Object telAttr = request.getAttribute("user_tel");
 
 				int tel = safeGetInt(telAttr);
-				String email = Optional.ofNullable((String) request.getAttribute("email")).orElse(null);
-				Date birthday = Optional.ofNullable((Date) request.getAttribute("birthday")).orElse(null);
+				String email = Optional.ofNullable((String) request.getAttribute("user_email")).orElse(null);
+				Date birthday = Optional.ofNullable((Date) request.getAttribute("user_birthday")).orElse(null);
 
 				List<UserBean> list = dao.findUser(userId, userName, address, tel, email, birthday);
 				//該当判定
@@ -127,7 +127,7 @@ public class UserServlet extends HttpServlet {
 					request.setAttribute("users", list);
 				}
 				gotoPage(request, response, "./user/user_search.jsp");
-			} else if (action.equals("editpage")) {
+			} else if (action.equals("edit_page")) {
 				//変更ボタンから変更ページに遷移
 				int userId = (int) request.getAttribute("userId");
 				List<UserBean> list = dao.findUserId(userId);
@@ -144,7 +144,7 @@ public class UserServlet extends HttpServlet {
 				Date birthday = (Date) request.getAttribute("birthday");
 				dao.updateUser(userId, userName, address, tel, email, birthday, today);
 				gotoPage(request, response, "./user/user_edit_complete.jsp");
-			} else if (action.equals("deletepage")) {
+			} else if (action.equals("delete_page")) {
 				//削除確認画面
 				request.setAttribute("userId", safeGetInt(request.getAttribute("userId")));
 				request.setAttribute("userName", safeGetString(request.getAttribute("userName")));

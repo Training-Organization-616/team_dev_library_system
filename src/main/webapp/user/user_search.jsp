@@ -44,37 +44,37 @@
 					<tr>
 				    	<th>会員ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_name" value="${userId}">
+				    		<input class="input_form" type="text" name="user_id" <c:if test="${not empty userId}">value="${userId}"</c:if>
 				    	</td>
 				    </tr>
 					<tr>
 				    	<th>氏名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_name" value="${userName}">
+				    		<input class="input_form" type="text" name="user_name" <c:if test="${not empty userName}"> value="${userName}"</c;if>>
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>住所</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_address" value="${address}">
+				    		<input class="input_form" type="text" name="user_address" <c:if test="${not empty address}">value="${address}"</c:if>>
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>電話番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_tel" value="${tel}">
+				    		<input class="input_form" type="text" name="user_tel" <c:if test="${not empty tel}">value="${tel}"</c:if>>
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>E-Mail</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_email" value="${email}">
+				    		<input class="input_form" type="text" name="user_email"<c:if test="${not empty var}"> value="${email}" </c:if>
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>生年月日</th>
 				    	<td>
-				    		<input class="input_form" type="date" name="user_birthday" value="${birthday}">
+				    		<input class="input_form" type="date" name="user_birthday"<c:if test="${not empty var}"> value="${birthday}" </c:if>>
 				    	</td>
 				    </tr>
 				</table>				
