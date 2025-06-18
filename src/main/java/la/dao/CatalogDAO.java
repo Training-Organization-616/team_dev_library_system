@@ -509,11 +509,11 @@ public class CatalogDAO {
 		// 在庫台帳の更新
 		if(isbn != null && isbn.length() != 0) {
 			
-			sql = "Update stock SET isbn = ? , title = ? , arrivalDate = ? WHERE book_id = ?";
+			sql = "Update stock SET isbn = ? , title = ? , arrival_date = ? WHERE book_id = ?";
 			
 		}else {
 			
-			sql = "Update stock SET title = ? , arrivalDate = ? WHERE book_id = ?";
+			sql = "Update stock SET title = ? , arrival_date = ? WHERE book_id = ?";
 		}
 		
 		try (// データベースへの接続
@@ -550,12 +550,12 @@ public class CatalogDAO {
 		if(isbn != null && isbn.length() != 0) {
 			
 			sql = "Update catalog SET isbn = ? , title = ? , code = ? , author = ? , publicher = ? ,"
-					+ " publicationDate = ? WHERE stockAmount LIKE ?";
+					+ " publication_date = ? WHERE stock_amount LIKE ?";
 			
 		}else {
 			
 			sql = "Update catalog SET title = ? , code = ? , author = ? , publicher = ? ,"
-					+ " publicationDate = ? WHERE stockAmount LIKE ?";
+					+ " publication_date = ? WHERE stock_amount LIKE ?";
 		}
 	
 		try (// データベースへの接続

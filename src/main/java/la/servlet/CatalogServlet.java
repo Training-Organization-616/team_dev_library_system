@@ -514,6 +514,7 @@ public class CatalogServlet extends HttpServlet {
             	String bookId = request.getParameter("book_id");
             	String isbn = request.getParameter("isbn");
         		String title = request.getParameter("title");
+        		String code = request.getParameter("code");
         		String author = request.getParameter("author");
         		String publicher = request.getParameter("publicher");
         		String publicationDate = request.getParameter("publication_date");
@@ -531,7 +532,7 @@ public class CatalogServlet extends HttpServlet {
         		
         		//結果出力用
         		EditResultBean bean = new EditResultBean
-        				(bookId , isbn , title , author , publicher , publicationDate ,
+        				(bookId , isbn , title , code , author , publicher , publicationDate ,
         						arrivalDate , strDisposalDate , memo);
         		
         		request.setAttribute("book", bean);

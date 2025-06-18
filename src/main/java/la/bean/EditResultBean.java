@@ -7,6 +7,7 @@ public class EditResultBean implements Serializable{
 	private String bookId;
 	private String isbn;
 	private String title;
+	private String code;
 	private String author;
 	private String publicher;
 	private String publicationDate;
@@ -16,12 +17,13 @@ public class EditResultBean implements Serializable{
 	
 	public EditResultBean() {}
 	
-	public EditResultBean(String bookId , String isbn , String title , String author , String publicher ,
+	public EditResultBean(String bookId , String isbn , String title , String code , String author , String publicher ,
 			String publicationDate , String arrivalDate , String disposalDate , String memo) {
 		
 		this.bookId = bookId;
 		this.isbn = isbn;
 		this.title = title;
+		this.code = code;
 		this.author = author;
 		this.publicher = publicher;
 		this.publicationDate = publicationDate;
@@ -51,6 +53,13 @@ public class EditResultBean implements Serializable{
 		this.title = title;
 	}
 
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
 	public String getAuthor() {
 		return author;
 	}
