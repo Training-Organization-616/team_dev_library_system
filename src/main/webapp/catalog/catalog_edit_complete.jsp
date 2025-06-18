@@ -43,7 +43,7 @@
 				<li>著者：${book.author}</li>
 				<li>出版社：${book.publicher}</li>
 				<li>出版日：${book.publicationDate}</li>
-				<li>入荷年月日：${arrivalDate}</li>
+				<li>入荷年月日：${book.arrivalDate}</li>
 				<%-- これも入荷年月日はリストにできない想定で書いています --%>
 			</ul>
 		</div>
