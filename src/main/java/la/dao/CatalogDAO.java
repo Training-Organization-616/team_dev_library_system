@@ -376,7 +376,7 @@ public class CatalogDAO {
     	
     	// SQL文の作成
         String sql = "SELECT s.book_id , s.isbn , s.title , c.code , c.author , c.publicher , c.publication_date , s.arrival_date"
-        		+ " FROM stock s join catalog c on s.title = c.title WHERE 1 = 1";
+        		+ " FROM stock s join catalog c on s.title = c.title WHERE disposal_date IS NULL";
         
         //検索時、資料名が入力されているとき
         if(title != null && title.length() != 0) {
@@ -596,23 +596,37 @@ public class CatalogDAO {
 	//本を廃棄した時のメソッド
 	public void deleteCatalog (int bookId , Date disposalDate , String memo) throws DAOException {
 		
-		if(memo == null || memo.length() == 0) {
-			
-			memo = "";
-		}
+		String sql = "";
 		
-		// 在庫台帳の更新
-		String sql = "Update stock SET disposal_date = ? , memo = ? , stock = 2 WHERE book_id = ?";
+		if(memo != null && memo.length() != 0) {
+			
+			// 在庫台帳の更新
+			sql = "Update stock SET disposal_date = ? , memo = ? , stock = 2 WHERE book_id = ?";
+			
+		}else {
+			
+			// 在庫台帳の更新
+			sql = "Update stock SET disposal_date = ? , stock = 2 WHERE book_id = ?";
+		}
 		
 		try (// データベースへの接続
     			Connection con = DriverManager.getConnection(url, user, pass);
     			// PreparedStatementオブジェクトの取得
     			PreparedStatement st = con.prepareStatement(sql);) {
     		
-    		//パラメータ設定
-    		st.setDate(1, disposalDate);
-    		st.setString(2, memo);
-    		st.setInt(3, bookId);
+			if(memo != null && memo.length() != 0) {
+				
+				//パラメータ設定
+	    		st.setDate(1, disposalDate);
+	    		st.setString(2, memo);
+	    		st.setInt(3, bookId);
+				
+			}else {
+				
+				//パラメータ設定
+	    		st.setDate(1, disposalDate);
+	    		st.setInt(2, bookId);
+			}
     		
     		// SQLの実行
 			st.executeUpdate();

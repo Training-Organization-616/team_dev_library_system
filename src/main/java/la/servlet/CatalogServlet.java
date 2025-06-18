@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import la.bean.AddResultBean;
 import la.bean.EditResultBean;
@@ -336,7 +337,9 @@ public class CatalogServlet extends HttpServlet {
             		
             	}else {
             		//検索結果が存在した場合
-            		request.setAttribute("books", list);
+            		HttpSession session = request.getSession();
+            		
+            		session.setAttribute("books", list);
             		gotoPage(request , response , "/catalog/catalog_search.jsp");
             	}
             	
@@ -443,6 +446,10 @@ public class CatalogServlet extends HttpServlet {
             						Integer.parseInt(code) , author ,
             						publicher , strPublicationDate , strArrivalDate);
             		
+            		//検索結果のsession開放
+            		HttpSession session = request.getSession();
+            		session.removeAttribute("books");
+            		
             		request.setAttribute("book" , bean);
             		gotoPage(request , response , "/catalog/catalog_edit_complete.jsp");
             		
@@ -534,6 +541,10 @@ public class CatalogServlet extends HttpServlet {
         		EditResultBean bean = new EditResultBean
         				(bookId , isbn , title , code , author , publicher , publicationDate ,
         						arrivalDate , strDisposalDate , memo);
+        		
+        		//検索結果のsession開放
+        		HttpSession session = request.getSession();
+        		session.removeAttribute("books");
         		
         		request.setAttribute("book", bean);
         		gotoPage(request , response , "/catalog/catalog_delete_complete.jsp");
