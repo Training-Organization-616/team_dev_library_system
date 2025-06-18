@@ -13,9 +13,9 @@ public class StockBean implements Serializable{
 	private int stock;
 	
 	
-	StockBean(){}
+	public StockBean(){}
 	
-	StockBean(int bookId , int isbn , String title ,
+	public StockBean(int bookId , int isbn , String title ,
 			String arrivalDate , String disposalDate , String memo , int stock){
 		
 		this.bookId = bookId;
