@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import la.bean.UserBean;
 import la.dao.DAOException;
@@ -32,6 +33,7 @@ public class UserServlet extends HttpServlet {
 
 		try {
 			UserDAO dao = new UserDAO();
+			HttpSession session = request.getSession();
 			//入力日をDate型に
 			Date today = new Date(System.currentTimeMillis());
 
@@ -44,12 +46,12 @@ public class UserServlet extends HttpServlet {
 			} else if (action.equals("return_add")) {
 				//新規入力画面から会員メニューに戻る
 
-				gotoPage(request, response, "/user/user_top.jsp");
+				gotoPage(request, response, "./user/user_top.jsp");
 				return;
 			} else if (action.equals("return_search")) {
 				//検索結果画面から検索画面に戻る
 
-				gotoPage(request, response, "/user/user_search.jsp");
+				gotoPage(request, response, "./user/user_search.jsp");
 				return;
 			} else if (action.equals("add")) {
 				//会員情報の追加
@@ -64,6 +66,7 @@ public class UserServlet extends HttpServlet {
 				if (!birthdayStr.equals("")) {
 					//入力されている場合はDate型で登録
 					birthday = setDate(birthdayStr);
+					session.setAttribute("birthday", birthday);
 				}
 
 				//バリデーション
@@ -72,9 +75,7 @@ public class UserServlet extends HttpServlet {
 				if (userName == null || userName.length() == 0 || address == null || address.length() == 0
 						|| tel == null || tel.length() == 0 || email == null || email.length() == 0
 						|| birthday == null) {
-					request.setAttribute("message", "すべて必須項目です<br>");
-					gotoPage(request, response, "./user/user_add.jsp");
-					return;
+					message = message + "すべて必須項目です<br>";
 
 				}
 
@@ -132,8 +133,9 @@ public class UserServlet extends HttpServlet {
 				Date birthday = null;
 				if (!birthdayStr.equals("")) {
 					birthday = setDate(birthdayStr);
+					session.setAttribute("birthday", birthday);
 				}
-				System.out.println(birthday);
+
 				//バリデーション
 
 				String message = "";
@@ -142,30 +144,30 @@ public class UserServlet extends HttpServlet {
 					message = message + "IDは数字で入力してください<br>";
 				} else if (userId != -1) {
 					//userId = Integer.parseInt(userStock);
-					request.setAttribute("userId", userId);
+					session.setAttribute("userId", userId);
 				}
 
 				if (userName.length() > 50) {
 					message = message + "氏名は50文字以内で入力してください<br>";
 				} else {
-					request.setAttribute("userName", userName);
+					session.setAttribute("userName", userName);
 				}
 				if (address.length() > 100) {
 					message = message + "住所は100文字以内で入力してください<br>";
 				} else {
-					request.setAttribute("address", address);
+					session.setAttribute("address", address);
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
 				} else if (!tel.matches("\\d+") && !tel.equals("")) {
 					message = message + "電話番号は数字で入力してください<br>";
 				} else {
-					request.setAttribute("tel", tel);
+					session.setAttribute("tel", tel);
 				}
 				if (email.length() > 100) {
 					message = message + "メールアドレスは100文字以内で入力してください<br>";
 				} else {
-					request.setAttribute("email", email);
+					session.setAttribute("email", email);
 				}
 
 				if (!message.isEmpty()) {
@@ -179,7 +181,7 @@ public class UserServlet extends HttpServlet {
 				if (list.isEmpty()) {
 					request.setAttribute("message", "該当する会員情報が見つかりませんでした。");
 				} else {
-					request.setAttribute("users", list);
+					session.setAttribute("users", list);
 				}
 				gotoPage(request, response, "./user/user_search.jsp");
 			} else if (action.equals("edit_page")) {
@@ -204,6 +206,58 @@ public class UserServlet extends HttpServlet {
 				Date birthday = null;
 				if (!birthdayStr.equals("")) {
 					birthday = setDate(birthdayStr);
+					session.setAttribute("birthday", birthday);
+				}
+
+				//バリデーション
+				String message = "";
+
+				if (userName == null || userName.length() == 0 || address == null || address.length() == 0
+						|| tel == null || tel.length() == 0 || email == null || email.length() == 0
+						|| birthday == null) {
+					message = message + "すべて必須項目です<br>";
+
+				}
+
+				if (userId == -2) {
+					message = message + "IDは数字で入力してください<br>";
+				} else if (userId != -1) {
+					//userId = Integer.parseInt(userStock);
+					session.setAttribute("userId", userId);
+				}
+
+				if (userName.length() > 50) {
+					message = message + "氏名は50文字以内で入力してください<br>";
+				} else {
+					session.setAttribute("userName", userName);
+				}
+				if (address.length() > 100) {
+					message = message + "住所は100文字以内で入力してください<br>";
+				} else {
+					session.setAttribute("address", address);
+				}
+				if (tel.length() > 20) {
+					message = message + "電話番号は20桁以内で入力してください<br>";
+				} else if (!tel.matches("\\d+") && !tel.equals("")) {
+					message = message + "電話番号は数字で入力してください<br>";
+				} else {
+					session.setAttribute("tel", tel);
+				}
+				if (email.length() > 100) {
+					message = message + "メールアドレスは100文字以内で入力してください<br>";
+				} else {
+					session.setAttribute("email", email);
+				}
+
+				if (!message.isEmpty()) {
+					request.setAttribute("message", message);
+					gotoPage(request, response, "./user/user_edit.jsp");
+					return;
+				}
+				if (dao.isUserRegistered(email)) {
+					request.setAttribute("message", "既に登録されています");
+					gotoPage(request, response, "./user/user_edit.jsp");
+					return;
 				}
 
 				dao.updateUser(userId, userName, address, tel, email, birthday, today);
