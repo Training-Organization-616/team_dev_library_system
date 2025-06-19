@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,27 +11,23 @@
 </head>
 
 <body>
->
+	>
 	<jsp:include page="../top/header.jsp" />
 
-	<div class="menu_container">
-		<div class="menu">
-			<jsp:include page="../top/menu.jsp" />
-			
-		</div>
+	<div class="menu">
+		<jsp:include page="../top/menu.jsp" />
+	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">資料削除</div>
 	</div>
-	
+
 	<div class="container">
-		<div class="message">
-			以下の資料の情報を削除しますか？
-		</div>
-		
+		<div class="message">以下の資料の情報を削除しますか？</div>
+
 		<div>
 			<ul>
 				<li>資料ID：${book.bookId}</li>
@@ -46,30 +42,30 @@
 				<li>備考：${memo}</li>
 			</ul>
 		</div>
-		
+
 		<div>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
-				<input type="hidden" name="action" value="delete">
-				<input type="hidden" name="book_id" value="${book.bookId}">
-   				<input type="hidden" name="isbn" value="${book.isbn}">
-   				<input type="hidden" name="title" value="${book.title}">
-   				<input type="hidden" name="code" value="${book.code}">
-   				<input type="hidden" name="author" value="${book.author}">
-   				<input type="hidden" name="publicher" value="${book.publicher}">
-   				<input type="hidden" name="publication_date" value="${book.publicationDate}">
-   				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">
-   				<input type="hidden" name="disposal_date" value="${disposalDate}">
-   				<input type="hidden" name="memo" value="${memo}">				
+				<input type="hidden" name="action" value="delete"> <input
+					type="hidden" name="book_id" value="${book.bookId}"> <input
+					type="hidden" name="isbn" value="${book.isbn}"> <input
+					type="hidden" name="title" value="${book.title}"> <input
+					type="hidden" name="code" value="${book.code}"> <input
+					type="hidden" name="author" value="${book.author}"> <input
+					type="hidden" name="publicher" value="${book.publicher}"> <input
+					type="hidden" name="publication_date"
+					value="${book.publicationDate}"> <input type="hidden"
+					name="arrival_date" value="${book.arrivalDate}"> <input
+					type="hidden" name="disposal_date" value="${disposalDate}">
+				<input type="hidden" name="memo" value="${memo}">
 				<button class="general_button edit_button">削除</button>
-			</form>	
+			</form>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
- 				<button class="return_button">戻る</button>
+				<button class="return_button">戻る</button>
 				<input type="hidden" name="action" value="return_search">
 			</form>
 		</div>
 
-	<jsp:include page="../top/footer.jsp" />
-
+		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

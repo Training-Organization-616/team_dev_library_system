@@ -98,17 +98,18 @@ a {
 .menu_name {
 	background-color: #B7b7a4;
 	color: white;
-	padding: 10px;
-	padding-right: 95%;
+	padding-right: 90%;
 
 
 }
 
 img {
-	max-width: 100%;
+	max-width: 50%;
 	/* 親要素の幅に合わせる */
 	height: auto;
 	/* 高さを自動調整 */
+	
+	
 }
 
 .menu_image {
@@ -122,3 +123,4 @@ img {
 	display: flex;
 
 }
+

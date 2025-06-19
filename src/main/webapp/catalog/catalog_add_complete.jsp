@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,23 +14,22 @@
 
 	<jsp:include page="../top/header.jsp" />
 
-	<div class="holder">
-		<div class="menu">
-			<jsp:include page="../top/menu.jsp" />
-		</div>
+	<div class="menu">
+		<jsp:include page="../top/menu.jsp" />
+	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">新規資料登録</div>
 	</div>
-	
+
 	<div class="container">
 		<div>
 			<p>新規登録が完了しました</p>
 		</div>
-		
+
 		<div>
 			<ul>
 				<li>資料ID：${book.bookId}</li>
@@ -46,8 +45,7 @@
 			</ul>
 		</div>
 
-	<jsp:include page="../top/footer.jsp" />
-
+		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

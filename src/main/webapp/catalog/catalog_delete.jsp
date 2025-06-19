@@ -17,7 +17,6 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-		
 	</div>
 	
 	<div class="holder">
