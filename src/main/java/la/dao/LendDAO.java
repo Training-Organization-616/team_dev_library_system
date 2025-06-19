@@ -165,6 +165,7 @@ public class LendDAO {
 	}
 
 	public void lending(int userId, int bookId, LocalDate today, LocalDate dueDay) throws DAOException {
+		// lendテーブルに貸出情報を登録
 		// SQL文の作成
 		String sql = "INSERT INTO lend VALUES(nextval('lend_lend_id_seq'), ?, ?, ?, ?)";
 
@@ -183,6 +184,24 @@ public class LendDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
+
+		// stockテーブルの在庫を0に更新
+		// SQL文の作成
+		sql = "UPDATE stock SET stock = 0 WHERE book_id = ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダーの設定
+			st.setInt(1, bookId);
+			// SQLの実行
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました。");
+		}
+
 	}
 
 	public LendBean getLending() throws DAOException {

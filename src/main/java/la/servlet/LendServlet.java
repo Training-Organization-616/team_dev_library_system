@@ -160,7 +160,7 @@ public class LendServlet extends HttpServlet {
 
 				LocalDate dueDay = today.plusDays(due);
 
-				// 貸出情報を登録
+				// 貸出情報を登録（lendテーブル、stockテーブル）
 				dao.lending(userId, bookId, today, dueDay);
 
 				// 登録した貸出情報を取得
