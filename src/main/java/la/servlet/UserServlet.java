@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
 				if (!birthdayStr.equals("")) {
 					//入力されている場合はDate型で登録
 					birthday = setDate(birthdayStr);
-					session.setAttribute("birthday", birthday);
+					request.setAttribute("birthday", birthday);
 				}
 
 				//バリデーション
@@ -133,7 +133,7 @@ public class UserServlet extends HttpServlet {
 				Date birthday = null;
 				if (!birthdayStr.equals("")) {
 					birthday = setDate(birthdayStr);
-					session.setAttribute("birthday", birthday);
+					request.setAttribute("birthday", birthday);
 				}
 
 				//バリデーション
@@ -144,30 +144,30 @@ public class UserServlet extends HttpServlet {
 					message = message + "IDは数字で入力してください<br>";
 				} else if (userId != -1) {
 					//userId = Integer.parseInt(userStock);
-					session.setAttribute("userId", userId);
+					request.setAttribute("userId", userId);
 				}
 
 				if (userName.length() > 50) {
 					message = message + "氏名は50文字以内で入力してください<br>";
 				} else {
-					session.setAttribute("userName", userName);
+					request.setAttribute("userName", userName);
 				}
 				if (address.length() > 100) {
 					message = message + "住所は100文字以内で入力してください<br>";
 				} else {
-					session.setAttribute("address", address);
+					request.setAttribute("address", address);
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
 				} else if (!tel.matches("\\d+") && !tel.equals("")) {
 					message = message + "電話番号は数字で入力してください<br>";
 				} else {
-					session.setAttribute("tel", tel);
+					request.setAttribute("tel", tel);
 				}
 				if (email.length() > 100) {
 					message = message + "メールアドレスは100文字以内で入力してください<br>";
 				} else {
-					session.setAttribute("email", email);
+					request.setAttribute("email", email);
 				}
 
 				if (!message.isEmpty()) {
@@ -206,7 +206,7 @@ public class UserServlet extends HttpServlet {
 				Date birthday = null;
 				if (!birthdayStr.equals("")) {
 					birthday = setDate(birthdayStr);
-					session.setAttribute("birthday", birthday);
+					request.setAttribute("birthday", birthday);
 				}
 
 				//バリデーション
@@ -223,39 +223,34 @@ public class UserServlet extends HttpServlet {
 					message = message + "IDは数字で入力してください<br>";
 				} else if (userId != -1) {
 					//userId = Integer.parseInt(userStock);
-					session.setAttribute("userId", userId);
+					request.setAttribute("userId", userId);
 				}
 
 				if (userName.length() > 50) {
 					message = message + "氏名は50文字以内で入力してください<br>";
 				} else {
-					session.setAttribute("userName", userName);
+					request.setAttribute("userName", userName);
 				}
 				if (address.length() > 100) {
 					message = message + "住所は100文字以内で入力してください<br>";
 				} else {
-					session.setAttribute("address", address);
+					request.setAttribute("address", address);
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
 				} else if (!tel.matches("\\d+") && !tel.equals("")) {
 					message = message + "電話番号は数字で入力してください<br>";
 				} else {
-					session.setAttribute("tel", tel);
+					request.setAttribute("tel", tel);
 				}
 				if (email.length() > 100) {
 					message = message + "メールアドレスは100文字以内で入力してください<br>";
 				} else {
-					session.setAttribute("email", email);
+					request.setAttribute("email", email);
 				}
 
 				if (!message.isEmpty()) {
 					request.setAttribute("message", message);
-					gotoPage(request, response, "./user/user_edit.jsp");
-					return;
-				}
-				if (dao.isUserRegistered(email)) {
-					request.setAttribute("message", "既に登録されています");
 					gotoPage(request, response, "./user/user_edit.jsp");
 					return;
 				}
