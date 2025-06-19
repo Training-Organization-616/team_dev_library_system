@@ -30,7 +30,7 @@ a {
 
 
 
-/*フッター背景色変化なし　修正必要*/
+/*フッター背景色変化なし　★修正*/
 .footer {
 	/*背景色*/
 	background-color: #A5a58d;
@@ -125,10 +125,100 @@ img {
 }
 
 .top_button-default {
-	/*文字数に関係なくボタンの大きさ統一　修正必要*/
+	/*文字数に関係なくボタンの大きさ統一　★修正*/
 	width: 70px;
 	height: 80px;
 }
+
+/*資料管理画面・会員管理のボタン*/
+
+.button_container {
+	/*上、下、左に余白*/
+	margin-top: 20px;
+	/*★修正　中央になっていない*/
+	margin-bottom: 20px;
+	margin-left: 18%;
+	/*横並び*/
+	display: flex;
+	/*中央配置*/
+	text-align: center;
+}
+
+
+/*新規登録ボタン*/
+
+.general_button {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 70px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+}
+
+
+/**/
+.return_button {
+	/*背景色*/
+	background-color: #Ddbea9;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 83px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+}
+
+/*ボタンを横並びにする　★修正*/
+.general_button,
+.return_button {
+	/*横並び等間隔*/
+	margin-right: 50px;
+}
+
+
+/*エラーメッセージ*/
+.message {
+	color: red;
+}
+
+
+
+
+table {
+	background-color: #A5a58d;
+	border-collapse: collapse;
+	color: white;
+	border: solid 1px white;
+	width: 30%;
+	place-items: center;
+}
+
+
+/*変更・削除のボタン*/
+
+.edit_button {
+
+	/*背景色*/
+	background-color: #6b705c;
+	/*文字の色*/
+	color: white;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 10px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+
+}
+
+
 
 /*共通部分終わり*/
 
@@ -146,21 +236,6 @@ img {
 	margin-left: 18%;
 	/*横並び*/
 	display: flex;
-	/*中央配置*/
-	text-align: center;
-
-}
 
 
-/*資料管理画面のボタン*/
-
-.button_container {
-	/*上、下、左に余白*/
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-left: 18%;
-	/*横並び*/
-	display: flex;
-	/*中央配置*/
-	text-align: center;
 }
