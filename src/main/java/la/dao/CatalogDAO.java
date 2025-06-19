@@ -402,7 +402,7 @@ public class CatalogDAO {
         //検索時、背ラベルが入力されているとき
         if(code2 != null && code2.length() != 0){
         	
-        	sql += " AND c.code = ? AND c.author LIKE ? AND c.volumeNumber = ?";
+        	sql += " AND c.code = ? AND c.author LIKE ? AND c.volume_number = ?";
         		
         }
         
@@ -424,11 +424,11 @@ public class CatalogDAO {
             	st.setString(i, title);
             }
             
-            //検索時、資料名が入力されているとき
+            //検索時、分類コードが入力されているとき
             if(code != null && code.length() != 0) {
             	
             	i++;
-            	st.setString(i, author);
+            	st.setInt(i, Integer.parseInt(code));
             }
             
             //検索時、著者が入力されているとき
@@ -446,7 +446,7 @@ public class CatalogDAO {
             }
             
             //検索時、背ラベルが入力されているとき
-            if((code != null && code.length() != 0)
+            if((code2 != null && code2.length() != 0)
             		&& (authorHead != null && authorHead.length() == 1)
             		&& (volumeNumber != null && volumeNumber.length() != 0)){
             	
@@ -457,6 +457,20 @@ public class CatalogDAO {
             		
             }
             
+            try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+            	
+            	if(!(rs.next())) {
+            		
+            		return null;
+            	}
+            	
+            } catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+            
+            
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
 
@@ -464,31 +478,31 @@ public class CatalogDAO {
 				List<SearchResultsBean> list = new ArrayList<SearchResultsBean>();
 
 				
-				if(rs.next()) {
-					//検索結果が存在するとき
-					while (rs.next()) {
-						//検索結果のデータを取得
-						int bookId = rs.getInt("book_id");
-						int resultIsbn = rs.getInt("isbn");
-						String resultTitle = rs.getString("title");
-						int resultCode = rs.getInt("code");
-						String resultAuthor = rs.getString("author");
-						String resultPublicher = rs.getString("publicher");
-						String resultPublicationDate = rs.getString("publication_date");
-						String resultArrivalDate = rs.getString("arrival_date");
-
-						SearchResultsBean bean = 
-								new SearchResultsBean(bookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
-										resultPublicher , resultPublicationDate , resultArrivalDate);
-						list.add(bean);
-					}
-					//検索結果をListとして返す
-					return list;
+				//検索結果が存在するとき
+				while (rs.next()) {
+					//検索結果のデータを取得
+					int bookId = rs.getInt("book_id");
+					int resultIsbn = rs.getInt("isbn");
+					String resultTitle = rs.getString("title");
+					int resultCode = rs.getInt("code");
+					String resultAuthor = rs.getString("author");
+					String resultPublicher = rs.getString("publicher");
+					String resultPublicationDate = rs.getString("publication_date");
+					String resultArrivalDate = rs.getString("arrival_date");
 					
-				}else {
-					//検索結果が存在しないとき
-					return null;
+					if(resultTitle == null || resultTitle.length() == 0) {
+						
+						return null;
+					}
+
+					SearchResultsBean bean = 
+							new SearchResultsBean(bookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
+									resultPublicher , resultPublicationDate , resultArrivalDate);
+					list.add(bean);
 				}
+				
+				//検索結果をListとして返す
+				return list;
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -41,7 +41,7 @@ public class CatalogServlet extends HttpServlet {
             }else if(action.equals("return_add")){
             	//actionの値が「returnAdd」の場合
             	//新規資料登録画面から、資料メニューに戻る
-            	gotoPage(request , response , "/catelog/catalog_top.jsp");
+            	gotoPage(request , response , "/catalog/catalog_top.jsp");
             	
             }else if(action.equals("return_search")) {
             	//actionの値が「returnSearch」の場合
@@ -226,7 +226,7 @@ public class CatalogServlet extends HttpServlet {
             		if(flagTitle) {
             			//入力が正しくない場合
             			request.setAttribute("message", "資料名は50文字以内で入力してください");
-                		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
             		
@@ -241,7 +241,7 @@ public class CatalogServlet extends HttpServlet {
             		if(flagAuthor) {
             			//入力が正しくない場合
             			request.setAttribute("message", "著者は50文字以内で入力してください");
-                		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
             		
@@ -256,7 +256,7 @@ public class CatalogServlet extends HttpServlet {
             		if(flagPublicher) {
             			//入力が正しくない場合
             			request.setAttribute("message", "出版社は100文字以内で入力してください");
-                		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
             		
@@ -265,8 +265,8 @@ public class CatalogServlet extends HttpServlet {
             	//背ラベルが正しく入力されているかを調べる
             	//背ラベルの項目のうち、いずれかを入力したとき
             	if((code2 != null && code2.length() != 0)
-            			&& (authorHead != null && authorHead.length() != 0)
-            			&& (volumeNumber != null && code2.length() != 0)) {
+            			|| (authorHead != null && authorHead.length() != 0)
+            			|| (volumeNumber != null && code2.length() != 0)) {
             		
             		//背ラベルの項目を全て入力しているかを確認
             		if((code2 == null || code2.length() == 0)
@@ -276,7 +276,7 @@ public class CatalogServlet extends HttpServlet {
             			//入力が正しくない場合
             			request.setAttribute("message",
             					"背ラベルで検索する場合は、全て入力してください");
-                		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
             		
@@ -290,7 +290,7 @@ public class CatalogServlet extends HttpServlet {
                 				//分類コードと背ラベルのコードが同じでない場合
                     			request.setAttribute("message",
                     					"「分類コード」と「背ラベルの分類コード」には同じ内容を入力してください");
-                        		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                        		gotoPage(request , response , "/catalog/catalog_search.jsp");
                         		return;
                         		
                 			}
@@ -305,7 +305,7 @@ public class CatalogServlet extends HttpServlet {
             			request.setAttribute("message",
             					"背ラベルは「分類コード - 著者の頭文字(１文字) - 著者の巻冊番号」"
             					+ "で入力してください");
-                		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
             		
@@ -317,7 +317,7 @@ public class CatalogServlet extends HttpServlet {
             			request.setAttribute("message",
             					"背ラベルは「分類コード - 著者の頭文字(１文字) - 著者の巻冊番号」"
             					+ "で入力してください");
-                		gotoPage(request , response , "/catalog/catalog_add.jsp");
+                		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
             	}
@@ -333,7 +333,7 @@ public class CatalogServlet extends HttpServlet {
             	if(list == null) {
             		//検索結果が存在しなかった場合
             		request.setAttribute("message", "検索結果がありません");
-            		gotoPage(request , response , "/catalog/catalog_add.jsp");
+            		gotoPage(request , response , "/catalog/catalog_search.jsp");
             		
             	}else {
             		//検索結果が存在した場合
@@ -500,6 +500,14 @@ public class CatalogServlet extends HttpServlet {
         		if(disposalDate == null || disposalDate.length() == 0) {
         			//廃棄年月日が入力されていない場合
         			//エラーメッセージ出力
+        			
+        			//資料変更画面に渡す値をbeanに保存
+            		SearchResultsBean bean = new SearchResultsBean(Integer.parseInt(bookId) ,
+            				Integer.parseInt(isbn) , title , Integer.parseInt(code) ,
+            				author , publicher , publicationDate , arrivalDate);
+            		
+            		//リクエストスコープで送る
+            		request.setAttribute("book", bean);
         			request.setAttribute("message", "廃棄年月日を入力してください");
             		gotoPage(request , response , "/catalog/catalog_delete.jsp");
         		}
@@ -572,14 +580,37 @@ public class CatalogServlet extends HttpServlet {
     	
     	boolean flag = false;
     	
-    	try {
-    		@SuppressWarnings("unused")
-			int isbn = Integer.parseInt(strIsbn);
+    	if(strIsbn.length() > 7) {
     		
-    	}catch(NumberFormatException e) {
+    		String strIsbn1 = "";
+        	String strIsbn2 = "";
+        	
+    		strIsbn1 = strIsbn.substring(0 , 7);
+    		strIsbn2 = strIsbn.substring(7);
     		
-    		flag = true;
-    		return flag;
+    		try {
+        		@SuppressWarnings("unused")
+    			int isbn1 = Integer.parseInt(strIsbn1);
+        		@SuppressWarnings("unused")
+				int isbn2 = Integer.parseInt(strIsbn2);
+        		
+        	}catch(NumberFormatException e) {
+        		
+        		flag = true;
+        		return flag;
+        		
+        	}
+    	}else {
+    		
+    		try {
+        		@SuppressWarnings("unused")
+    			int isbn = Integer.parseInt(strIsbn);
+        		
+        	}catch(NumberFormatException e) {
+        		
+        		flag = true;
+        		return flag;
+        	}
     	}
     	
     	return flag;
