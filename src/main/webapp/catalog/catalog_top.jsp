@@ -27,7 +27,7 @@
 		<div class="menu_name">資料管理</div>
 	</div>
 	
-	<div class="container">
+	<div class="button_container">
 		<form action="catalog_add.jsp" method="post">
 		
  			<button class="top_button">新規資料登録</button>

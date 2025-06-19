@@ -25,7 +25,7 @@
 		<div class="menu_name">会員管理</div>
 	</div>
 
-	<div class="container">
+	<div class="button_container">
 		<form action="/team_dev_library_system/user/user_add.jsp"
 			method="post">
 			<%-- リンクに/team_dev_library_system/user追加しました！これで一度試していただければと思います。 --%>

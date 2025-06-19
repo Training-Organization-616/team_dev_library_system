@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/*共通部分*/
+
 /*全体*/
 body {
 	/*背景色*/
@@ -7,6 +9,7 @@ body {
 }
 
 /*header*/
+
 /*headerの背景*/
 .top_link {
 	/*背景色*/
@@ -25,49 +28,15 @@ a {
 	font-size: 30px;
 }
 
-/*top*/
 
-/*top画面のボタン*/
-.top_button {
-	/*背景色*/
-	background-color: #Ffe8d6;
-	/*文字の色*/
-	color: #6b422b;
-	/*横並び等間隔*/
-	margin-right: 50px;
-	/*枠線なし*/
-	border: none;
-	/*ボタンの内側の余白*/
-	padding: 80px 70px;
-
-
-}
-
-.top_button-default {
-	/*文字数に関係なくボタンの大きさ統一　修正必要*/
-	width: 70px;
-	height: 80px;
-}
-
-.top_container {
-	/*背景色*/
-	background-color: white;
-	/*上、下、左に余白*/
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-left: 18%;
-	/*横並び*/
-	display: flex;
-	/*中央配置*/
-	text-align: center;
-
-}
 
 /*フッター背景色変化なし　修正必要*/
 .footer {
 	/*背景色*/
 	background-color: #A5a58d;
 }
+
+
 
 /*menu*/
 
@@ -93,34 +62,105 @@ a {
 	padding: 20px;
 }
 
-
-/*見出しの名前*/
-.menu_name {
-	background-color: #B7b7a4;
-	color: white;
-	padding-right: 90%;
-
-
-}
-
+/*メニューの画像*/
 img {
-	max-width: 50%;
 	/* 親要素の幅に合わせる */
+	max-width: 60%;
+	/* 高さ自動調整 */
 	height: auto;
-	/* 高さを自動調整 */
-	
-	
+	/*余白　上、左*/
+	padding-top: 10%;
+	padding-left: 10%;
+
 }
 
+/*メニューの画像の背景色・大きさ*/
 .menu_image {
 	background-color: #B7b7a4;
-
+	width: 40px;
 }
 
+
+
+
+
+/*見出し*/
 .holder {
+	/*上の余白*/
 	padding-top: 10px;
 	/*横並び*/
 	display: flex;
 
 }
 
+/*見出しの名前*/
+.menu_name {
+	/*背景色*/
+	background-color: #B7b7a4;
+	/*文字の色*/
+	color: white;
+	/*文字のサイズ*/
+	font-size: 20px;
+	/*横に背景色を伸ばす*/
+	width: 100vw;
+
+}
+
+
+
+/*ボタン(デザイン)*/
+.top_button {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*横並び等間隔*/
+	margin-right: 50px;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 80px 70px;
+	/*横並び*/
+	display: inline-block;
+}
+
+.top_button-default {
+	/*文字数に関係なくボタンの大きさ統一　修正必要*/
+	width: 70px;
+	height: 80px;
+}
+
+/*共通部分終わり*/
+
+
+
+/*top画面*/
+
+/*top画面のボタン*/
+.top_container {
+	/*背景色*/
+	background-color: white;
+	/*上、下、左に余白*/
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 18%;
+	/*横並び*/
+	display: flex;
+	/*中央配置*/
+	text-align: center;
+
+}
+
+
+/*資料管理画面のボタン*/
+
+.button_container {
+	/*上、下、左に余白*/
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 18%;
+	/*横並び*/
+	display: flex;
+	/*中央配置*/
+	text-align: center;
+}
