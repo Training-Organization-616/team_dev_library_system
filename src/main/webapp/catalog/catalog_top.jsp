@@ -28,12 +28,12 @@
 	</div>
 	
 	<div class="button_container">
-		<form action="catalog_add.jsp" method="post">
+		<form action="/team_dev_library_system/catalog/catalog_add.jsp" method="post">
 		
  			<button class="top_button">新規資料登録</button>
 		</form>
 		
-		<form action="catalog_search.jsp" method="post">
+		<form action="/team_dev_library_system/catalog/catalog_search.jsp" method="post">
  			<button class="top_button">資料検索</button>
 		</form>
 	</div>
