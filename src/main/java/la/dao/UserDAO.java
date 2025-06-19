@@ -50,8 +50,6 @@ public class UserDAO {
 		if (birthday != null) {
 			sql = sql + " AND birthday = ?";
 		}
-		sql = sql + " ORDER BY user_id";
-		System.out.println(sql);
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql)) {

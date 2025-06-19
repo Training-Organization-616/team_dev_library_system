@@ -38,7 +38,7 @@
 			<ul>
 				<li>会員ID：${user.userId}</li>
 				<li>氏名：${user.userName}</li>
-				<li>住所：${user.adress}</li>
+				<li>住所：${user.address}</li>
 				<li>電話番号：${user.tel}</li>
 				<li>E-Mail：${user.email}</li>
 				<li>生年月日：${user.birthday}</li>

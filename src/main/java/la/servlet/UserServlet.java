@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import la.bean.UserBean;
 import la.dao.DAOException;
@@ -30,12 +29,11 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
+
 		try {
 			UserDAO dao = new UserDAO();
 			//入力日をDate型に
 			Date today = new Date(System.currentTimeMillis());
-			System.out.println(today);
 
 			//actionのリクエストパラメータを取得
 			String action = request.getParameter("action");
@@ -45,18 +43,18 @@ public class UserServlet extends HttpServlet {
 				return;
 			} else if (action.equals("return_add")) {
 				//新規入力画面から会員メニューに戻る
-				request.setAttribute("action", "");//何かデータの受け渡し必要？
-				gotoPage(request, response, "./user/user_top.jsp");
+
+				gotoPage(request, response, "/user/user_top.jsp");
 				return;
 			} else if (action.equals("return_search")) {
+				//検索結果画面から検索画面に戻る
 
-				int userId = (int) request.getAttribute("user_id");
-				UserBean list = dao.findOneUser(userId);
-				request.setAttribute("user", list);
-				gotoPage(request, response, "./user/user_search.jsp");
+				gotoPage(request, response, "/user/user_search.jsp");
 				return;
 			} else if (action.equals("add")) {
+				//会員情報の追加
 
+				//ユーザの入力情報の取得
 				String userName = safeGetString(request.getParameter("user_name"));
 				String address = safeGetString(request.getParameter("user_address"));
 				String tel = safeGetString(request.getParameter("user_tel"));
@@ -64,6 +62,7 @@ public class UserServlet extends HttpServlet {
 				String birthdayStr = request.getParameter("user_birthday");
 				Date birthday = null;
 				if (!birthdayStr.equals("")) {
+					//入力されている場合はDate型で登録
 					birthday = setDate(birthdayStr);
 				}
 
@@ -74,32 +73,34 @@ public class UserServlet extends HttpServlet {
 						|| tel == null || tel.length() == 0 || email == null || email.length() == 0
 						|| birthday == null) {
 					request.setAttribute("message", "すべて必須項目です<br>");
+					gotoPage(request, response, "./user/user_add.jsp");
+					return;
 
 				}
 
 				if (userName.length() > 50) {
-					message += "氏名は50文字以内で入力してください<br>";
+					message = message + "氏名は50文字以内で入力してください<br>";
 				} else {
 					request.setAttribute("userName", userName);
 				}
 				if (address.length() > 100) {
-					message += "住所は100文字以内で入力してください<br>";
+					message = message + "住所は100文字以内で入力してください<br>";
 				} else {
 					request.setAttribute("address", address);
 				}
 				if (tel.length() > 20) {
-					message += "電話番号は20桁以内で入力してください<br>";
-				} else if (1 == 1) {
-
+					message = message + "電話番号は20桁以内で入力してください<br>";
+				} else if (!tel.matches("\\d+")) {
+					message = message + "電話番号は数字で入力してください<br>";
 				} else {
 					request.setAttribute("tel", tel);
 				}
 				if (email.length() > 100) {
-					message += "メールアドレスは100文字以内で入力してください<br>";
+					message = message + "メールアドレスは100文字以内で入力してください<br>";
 				} else {
 					request.setAttribute("email", email);
 				}
-
+				//1つでも問題があれば戻る
 				if (!message.isEmpty()) {
 					request.setAttribute("message", message);
 					gotoPage(request, response, "./user/user_add.jsp");
@@ -121,12 +122,11 @@ public class UserServlet extends HttpServlet {
 			} else if (action.equals("search")) {
 				//パラメータ取得
 				String userIdAttr = request.getParameter("user_id");
-				String userStock = userIdAttr;
+
 				int userId = safeGetInt(userIdAttr);
 				String userName = safeGetString(request.getParameter("user_name"));
 				String address = safeGetString(request.getParameter("user_address"));
 				String tel = safeGetString(request.getParameter("user_tel"));
-
 				String email = safeGetString(request.getParameter("user_email"));
 				String birthdayStr = request.getParameter("user_birthday");
 				Date birthday = null;
@@ -139,30 +139,31 @@ public class UserServlet extends HttpServlet {
 				String message = "";
 
 				if (userId == -2) {
-					message += "IDは数字で入力してください<br>";
+					message = message + "IDは数字で入力してください<br>";
 				} else if (userId != -1) {
 					//userId = Integer.parseInt(userStock);
 					request.setAttribute("userId", userId);
 				}
 
 				if (userName.length() > 50) {
-					message += "氏名は50文字以内で入力してください<br>";
+					message = message + "氏名は50文字以内で入力してください<br>";
 				} else {
 					request.setAttribute("userName", userName);
 				}
 				if (address.length() > 100) {
-					message += "住所は100文字以内で入力してください<br>";
+					message = message + "住所は100文字以内で入力してください<br>";
 				} else {
 					request.setAttribute("address", address);
 				}
 				if (tel.length() > 20) {
-					message += "電話番号は20桁以内で入力してください<br>";
+					message = message + "電話番号は20桁以内で入力してください<br>";
+				} else if (!tel.matches("\\d+") && !tel.equals("")) {
+					message = message + "電話番号は数字で入力してください<br>";
 				} else {
-
 					request.setAttribute("tel", tel);
 				}
 				if (email.length() > 100) {
-					message += "メールアドレスは100文字以内で入力してください<br>";
+					message = message + "メールアドレスは100文字以内で入力してください<br>";
 				} else {
 					request.setAttribute("email", email);
 				}
@@ -230,6 +231,8 @@ public class UserServlet extends HttpServlet {
 					return;
 				}
 				dao.deleteUser(userId, today);
+				UserBean list = dao.findOneUser(userId);
+				request.setAttribute("user", list);
 				gotoPage(request, response, "./user/user_delete_complete.jsp");
 			}
 		} catch (SQLException | ServletException | IOException | DAOException | ParseException e) {
