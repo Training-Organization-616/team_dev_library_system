@@ -91,7 +91,7 @@ public class UserServlet extends HttpServlet {
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
-				} else if (!tel.matches("\\d+")) {
+				} else if (!tel.matches("\\d+") && tel.length() > 0) {
 					message = message + "電話番号は数字で入力してください<br>";
 				} else {
 					request.setAttribute("tel", tel);
@@ -159,7 +159,7 @@ public class UserServlet extends HttpServlet {
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
-				} else if (!tel.matches("\\d+") && !tel.equals("")) {
+				} else if (!tel.matches("\\d+") && tel.length() > 0) {
 					message = message + "電話番号は数字で入力してください<br>";
 				} else {
 					request.setAttribute("tel", tel);
@@ -238,7 +238,7 @@ public class UserServlet extends HttpServlet {
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
-				} else if (!tel.matches("\\d+") && !tel.equals("")) {
+				} else if (!tel.matches("\\d+") && tel.length() > 0) {
 					message = message + "電話番号は数字で入力してください<br>";
 				} else {
 					request.setAttribute("tel", tel);
