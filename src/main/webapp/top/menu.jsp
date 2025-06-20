@@ -5,19 +5,23 @@
 
 	<p>メニュー</p>
 
-	<form action="/team_dev_library_system//lend/lend_top.jsp" method="post">
+	<form action="/team_dev_library_system/TransitionServlet" method="post">
 		<button class="menu_button">貸出</button>
+		<input type="hidden" name="action" value="lend">
 	</form>
 	
-	<form action="/team_dev_library_system//return/return_top.jsp" method="post">
+	<form action="/team_dev_library_system/TransitionServlet" method="post">
 		<button class="menu_button">返却</button>
+		<input type="hidden" name="action" value="return">
 	</form>
 	
-	<form action="/team_dev_library_system//catalog/catalog_top.jsp" method="post">
+	<form action="/team_dev_library_system/TransitionServlet" method="post">
 		<button class="menu_button">資料管理</button>
+		<input type="hidden" name="action" value="catalog">
 	</form>
 	
-	<form action="/team_dev_library_system//user/user_top.jsp" method="post">
+	<form action="/team_dev_library_system/TransitionServlet" method="post">
 		<button class="menu_button">会員管理</button>
+		<input type="hidden" name="action" value="user">
 	</form>
 </div>
