@@ -36,9 +36,9 @@ public class InquiriesServlet extends HttpServlet {
                 gotoPage(request, response, "/top/top.jsp");
                 
                 
-            }else if(action.equals("return_add")){
-            	//actionの値が「return_add」の場合
-            	//お問い合わせ登録画面から、お問い合わせ対応画面に戻る
+            }else if(action.equals("return")){
+            	//actionの値が「return」の場合
+            	//お問い合わせ登録、編集画面から、お問い合わせ対応画面に戻る
             	gotoPage(request , response , "/other/other_inquiries_top.jsp");
             	
             }else if(action.equals("list")) {
@@ -53,7 +53,7 @@ public class InquiriesServlet extends HttpServlet {
             	
             	if(list == null) {
             		//検索結果が存在しなかった場合
-            		request.setAttribute("message", "検索結果がありません");
+            		request.setAttribute("message", "お問い合わせがありません");
             		gotoPage(request , response , "/other/other_inquiries_top.jsp");
             		
             	}else {
@@ -195,105 +195,12 @@ public class InquiriesServlet extends HttpServlet {
         rd.forward(request, response);
     }
     
-    //有効なISBNが入力されたのかを確認するメソッド
-    public boolean isCheckIsbn(String strIsbn) {
-    	
-    	boolean flag = false;
-    	
-    	if(strIsbn.length() > 7) {
-    		
-    		String strIsbn1 = "";
-        	String strIsbn2 = "";
-        	
-    		strIsbn1 = strIsbn.substring(0 , 7);
-    		strIsbn2 = strIsbn.substring(7);
-    		
-    		try {
-        		@SuppressWarnings("unused")
-    			int isbn1 = Integer.parseInt(strIsbn1);
-        		@SuppressWarnings("unused")
-				int isbn2 = Integer.parseInt(strIsbn2);
-        		
-        	}catch(NumberFormatException e) {
-        		
-        		flag = true;
-        		return flag;
-        		
-        	}
-    	}else {
-    		
-    		try {
-        		@SuppressWarnings("unused")
-    			int isbn = Integer.parseInt(strIsbn);
-        		
-        	}catch(NumberFormatException e) {
-        		
-        		flag = true;
-        		return flag;
-        	}
-    	}
-    	
-    	return flag;
-    }
-    
-    //有効な資料名が入力されたのかを確認するメソッド
+    //有効なタイトルが入力されたのかを確認するメソッド
     public boolean isCheckTitle(String title) {
     	
     	boolean flag = false;
     	
     	if(title.length() > 50) {
-    		
-    		flag = true;
-    	}
-    	
-    	return flag;
-    }
-    
-    //有効な著者が入力されたのかを確認するメソッド
-    public boolean isCheckAuthor(String author) {
-    	
-    	boolean flag = false;
-    	
-    	if(author.length() > 50) {
-    		
-    		flag = true;
-    	}
-    	
-    	return flag;
-    }
-    
-    //有効な出版社が入力されたのかを確認するメソッド
-    public boolean isCheckPublicher(String publicher) {
-    	
-    	boolean flag = false;
-    	
-    	if(publicher.length() > 100) {
-    		
-    		flag = true;
-    	}
-    	
-    	return flag;
-    }
-    
-    //有効な背ラベルの２番目が入力されたのかを確認するメソッド
-    public boolean isCheckAuthorHead(String authorHead) {
-    	
-    	boolean flag = false;
-    	
-    	if(authorHead.length() > 1) {
-    		
-    		flag = true;
-    	}
-    	
-    	return flag;
-    }
-    
-    //有効な背ラベルの３番目が入力されたのかを確認するメソッド
-    public boolean isCheckVolumeNumber(String volumeNumber) {
-    	
-    	boolean flag = false;
-    	
-    	if(volumeNumber.length() > 1) {
     		
     		flag = true;
     	}

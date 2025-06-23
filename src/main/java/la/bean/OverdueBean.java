@@ -7,24 +7,30 @@ public class OverdueBean implements Serializable{
 	private int lendId;
 	private int userId;
 	private String name;
+	private String email;
+	private String tel;
 	private int bookId;
 	private String title;
-	private String telReminder;
-	private String demandLetter;
+	private String dueDate;
+	private String firstReminder;
+	private String secondReminder;
 	private String memo;
 	
 	public OverdueBean() {}
 	
-	public OverdueBean(int lendId , int userId , String name , int bookId ,
-			String title , String telReminder , String demandLetter , String memo) {
+	public OverdueBean(int lendId , int userId , String name , String email , String tel , int bookId ,
+			String title , String dueDate , String firstReminder , String secondReminder , String memo) {
 		
 		this.lendId = lendId;
 		this.userId = userId;
 		this.name = name;
+		this.email = email;
+		this.tel = tel;
 		this.bookId = bookId;
 		this.title = title;
-		this.telReminder = telReminder;
-		this.demandLetter = demandLetter;
+		this.dueDate = dueDate;
+		this.firstReminder = firstReminder;
+		this.secondReminder = secondReminder;
 		this.memo = memo;
 	}
 
@@ -49,6 +55,20 @@ public class OverdueBean implements Serializable{
 		this.name = name;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	
 	public int getBookId() {
 		return bookId;
 	}
@@ -62,19 +82,26 @@ public class OverdueBean implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
+	}
 
 	public String getTelReminder() {
-		return telReminder;
+		return firstReminder;
 	}
-	public void setTelReminder(String telReminder) {
-		this.telReminder = telReminder;
+	public void setTelReminder(String firstReminder) {
+		this.firstReminder = firstReminder;
 	}
 
 	public String getDemandLetter() {
-		return demandLetter;
+		return secondReminder;
 	}
-	public void setDemandLetter(String demandLetter) {
-		this.demandLetter = demandLetter;
+	public void setDemandLetter(String secondReminder) {
+		this.secondReminder = secondReminder;
 	}
 
 	public String getMemo() {
