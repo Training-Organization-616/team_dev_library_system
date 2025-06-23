@@ -8,89 +8,68 @@ body {
 	background-color: white;
 }
 
-/*header*/
+/*---------header--------*/
 
 /*headerの背景*/
 .top_link {
 	/*背景色*/
 	background-color: #A5a58d;
 	/*余白*/
-	padding: 4%;
+	padding: 30px;
 }
 
 /*headerの文字*/
-a {
-	/*文字の色*/
+.library_system {
+	
 	color: white;
-	/*下線なし*/
-	text-decoration: none;
-	/*文字のサイズ*/
-	font-size: 30px;
+	background-color: #A5a58d;
+	border: none;
+	font-size: 50px;
 }
 
+/*---------header--------*/
+
+/*-------------------------------------------------*/
 
 
-/*フッター背景色変化なし　★修正*/
+/*フッター背景色　★修正*/
 .footer {
 	/*背景色*/
 	background-color: #A5a58d;
+	width: auto;
+	height: 145px;
 }
 
 
+/*--------------------------------------------------*/
 
-/*menu*/
+
+
+/*---------menu--------*/
+
+.menu {
+	width: 200px;
+	float: left;
+	z-index: 1000;
+}
 
 /*menu背景*/
 .menu_container {
 	background-color: #Cb997e;
 	color: white;
+	font-size: 25px;
 	/*下、右の余白*/
 	padding-top: 10px;
 	padding-bottom: 100%;
 	padding-right: 50px;
-	/*すべて左寄せ*/
-	float: left;
-
+	position: relative;
 }
-
-/*menuボタン*/
-.menu_button {
-	background-color: #Cb997e;
-	/*枠線なし*/
-	border: none;
-	color: white;
-	padding: 20px;
-}
-
-/*メニューの画像*/
-img {
-	/* 親要素の幅に合わせる */
-	max-width: 60%;
-	/* 高さ自動調整 */
-	height: auto;
-	/*余白　上、左*/
-	padding-top: 10%;
-	padding-left: 10%;
-
-}
-
-/*メニューの画像の背景色・大きさ*/
-.menu_image {
-	background-color: #B7b7a4;
-	width: 40px;
-}
-
-
-
-
 
 /*見出し*/
 .holder {
-	/*上の余白*/
-	padding-top: 10px;
-	/*横並び*/
 	display: flex;
-
+	margin-top: 10px;
+	z-index: 500;
 }
 
 /*見出しの名前*/
@@ -100,49 +79,99 @@ img {
 	/*文字の色*/
 	color: white;
 	/*文字のサイズ*/
-	font-size: 20px;
+	font-size: 30px;
 	/*横に背景色を伸ばす*/
 	width: 100vw;
+	height: 50px;
+}
+
+/*menuボタン*/
+.menu_button {
+	
+	background-color: #Cb997e;
+	font-size: 20px;
+	/*枠線なし*/
+	border: none;
+	color: white;
+	padding: 20px;
+}
+
+/*menuの画像*/
+img {
+	/*カーソルが指さしの手になる*/
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+}
+
+/*メニューの画像の背景色・大きさ*/
+.menu_image {
+	background-color: #B7b7a4;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+/*---------menu--------*/
+
+
+/*----------------pタグ------------------*/
+
+p {
+	margin-left: 30px;
 
 }
 
+button {
+	/*カーソルが指さしの手になる*/
+	cursor: pointer;
+}
 
+
+.top_container {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+
+}
 
 /*ボタン(デザイン)*/
 .top_button {
+
 	/*背景色*/
 	background-color: #Ffe8d6;
+	/*文字のサイズ*/
+	font-size: 30px;
 	/*文字の色*/
 	color: #6b422b;
-	/*横並び等間隔*/
-	margin-right: 50px;
 	/*枠線なし*/
 	border: none;
-	/*ボタンの内側の余白*/
-	padding: 80px 70px;
-	/*横並び*/
-	display: inline-block;
+	width: 270px;
+	height: 200px;
+
 }
 
-.top_button-default {
-	/*文字数に関係なくボタンの大きさ統一　★修正*/
-	width: 70px;
-	height: 80px;
-}
 
 /*資料管理画面・会員管理のボタン*/
 
 .button_container {
+
 	/*上、下、左に余白*/
-	margin-top: 20px;
-	/*★修正　中央になっていない*/
-	margin-bottom: 20px;
-	margin-left: 18%;
+	margin-top: 100px;
 	/*横並び*/
 	display: flex;
-	/*中央配置*/
-	text-align: center;
+	align-items: center;
+	justify-content: space-around;
 }
+
+.container {
+	font-size: 25px;
+
+}
+
+
 
 
 /*新規登録ボタン*/
@@ -158,11 +187,16 @@ img {
 	padding: 10px 70px;
 	/*ボタン丸くする*/
 	border-radius: 100px;
+	font-size: 25px;
+	float: left;
+
+
 }
 
 
 /**/
 .return_button {
+
 	/*背景色*/
 	background-color: #Ddbea9;
 	/*文字の色*/
@@ -173,33 +207,66 @@ img {
 	padding: 10px 83px;
 	/*ボタン丸くする*/
 	border-radius: 100px;
-}
+	font-size: 25px;
+	float: right;
 
-/*ボタンを横並びにする　★修正*/
-.general_button,
-.return_button {
-	/*横並び等間隔*/
-	margin-right: 50px;
+
 }
 
 
-/*エラーメッセージ*/
+
+
+
+/*------------エラーメッセージ------------*/
 .message {
 	color: red;
+	font-size: 20px;
 }
 
+/*------------エラーメッセージ------------*/
 
+
+
+
+/*-----------------table------------------*/
 
 
 table {
+
 	background-color: #A5a58d;
 	border-collapse: collapse;
 	color: white;
-	border: solid 1px white;
-	width: 30%;
+	border: 3px solid white;
 	place-items: center;
+	padding: 50px;
+	margin: auto;
+	width: 800px;
+	height: 100px;
+
+
 }
 
+
+table th {
+	width: 200px;
+}
+
+
+th,
+td {
+	border: 2px dashed white;
+	/* 点線 */
+}
+
+
+
+.serch_result_table {
+	width: 800px;
+	height: 200px;
+}
+
+
+/*-----------------table------------------*/
 
 /*変更・削除のボタン*/
 
@@ -220,22 +287,65 @@ table {
 
 
 
-/*共通部分終わり*/
 
 
 
-/*top画面*/
+/*-----------------リスト------------------*/
 
-/*top画面のボタン*/
-.top_container {
-	/*背景色*/
-	background-color: white;
-	/*上、下、左に余白*/
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-left: 18%;
-	/*横並び*/
-	display: flex;
+
+/*返却・貸出リスト*/
+
+ul {
+	list-style-type: none;
+	/* デフォルトの丸い点 */
+	/*文字の色*/
+	color: #6b422b;
+	z-index: 100;
+	width: 800px;
+	margin: auto;
 
 
 }
+
+ul li {
+	position: relative;
+	background-color: #Ffe8d6;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	margin-bottom: 5px;
+	line-height: 1.5;
+	vertical-align: middle;
+	border-radius: 15px 15px 15px 15px;
+	/*左側の角丸く*/
+}
+
+
+/*-----------------リスト------------------*/
+
+
+
+
+
+/*-----------------続けて貸出・返却ボタン------------------*/
+.transfar_link {
+	width: 500px;
+	margin: auto;
+}
+
+/*返却・貸出完了画面の続けて返却・貸出ボタン*/
+.transfar_link button {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 70px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+}
+
+/*-----------------続けて貸出・返却ボタン------------------*/
