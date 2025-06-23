@@ -6,13 +6,8 @@
 	<p>メニュー</p>
 
 	<form action="/team_dev_library_system/TransitionServlet" method="post">
-		<button class="menu_button">貸出</button>
+		<button class="menu_button">貸出管理</button>
 		<input type="hidden" name="action" value="lend">
-	</form>
-	
-	<form action="/team_dev_library_system/TransitionServlet" method="post">
-		<button class="menu_button">返却</button>
-		<input type="hidden" name="action" value="return">
 	</form>
 	
 	<form action="/team_dev_library_system/TransitionServlet" method="post">
@@ -23,5 +18,10 @@
 	<form action="/team_dev_library_system/TransitionServlet" method="post">
 		<button class="menu_button">会員管理</button>
 		<input type="hidden" name="action" value="user">
+	</form>
+	
+	<form action="/team_dev_library_system/TransitionServlet" method="post">
+		<button class="menu_button">その他</button>
+		<input type="hidden" name="action" value="other">
 	</form>
 </div>

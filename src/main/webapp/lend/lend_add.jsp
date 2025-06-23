@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,39 +14,44 @@
 
 	<jsp:include page="../top/header.jsp" />
 
-	
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
 	</div>
-	
+
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
+
 		</div>
 		<div class="menu_name">貸出</div>
 	</div>
-	
+
 	<div class="container">
 		<div>
-			<p>貸出が完了しました</p>
+			<p>会員ID、資料IDを入力してください</p>
 		</div>
-		
-		<div>
-			<ul>
-				<li>貸出ID：${lendId}</li>
-				<li>会員ID：${userId}</li>
-				<li>資料ID：${bookId}</li>
-				<li>資料名：${title}</li>
-				<li>返却期限：${dueDate}</li>
-			</ul>
-		</div>
-	
-		<div class="transfar_link">				
-			<form action="/team_dev_library_system/lend/lend_add.jsp" method="post">
- 				<button>続けて貸出</button>
+
+		<div class="message">${message}</div>
+
+		<div class="input_table">
+			<form action="/team_dev_library_system/LendServlet" method="post">
+				<input type="hidden" name="action" value="lend">
+				<table>
+					<tr>
+						<th>会員ID</th>
+						<td><input class="input_form" type="text" name="user_id"
+							value="${userId}"></td>
+					</tr>
+					<tr>
+						<th>資料ID</th>
+						<td><input class="input_form" type="text" name="book_id"
+							value="${bookId}"></td>
+					</tr>
+				</table>
+				<button class="general_button">貸出</button>
 			</form>
 		</div>
+	</div>
 
 	<jsp:include page="../top/footer.jsp" />
 

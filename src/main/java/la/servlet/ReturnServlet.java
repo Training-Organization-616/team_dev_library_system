@@ -53,7 +53,7 @@ public class ReturnServlet extends HttpServlet {
 						request.setAttribute("lendId", paramLendId);
 						request.setAttribute("userId", paramUserId);
 						request.setAttribute("bookId", paramBookId);
-						gotoPage(request, response, "/return/return_top.jsp");
+						gotoPage(request, response, "/lend/return_add.jsp");
 						return;
 					}
 
@@ -65,7 +65,7 @@ public class ReturnServlet extends HttpServlet {
 						request.setAttribute("lendId", paramLendId);
 						request.setAttribute("userId", paramUserId);
 						request.setAttribute("bookId", paramBookId);
-						gotoPage(request, response, "/return/return_top.jsp");
+						gotoPage(request, response, "/lend/return_add.jsp");
 						return;
 					}
 
@@ -75,7 +75,7 @@ public class ReturnServlet extends HttpServlet {
 						request.setAttribute("lendId", paramLendId);
 						request.setAttribute("userId", paramUserId);
 						request.setAttribute("bookId", paramBookId);
-						gotoPage(request, response, "/return/return_top.jsp");
+						gotoPage(request, response, "/lend/return_add.jsp");
 						return;
 					}
 					Matcher bookIdMatcher = pattern.matcher(paramBookId);
@@ -84,7 +84,7 @@ public class ReturnServlet extends HttpServlet {
 						request.setAttribute("lendId", paramLendId);
 						request.setAttribute("userId", paramUserId);
 						request.setAttribute("bookId", paramBookId);
-						gotoPage(request, response, "/return/return_top.jsp");
+						gotoPage(request, response, "/lend/return_add.jsp");
 						return;
 					}
 
@@ -106,7 +106,7 @@ public class ReturnServlet extends HttpServlet {
 							request.setAttribute("lendId", lendId);
 							request.setAttribute("userId", userId);
 							request.setAttribute("bookId", bookId);
-							gotoPage(request, response, "/return/return_top.jsp");
+							gotoPage(request, response, "/lend/return_add.jsp");
 							return;
 
 						}
@@ -132,7 +132,7 @@ public class ReturnServlet extends HttpServlet {
 						String title = bean.getTitle();
 						request.setAttribute("title", title);
 
-						gotoPage(request, response, "/return/return_complete.jsp");
+						gotoPage(request, response, "/lend/return_complete.jsp");
 
 					} catch (Exception e) {
 						//DB処理が失敗(エラー)した場合
