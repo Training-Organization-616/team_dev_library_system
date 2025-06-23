@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import la.bean.LendBean;
 import la.bean.StockBean;
 
 public class ReturnDAO {
@@ -24,6 +25,47 @@ public class ReturnDAO {
 			e.printStackTrace();
 			throw new DAOException("JDBCドライバの登録に失敗しました。");
 		}
+	}
+
+	//select user_id book_id from lend where lend_id=?; listに入れる　Servletで入力されたものを比較する
+
+	public LendBean findByUserIdAndBookId(int id) throws DAOException {
+
+		String sql = "select * from lend where lend_id = ?;";
+
+		try (
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+
+			st.setInt(1, id);
+
+			try (ResultSet rs = st.executeQuery()) {
+
+				LendBean bean = new LendBean();
+				while (rs.next()) {
+					int lendId = rs.getInt("lend_id");
+					int userId = rs.getInt("user_id");
+					int bookId = rs.getInt("book_id");
+					String lendDate = rs.getString("lend_date");
+					String dueDate = rs.getString("due_date");
+					String returnDate = rs.getString("return_date");
+					String memo = rs.getString("memo");
+
+					bean = new LendBean(lendId, userId, bookId, lendDate, dueDate, returnDate, memo);
+
+				}
+
+				return bean;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+
 	}
 
 	public int returnCatalog(int lendId, int userId, int bookId) throws DAOException, SQLException {

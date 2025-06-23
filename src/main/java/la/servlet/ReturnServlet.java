@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import la.bean.LendBean;
 import la.bean.StockBean;
 import la.dao.DAOException;
 import la.dao.ReturnDAO;
@@ -91,6 +92,32 @@ public class ReturnServlet extends HttpServlet {
 					int lendId = Integer.parseInt(paramLendId);
 					int userId = Integer.parseInt(paramUserId);
 					int bookId = Integer.parseInt(paramBookId);
+
+					try {
+
+						LendBean bean = dao.findByUserIdAndBookId(lendId);
+
+						int checkUserId = bean.getUserId();
+						int checkBookId = bean.getBookId();
+
+						if (userId != checkUserId || bookId != checkBookId) {
+
+							request.setAttribute("message", "貸出情報が一致しません");
+							request.setAttribute("lendId", lendId);
+							request.setAttribute("userId", userId);
+							request.setAttribute("bookId", bookId);
+							gotoPage(request, response, "/return/return_top.jsp");
+							return;
+
+						}
+
+					} catch (DAOException e) {
+						//DAOのDB処理が失敗(エラー)した場合
+
+						e.printStackTrace();
+						request.setAttribute("message", "内部エラーが発生しました。");
+						gotoPage(request, response, "/errInternal.jsp");
+					}
 
 					dao.returnCatalog(lendId, userId, bookId);
 
