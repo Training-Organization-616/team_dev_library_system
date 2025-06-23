@@ -40,6 +40,11 @@ public class CatalogServlet extends HttpServlet {
                 
             }else if(action.equals("return_add")){
             	//actionの値が「returnAdd」の場合
+            	
+            	//検索結果のsession開放
+        		HttpSession session = request.getSession();
+        		session.removeAttribute("books");
+            	
             	//新規資料登録画面から、資料メニューに戻る
             	gotoPage(request , response , "/catalog/catalog_top.jsp");
             	

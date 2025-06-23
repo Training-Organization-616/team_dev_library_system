@@ -184,7 +184,7 @@ public class CatalogDAO {
     public void setStockAmount(String title , String stockAmount) throws DAOException{
     	
     	//資料目録の更新
-		String sql = "Update catalog SET stock_amount = ? WHERE title = ?";
+		String sql = "UPDATE catalog SET stock_amount = ? WHERE title = ?";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
@@ -309,14 +309,14 @@ public class CatalogDAO {
     		//isbnが入力されている場合
     		sql = "SELECT s.book_id , s.isbn , s.title , c.code , c.author , "
     				+ "c.publicher , c.publication_date , s.arrival_date "
-    				+ "FROM stock s JOIN catalog c ON s.title = c.title "
+    				+ "FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
     				+ "ORDER BY s.book_id DESC LIMIT 1";
     		
     	}else {
     		//isbnが入力されていない場合
     		sql = "SELECT s.book_id , s.title , c.code , c.author , "
     				+ "c.publicher , c.publication_date , s.arrival_date "
-    				+ "FROM stock s JOIN catalog c ON s.title = c.title "
+    				+ "FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
     				+ "ORDER BY s.book_id DESC LIMIT 1";
     	}
     	
@@ -375,13 +375,15 @@ public class CatalogDAO {
     		String code2 , String authorHead , String volumeNumber) throws DAOException {
     	
     	// SQL文の作成
-        String sql = "SELECT s.book_id , s.isbn , s.title , c.code , c.author , c.publicher , c.publication_date , s.arrival_date"
-        		+ " FROM stock s join catalog c on s.title = c.title WHERE disposal_date IS NULL";
+        String sql = "SELECT s.book_id , s.isbn , s.title , c.code , c.author , c.publicher ,"
+        		+ " c.publication_date , s.arrival_date , s.reservation_amount"
+        		+ " FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
+        		+ " WHERE disposal_date IS NULL";
         
         //検索時、資料名が入力されているとき
         if(title != null && title.length() != 0) {
         	
-        	sql += " AND s.title = ?";	
+        	sql += " AND s.title ?";	
         }
         //検索時、分類コードが入力されているとき
         if(code != null && code.length() != 0) {
@@ -391,12 +393,12 @@ public class CatalogDAO {
         //検索時、著者が入力されているとき
         if(author != null && author.length() != 0) {
         	
-        	sql += " AND c.author = ?";
+        	sql += " AND c.author ?";
         }
         //検索時、出版社が入力されているとき
         if(publicher != null && publicher.length() != 0) {
         	
-        	sql += " AND c.publicher = ?";
+        	sql += " AND c.publicher ?";
         	
         }
         //検索時、背ラベルが入力されているとき
@@ -421,7 +423,7 @@ public class CatalogDAO {
             if(title != null && title.length() != 0) {
             	
             	i++;
-            	st.setString(i, title);
+            	st.setString(i, "%" + title + "%");
             }
             
             //検索時、分類コードが入力されているとき
@@ -435,14 +437,14 @@ public class CatalogDAO {
             if(author != null && author.length() != 0) {
             	
             	i++;
-            	st.setString(i, author);
+            	st.setString(i, "%" + author + "%");
             }
             
             //検索時、出版社が入力されているとき
             if(publicher != null && publicher.length() != 0) {
             	
             	i++;
-            	st.setString(i, publicher);
+            	st.setString(i, "%" + publicher + "%");
             }
             
             //検索時、背ラベルが入力されているとき
@@ -489,6 +491,7 @@ public class CatalogDAO {
 					String resultPublicher = rs.getString("publicher");
 					String resultPublicationDate = rs.getString("publication_date");
 					String resultArrivalDate = rs.getString("arrival_date");
+					String reservationAmount = rs.getString("reservation_amount");
 					
 					if(resultTitle == null || resultTitle.length() == 0) {
 						
@@ -497,7 +500,7 @@ public class CatalogDAO {
 
 					SearchResultsBean bean = 
 							new SearchResultsBean(bookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
-									resultPublicher , resultPublicationDate , resultArrivalDate);
+									resultPublicher , resultPublicationDate , resultArrivalDate , reservationAmount);
 					list.add(bean);
 				}
 				
@@ -523,11 +526,11 @@ public class CatalogDAO {
 		// 在庫台帳の更新
 		if(isbn != null && isbn.length() != 0) {
 			
-			sql = "Update stock SET isbn = ? , title = ? , arrival_date = ? WHERE book_id = ?";
+			sql = "UPDATE stock SET isbn = ? , title = ? , arrival_date = ? WHERE book_id = ?";
 			
 		}else {
 			
-			sql = "Update stock SET title = ? , arrival_date = ? WHERE book_id = ?";
+			sql = "UPDATE stock SET title = ? , arrival_date = ? WHERE book_id = ?";
 		}
 		
 		try (// データベースへの接続
@@ -563,12 +566,12 @@ public class CatalogDAO {
 		// 資料目録の変更
 		if(isbn != null && isbn.length() != 0) {
 			
-			sql = "Update catalog SET isbn = ? , title = ? , code = ? , author = ? , publicher = ? ,"
+			sql = "UPDATE catalog SET isbn = ? , title = ? , code = ? , author = ? , publicher = ? ,"
 					+ " publication_date = ? WHERE stock_amount LIKE ?";
 			
 		}else {
 			
-			sql = "Update catalog SET title = ? , code = ? , author = ? , publicher = ? ,"
+			sql = "UPDATE catalog SET title = ? , code = ? , author = ? , publicher = ? ,"
 					+ " publication_date = ? WHERE stock_amount LIKE ?";
 		}
 	
@@ -615,12 +618,12 @@ public class CatalogDAO {
 		if(memo != null && memo.length() != 0) {
 			
 			// 在庫台帳の更新
-			sql = "Update stock SET disposal_date = ? , memo = ? , stock = 2 WHERE book_id = ?";
+			sql = "UPDATE stock SET disposal_date = ? , memo = ? , stock = 2 WHERE book_id = ?";
 			
 		}else {
 			
 			// 在庫台帳の更新
-			sql = "Update stock SET disposal_date = ? , stock = 2 WHERE book_id = ?";
+			sql = "UPDATE stock SET disposal_date = ? , stock = 2 WHERE book_id = ?";
 		}
 		
 		try (// データベースへの接続

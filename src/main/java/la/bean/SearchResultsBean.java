@@ -12,6 +12,7 @@ public class SearchResultsBean implements Serializable{
 	private String publicher;
 	private String publicationDate;
 	private String arrivalDate;
+	private String reservationAmount;
 	
 	public SearchResultsBean(){}
 	
@@ -26,6 +27,20 @@ public class SearchResultsBean implements Serializable{
 		this.publicher = publicher;
 		this.publicationDate = publicationDate;
 		this.arrivalDate = arrivalDate;
+	}
+	
+	public SearchResultsBean(int bookId , int isbn , String title , int code , String author , 
+			String publicher , String publicationDate , String arrivalDate , String reservationAmount){
+		
+		this.bookId = bookId;
+		this.isbn = isbn;
+		this.title = title;
+		this.code = code;
+		this.author = author;
+		this.publicher = publicher;
+		this.publicationDate = publicationDate;
+		this.arrivalDate = arrivalDate;
+		this.reservationAmount = reservationAmount;
 	}
 
 	public int getBookId() {
@@ -82,5 +97,12 @@ public class SearchResultsBean implements Serializable{
 	}
 	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
+	}
+	
+	public String getReservationAmount() {
+		return reservationAmount;
+	}
+	public void setReservationAmount(String reservationAmount) {
+		this.reservationAmount = reservationAmount;
 	}
 }
