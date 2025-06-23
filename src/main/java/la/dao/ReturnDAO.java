@@ -27,8 +27,6 @@ public class ReturnDAO {
 		}
 	}
 
-	//select user_id book_id from lend where lend_id=?; listに入れる　Servletで入力されたものを比較する
-
 	public LendBean findByUserIdAndBookId(int id) throws DAOException {
 
 		String sql = "select * from lend where lend_id = ?;";
@@ -37,11 +35,8 @@ public class ReturnDAO {
 				Connection con = DriverManager.getConnection(url, user, pass);
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
-
 			st.setInt(1, id);
-
 			try (ResultSet rs = st.executeQuery()) {
-
 				LendBean bean = new LendBean();
 				while (rs.next()) {
 					int lendId = rs.getInt("lend_id");
@@ -51,11 +46,8 @@ public class ReturnDAO {
 					String dueDate = rs.getString("due_date");
 					String returnDate = rs.getString("return_date");
 					String memo = rs.getString("memo");
-
 					bean = new LendBean(lendId, userId, bookId, lendDate, dueDate, returnDate, memo);
-
 				}
-
 				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -65,10 +57,9 @@ public class ReturnDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
-
 	}
 
-	public int returnCatalog(int lendId, int userId, int bookId) throws DAOException, SQLException {
+	public void returnCatalog(int lendId, int userId, int bookId) throws DAOException, SQLException {
 
 		// SQL文の作成
 
@@ -86,36 +77,28 @@ public class ReturnDAO {
 			Date today = new Date(System.currentTimeMillis());
 			stUpdate.setDate(1, today);
 			stUpdate.setInt(2, lendId);
-
-			int row = stUpdate.executeUpdate();
+			stUpdate.executeUpdate();
 
 			try (//在庫台帳の在庫(stock)の有無を１(在庫有り)にする
-
 					Connection conStock = DriverManager.getConnection(url, user, pass);
 					// PreparedStatementオブジェクトの取得
 					PreparedStatement stStock = conStock.prepareStatement(sqlStock);) {
-
 				int stock = 1;
-
 				stStock.setInt(1, stock);
 				stStock.setInt(2, bookId);
-
-				row = stStock.executeUpdate();
-
+				stStock.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
 			}
-			return row;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
-
 	}
 
 	//在庫台帳　StockBeanから資料名を探す
-	public StockBean findByBookId(int bookId) throws DAOException {
+	public StockBean findByBookId(int id) throws DAOException {
 
 		String sql = "SELECT * FROM stock WHERE book_id = ?;";
 
@@ -124,28 +107,27 @@ public class ReturnDAO {
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
 			// 資料IDの設定
-			st.setInt(1, bookId);
+			st.setInt(1, id);
 
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
 				// 結果の取得および表示
-				if (rs.next()) {
-					int book_id = rs.getInt("book_id");
-					int isbn = rs.getInt("isbn");
+				StockBean bean = new StockBean();
+				while (rs.next()) {
+					int bookId = rs.getInt("book_id");
+					long isbn = rs.getLong("isbn");
 					String title = rs.getString("title");
-					String arrival_date = rs.getString("arrival_date");
-					String disposal_date = rs.getString("disposal_date");
+					String author = rs.getString("author");
+					String arrivalDate = rs.getString("arrival_date");
+					String disposalDate = rs.getString("disposal_date");
 					String memo = rs.getString("memo");
 					int stock = rs.getInt("stock");
-
-					StockBean bean = new StockBean(book_id, isbn, title, arrival_date, disposal_date, memo, stock);
-
-					return bean; // 主キーに該当するレコードを返す
-				} else {
-
-					//呼び出し元にnullを返却する
-					return null; // 主キーに該当するレコードなし
+					int reservation = rs.getInt("reservation");
+					int reservationAmount = rs.getInt("reservation_amount");
+					bean = new StockBean(bookId, isbn, title, author, arrivalDate, disposalDate, memo, stock,
+							reservation, reservationAmount);
 				}
+				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");

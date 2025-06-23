@@ -16,9 +16,6 @@ import la.bean.StockBean;
 import la.dao.DAOException;
 import la.dao.ReturnDAO;
 
-/**
- * Servlet implementation class ReturnServlet
- */
 @WebServlet("/ReturnServlet")
 public class ReturnServlet extends HttpServlet {
 
@@ -88,27 +85,24 @@ public class ReturnServlet extends HttpServlet {
 						return;
 					}
 
-					// バリデーションチェックが問題なければ、パラメータをInt型に変更
+					// バリデーションチェックが問題なければ、パラメータをint型に変更
 					int lendId = Integer.parseInt(paramLendId);
 					int userId = Integer.parseInt(paramUserId);
 					int bookId = Integer.parseInt(paramBookId);
 
+					// 入力された貸出情報が登録されているか確認
 					try {
 
 						LendBean bean = dao.findByUserIdAndBookId(lendId);
-
 						int checkUserId = bean.getUserId();
 						int checkBookId = bean.getBookId();
-
 						if (userId != checkUserId || bookId != checkBookId) {
-
 							request.setAttribute("message", "貸出情報が一致しません");
 							request.setAttribute("lendId", lendId);
 							request.setAttribute("userId", userId);
 							request.setAttribute("bookId", bookId);
 							gotoPage(request, response, "/lend/return_add.jsp");
 							return;
-
 						}
 
 					} catch (DAOException e) {
@@ -119,6 +113,7 @@ public class ReturnServlet extends HttpServlet {
 						gotoPage(request, response, "/errInternal.jsp");
 					}
 
+					// 返却処理後、完了画面へ遷移
 					dao.returnCatalog(lendId, userId, bookId);
 
 					request.setAttribute("lendId", lendId);
@@ -127,10 +122,16 @@ public class ReturnServlet extends HttpServlet {
 
 					try {
 
-						//資料名のみ取り出す
+						// 資料情報を取得
 						StockBean bean = dao.findByBookId(bookId);
+
+						// 資料名を取得
 						String title = bean.getTitle();
 						request.setAttribute("title", title);
+
+						// 予約件数を取得
+						int reservationAmount = bean.getReservationAmount();
+						request.setAttribute("reservationAmount", reservationAmount);
 
 						gotoPage(request, response, "/lend/return_complete.jsp");
 

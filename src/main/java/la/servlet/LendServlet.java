@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import la.bean.LendBean;
+import la.bean.ReservationBean;
+import la.bean.StockBean;
 import la.dao.DAOException;
 import la.dao.LendDAO;
 
@@ -73,13 +75,13 @@ public class LendServlet extends HttpServlet {
 					return;
 				}
 
-				// バリデーションチェックが問題なければ、パラメータをInt型に変更
+				// バリデーションチェックが問題なければ、パラメータをint型に変更
 				int userId = Integer.parseInt(paramUserId);
 				int bookId = Integer.parseInt(paramBookId);
 
 				// 会員が存在するか確認
 				LendDAO dao = new LendDAO();
-				boolean checkUser = dao.findUser(userId);
+				boolean checkUser = dao.checkUser(userId);
 
 				if (!checkUser) {
 					request.setAttribute("message", "この会員IDは登録されていません");
@@ -89,31 +91,8 @@ public class LendServlet extends HttpServlet {
 					return;
 				}
 
-				// 資料の状況を確認（貸出中、廃棄中のものは貸出不可）
-				int stock = dao.getStock(bookId);
-
-				if (stock == 0) {
-					request.setAttribute("message", "この資料は貸出中です");
-					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
-					gotoPage(request, response, "/lend/lend_add.jsp");
-					return;
-				} else if (stock == 2) {
-					request.setAttribute("message", "この資料は廃棄処理済です");
-					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
-					gotoPage(request, response, "/lend/lend_add.jsp");
-					return;
-				} else if (stock != 1) {
-					request.setAttribute("message", "この資料IDは登録されていません");
-					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
-					gotoPage(request, response, "/lend/lend_add.jsp");
-					return;
-				}
-
 				// 会員の貸出状況を確認（5冊貸出中の場合は貸出不可）
-				int lending = dao.lending(userId);
+				int lending = dao.userLending(userId);
 
 				if (lending >= 5) {
 					request.setAttribute("message", "貸出上限数に達しています");
@@ -133,6 +112,53 @@ public class LendServlet extends HttpServlet {
 					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
+				}
+
+				// 在庫テーブルから資料の情報を取得
+				StockBean stockBean = dao.getStock(bookId);
+
+				// 資料が存在するか確認
+				if (stockBean == null) {
+					request.setAttribute("message", "この資料IDは登録されていません");
+					request.setAttribute("userId", paramUserId);
+					request.setAttribute("bookId", paramBookId);
+					gotoPage(request, response, "/lend/lend_add.jsp");
+					return;
+				}
+
+				// 資料の状況を確認（貸出中、廃棄中のものは貸出不可）
+				int stock = stockBean.getStock();
+
+				if (stock == 0) {
+					request.setAttribute("message", "この資料は貸出中です");
+					request.setAttribute("userId", paramUserId);
+					request.setAttribute("bookId", paramBookId);
+					gotoPage(request, response, "/lend/lend_add.jsp");
+					return;
+				} else if (stock == 2) {
+					request.setAttribute("message", "この資料は廃棄処理済です");
+					request.setAttribute("userId", paramUserId);
+					request.setAttribute("bookId", paramBookId);
+					gotoPage(request, response, "/lend/lend_add.jsp");
+					return;
+				}
+
+				// 資料の予約情報を確認
+				int reservation = stockBean.getReservation();
+				ReservationBean reserveBean = new ReservationBean();
+
+				// reservationが1（予約有り）の場合
+				if (reservation == 1) {
+					reserveBean = dao.findFirstReserveByBookId(bookId);
+					int firstReserveUserId = reserveBean.getUserId();
+					// 入力された会員より先に予約している会員がいる場合、貸出不可
+					if (userId != firstReserveUserId) {
+						request.setAttribute("message", "この資料は他の会員が予約しています");
+						request.setAttribute("userId", paramUserId);
+						request.setAttribute("bookId", paramBookId);
+						gotoPage(request, response, "/lend/lend_add.jsp");
+						return;
+					}
 				}
 
 				// ここから貸出処理
@@ -162,6 +188,17 @@ public class LendServlet extends HttpServlet {
 
 				// 貸出情報を登録（lendテーブル、stockテーブル）
 				dao.lending(userId, bookId, today, dueDay);
+
+				// もし予約されている本だった場合、予約情報を更新（reservationテーブル、stockテーブル）
+				if (reservation == 1) {
+					// 予約人数が1だった場合（最後の予約者が貸出に来た場合）、予約有無も更新する
+					if (stockBean.getReservationAmount() == 1) {
+						dao.reserveComplete(userId, bookId);
+					} else {
+						int reservationAmount = stockBean.getReservationAmount() - 1;
+						dao.reserveComplete(userId, bookId, reservationAmount);
+					}
+				}
 
 				// 登録した貸出情報を取得
 				LendBean bean = dao.getLending();

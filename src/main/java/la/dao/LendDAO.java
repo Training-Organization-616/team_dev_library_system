@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import la.bean.LendBean;
+import la.bean.ReservationBean;
+import la.bean.StockBean;
 
 public class LendDAO {
 
@@ -27,7 +29,7 @@ public class LendDAO {
 		}
 	}
 
-	public boolean findUser(int id) throws DAOException {
+	public boolean checkUser(int id) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT * FROM users WHERE user_id = ?";
 
@@ -55,35 +57,7 @@ public class LendDAO {
 		}
 	}
 
-	public int getStock(int bookId) throws DAOException {
-		// SQL文の作成
-		String sql = "SELECT * FROM stock WHERE book_id = ?";
-
-		try (// データベースへの接続
-				Connection con = DriverManager.getConnection(url, user, pass);
-				// PreparedStatementオブジェクトの取得
-				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setInt(1, bookId);
-			int stock = -1;
-			try (// SQLの実行
-					ResultSet rs = st.executeQuery();) {
-				// 結果の取得および表示
-				while (rs.next()) {
-					stock = rs.getInt("stock");
-				}
-				// stockを返す
-				return stock;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DAOException("レコードの取得に失敗しました。");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("レコードの取得に失敗しました。");
-		}
-	}
-
-	public int lending(int id) throws DAOException {
+	public int userLending(int id) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT * FROM lend WHERE user_id = ? AND return_date IS NULL";
 
@@ -127,6 +101,78 @@ public class LendDAO {
 					count++;
 				}
 				return count;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+	}
+
+	public StockBean getStock(int id) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT * FROM stock WHERE book_id = ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, id);
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				// 結果の取得および表示
+				StockBean bean = new StockBean();
+				while (rs.next()) {
+					int bookId = rs.getInt("book_id");
+					long isbn = rs.getLong("isbn");
+					String title = rs.getString("title");
+					String author = rs.getString("author");
+					String arrivalDate = rs.getString("arrival_date");
+					String disposalDate = rs.getString("disposal_date");
+					String memo = rs.getString("memo");
+					int stock = rs.getInt("stock");
+					int reservation = rs.getInt("reservation");
+					int reservationAmount = rs.getInt("reservation_amount");
+					bean = new StockBean(bookId, isbn, title, author, arrivalDate, disposalDate, memo, stock,
+							reservation, reservationAmount);
+				}
+				return bean;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+	}
+
+	public ReservationBean findFirstReserveByBookId(int id) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT * FROM reservation WHERE book_id = ? AND already_lent != 2 ORDER BY reservation_id LIMIT 1";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, id);
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				// 結果の取得および表示
+				ReservationBean bean = new ReservationBean();
+				while (rs.next()) {
+					int reservationId = rs.getInt("reservation_id");
+					int userId = rs.getInt("user_id");
+					String reservationDate = rs.getString("reservation_date");
+					;
+					int bookId = rs.getInt("book_id");
+					int alreadyLent = rs.getInt("already_lent");
+					String memo = rs.getString("memo");
+					bean = new ReservationBean(reservationId, userId, reservationDate, bookId, alreadyLent, memo);
+				}
+				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
@@ -201,7 +247,78 @@ public class LendDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
+	}
 
+	public void reserveComplete(int userId, int bookId) throws DAOException {
+		// reservationテーブルに貸出完了の登録
+		// SQL文の作成
+		String sql = "UPDATE reservation SET already_lent = 2 WHERE user_id = ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダーの設定
+			st.setInt(1, userId);
+			// SQLの実行
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました。");
+		}
+
+		// stockテーブルの予約人数が1人だった場合、0人に更新し、予約有無を0に更新
+		// SQL文の作成
+		sql = "UPDATE stock SET reservation_amount = 0, reservation = 0 WHERE book_id = ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダーの設定
+			st.setInt(1, bookId);
+			// SQLの実行
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました。");
+		}
+	}
+
+	public void reserveComplete(int userId, int bookId, int reservationAmount) throws DAOException {
+		// reservationテーブルに貸出完了の登録
+		// SQL文の作成
+		String sql = "UPDATE reservation SET already_lent = 2 WHERE user_id = ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダーの設定
+			st.setInt(1, userId);
+			// SQLの実行
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました。");
+		}
+
+		// stockテーブルの予約人数が2人以上だった場合、予約人数を1人減らす
+		// SQL文の作成
+		sql = "UPDATE stock SET reservation_amount = ? WHERE book_id = ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダーの設定
+			st.setInt(1, bookId);
+			// SQLの実行
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました。");
+		}
 	}
 
 	public LendBean getLending() throws DAOException {
