@@ -13,6 +13,16 @@ public class InquiriesBean implements Serializable{
 	
 	public InquiriesBean() {}
 	
+	public InquiriesBean(String receptionDate , String contentsTitle ,
+			String contents , int handing , String memo) {
+		
+		this.receptionDate = receptionDate;
+		this.contentsTitle = contentsTitle;
+		this.contents = contents;
+		this.handing = handing;
+		this.memo = memo;
+	}
+	
 	public InquiriesBean(int inquiriesId , String receptionDate , String contentsTitle ,
 			String contents , int handing , String memo) {
 		
