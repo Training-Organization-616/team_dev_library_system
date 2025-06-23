@@ -36,19 +36,19 @@ public class UserDAO {
 			sql = sql + " AND user_id = ?";
 		}
 		if (userName != "") {
-			sql = sql + " AND name = ?";
+			sql = sql + " AND name LIKE ?";
 		}
 		if (address != "") {
-			sql = sql + " AND address = ?";
+			sql = sql + " AND address LIKE ?";
 		}
 		if (tel != "") {
-			sql = sql + " AND tel = ?";
+			sql = sql + " AND tel LIKE ?";
 		}
 		if (email != "") {
-			sql = sql + " AND email = ?";
+			sql = sql + " AND email LIKE ?";
 		}
 		if (birthday != null) {
-			sql = sql + " AND birthday = ?";
+			sql = sql + " AND birthday LIKE ?";
 		}
 		sql = sql + " ORDER BY user_id";
 
@@ -59,16 +59,16 @@ public class UserDAO {
 				st.setInt(index++, userId);
 			}
 			if (userName != "") {
-				st.setString(index++, userName);
+				st.setString(index++, "%" + userName + "%");
 			}
 			if (address != "") {
-				st.setString(index++, address);
+				st.setString(index++, "%" + address + "%");
 			}
 			if (tel != "") {
-				st.setString(index++, tel);
+				st.setString(index++, "%" + tel + "%");
 			}
 			if (email != "") {
-				st.setString(index++, email);
+				st.setString(index++, "%" + email + "%");
 			}
 			if (birthday != null) {
 				st.setDate(index++, birthday);
