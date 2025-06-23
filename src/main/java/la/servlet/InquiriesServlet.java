@@ -54,15 +54,15 @@ public class InquiriesServlet extends HttpServlet {
             	if(list == null) {
             		//検索結果が存在しなかった場合
             		request.setAttribute("message", "お問い合わせがありません");
-            		gotoPage(request , response , "/other/other_inquiries_top.jsp");
             		
             	}else {
             		//検索結果が存在した場合
             		HttpSession session = request.getSession();
             		
             		session.setAttribute("inquiries", list);
-            		gotoPage(request , response , "/other/other_inquiries_top.jsp");
             	}
+            	
+            	gotoPage(request , response , "/other/other_inquiries_top.jsp");
             	
         	}else if(action.equals("add")) {
             	//actionの値が「add」の場合
@@ -107,6 +107,16 @@ public class InquiriesServlet extends HttpServlet {
             		//お問い合わせListに入力内容を追加する
             		dao.addInquiries(receptionDate , title , contents , Integer.parseInt(handing) , memo);
             		
+            		//追加されたListをセッションに反映
+            		List<InquiriesBean> list = new ArrayList<InquiriesBean>();
+                	
+                	list = dao.listInquiries();
+                	
+                	HttpSession session = request.getSession();
+            		
+            		session.setAttribute("inquiries", list);
+            		
+            		//追加完了画面表示用
             		InquiriesBean bean = new InquiriesBean(strReceptionDate , title , contents ,
             				Integer.parseInt(handing) , memo);
             		
@@ -164,6 +174,16 @@ public class InquiriesServlet extends HttpServlet {
             		//問合せListを入力内容で更新する
             		dao.updateInquiries(Integer.parseInt(inquiriesId) , Integer.parseInt(handing) , memo);
             		
+            		//更新されたListをセッションに反映
+            		List<InquiriesBean> list = new ArrayList<InquiriesBean>();
+                	
+                	list = dao.listInquiries();
+                	
+                	HttpSession session = request.getSession();
+            		
+            		session.setAttribute("inquiries", list);
+            		
+            		//更新完了画面表示用
             		InquiriesBean bean = new InquiriesBean(strReceptionDate , title , contents ,
             				Integer.parseInt(handing) , memo);
             		

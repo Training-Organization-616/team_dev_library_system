@@ -100,7 +100,7 @@ public class OverdueServlet extends HttpServlet {
             	
             	if(daysBetween >= 30) {
             		
-            		//資料変更画面に渡す値をbeanに保存
+            		//延滞者更新画面に渡す値をbeanに保存
             		OverdueBean bean = new OverdueBean
             				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
             						email , tel , Integer.parseInt(bookId) , title ,
@@ -112,7 +112,7 @@ public class OverdueServlet extends HttpServlet {
             		
             	}else if(daysBetween >= 10){
             		
-            		//資料変更画面に渡す値をbeanに保存
+            		//延滞者更新画面に渡す値をbeanに保存
             		OverdueBean bean = new OverdueBean
             				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
             						email , tel , Integer.parseInt(bookId) , title ,
@@ -138,14 +138,25 @@ public class OverdueServlet extends HttpServlet {
             	String secondReminder = request.getParameter("second_reminder");
             	String memo = request.getParameter("memo");
             	
-    			//問合せを変更するときに
-        		//必要事項が全て入力されているとき
-        		
+            	
         		OverdueDAO dao = new OverdueDAO();
         		
-        		//問合せListを入力内容で更新する
+        		//延滞者情報を入力内容で更新する
         		dao.updateOverdue(Integer.parseInt(lendId) , Integer.parseInt(firstReminder) ,
         				secondReminder , memo);
+        		
+        		//更新内容をセッションに反映
+        		List<OverdueBean> list10days = new ArrayList<OverdueBean>();
+            	List<OverdueBean> list30days = new ArrayList<OverdueBean>();
+            	
+            	list10days = dao.findOverdue10Days();
+            	list30days = dao.findOverdue30Days();
+            	
+            	HttpSession session10days = request.getSession();
+        		HttpSession session30days = request.getSession();
+        		
+        		session10days.setAttribute("overdue10days", list10days);
+        		session30days.setAttribute("overdue30days", list30days);
         		
         		//現在の日付と返却期限を計算する
             	
@@ -160,7 +171,7 @@ public class OverdueServlet extends HttpServlet {
             	
             	if(daysBetween >= 30) {
             		
-            		//資料変更画面に渡す値をbeanに保存
+            		//延滞者更新完了画面に渡す値をbeanに保存
             		OverdueBean bean = new OverdueBean
             				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
             						email , tel , Integer.parseInt(bookId) , title ,
@@ -172,7 +183,7 @@ public class OverdueServlet extends HttpServlet {
             		
             	}else if(daysBetween >= 10){
             		
-            		//資料変更画面に渡す値をbeanに保存
+            		//延滞者更新完了画面に渡す値をbeanに保存
             		OverdueBean bean = new OverdueBean
             				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
             						email , tel , Integer.parseInt(bookId) , title ,
@@ -200,6 +211,8 @@ public class OverdueServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
     }
+    
+    //
     
     //有効なタイトルが入力されたのかを確認するメソッド
     public boolean isCheckTitle(String title) {
