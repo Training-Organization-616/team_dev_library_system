@@ -82,11 +82,10 @@ public class CatalogServlet extends HttpServlet {
             		if(isbn != null && isbn.length() != 0) {
             			
             			//入力されたISBNが正しい値かを調べる
-                		boolean flagIsbn = isCheckIsbn(isbn);
+                		int flagIsbn = checkIsbn(isbn);
                 		
-                		if(flagIsbn) {
-                			//入力が正しくなかった場合
-                			request.setAttribute("message", "ISBN番号は数字で入力してください");
+                		if(flagIsbn == 2) {
+                			//数字以外が入力された場合
                 			request.setAttribute("title", title);
                 			//request.setAttribute("code", code);
                 			request.setAttribute("author", author);
@@ -96,6 +95,17 @@ public class CatalogServlet extends HttpServlet {
                 			request.setAttribute("message", "ISBN番号は数字で入力してください");
                     		gotoPage(request , response , "/catalog/catalog_add.jsp");
                     		return;
+                    		
+                		}else if(flagIsbn == 1) {
+                			//桁数が多すぎる場合
+                			request.setAttribute("title", title);
+                			//request.setAttribute("code", code);
+                			request.setAttribute("author", author);
+                			request.setAttribute("publicher", publicher);
+                			request.setAttribute("publicationDate", strPublicationDate);
+                			request.setAttribute("arrivalDate", strArrivalDate);
+                			request.setAttribute("message", "ISBN番号は13桁以内で入力してください");
+                			return;
                 		}
             		}
             		
@@ -162,6 +172,20 @@ public class CatalogServlet extends HttpServlet {
             		
             		CatalogDAO dao = new CatalogDAO();
             		
+            		//資料目録一意性制約確認
+            		if(dao.isUniqueConstraint(title , author)) {
+            			
+            			//資料目録に資料があるかを確認する
+                		if(!(dao.isFindBook(isbn , title, Integer.parseInt(code) ,
+                				author, publicher, publicationDate))) {
+                			
+                			//資料がなかった場合
+                			//入力内容が正しくないことを伝える
+                			request.setAttribute("message", "正しく資料を入力してください");
+                			
+                		}
+            		}
+            		
             		//在庫台帳に資料を追加する
             		dao.addBookToStock(isbn , title , author , arrivalDate);
             		
@@ -176,7 +200,7 @@ public class CatalogServlet extends HttpServlet {
             		}
             		
             		//資料目録に資料があるかを確認する
-            		if(dao.isFindBook(title, Integer.parseInt(code) ,
+            		if(dao.isFindBook(isbn , title, Integer.parseInt(code) ,
             				author, publicher, publicationDate)) {
             			
             			//資料があった場合
@@ -397,13 +421,18 @@ public class CatalogServlet extends HttpServlet {
             		if(isbn != null && isbn.length() != 0) {
             			
             			//入力されたISBNが正しい値かを調べる
-                		boolean flagIsbn = isCheckIsbn(isbn);
+                		int flagIsbn = checkIsbn(isbn);
                 		
-                		if(flagIsbn) {
-                			//入力が正しくなかった場合
+                		if(flagIsbn == 2) {
+                			//数字以外が入力されたとき
                 			request.setAttribute("message", "ISBN番号は数字で入力してください");
                 			gotoPage(request , response , "/catalog/catalog_edit.jsp");
                     		return;
+                    		
+                		}else if(flagIsbn == 1) {
+                			//桁数が多すぎるとき
+                			request.setAttribute("message", "ISBN番号は13桁以内で入力してください");
+                			return;
                 		}
             		}
             		
@@ -595,9 +624,15 @@ public class CatalogServlet extends HttpServlet {
     }
     
     //有効なISBNが入力されたのかを確認するメソッド
-    public boolean isCheckIsbn(String strIsbn) {
+    public int checkIsbn(String strIsbn) {
     	
-    	boolean flag = false;
+    	int flag = 0;
+    	
+    	if(strIsbn.length() > 13) {
+    		
+    		flag = 1;
+    		return flag;
+    	}
     	
     	if(strIsbn.length() > 7) {
     		
@@ -615,7 +650,7 @@ public class CatalogServlet extends HttpServlet {
         		
         	}catch(NumberFormatException e) {
         		
-        		flag = true;
+        		flag = 2;
         		return flag;
         		
         	}
@@ -627,7 +662,7 @@ public class CatalogServlet extends HttpServlet {
         		
         	}catch(NumberFormatException e) {
         		
-        		flag = true;
+        		flag = 2;
         		return flag;
         	}
     	}

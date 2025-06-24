@@ -32,6 +32,44 @@ public class CatalogDAO {
         }
     }
     
+    //一意性制約を確認するためのメソッド
+    public boolean isUniqueConstraint(String title , String author) throws DAOException {
+    	
+    	//flagがtrueの時、資料目録に資料は既に存在している
+    	boolean flag = false;
+    	
+        // SQL文の作成
+        String sql = "SELECT * FROM catalog WHERE title = ? AND author = ?";
+		
+        try (// データベースへの接続
+             Connection con = DriverManager.getConnection(url, user, pass);
+			 // PreparedStatementオブジェクトの取得
+			 PreparedStatement st = con.prepareStatement(sql);) {
+        	
+        	st.setString(1, title);
+        	st.setString(2, author);
+        	
+        	try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+
+        		// 結果の取得
+    		    if (rs.next()) {
+    		    	//レコードが存在するとき
+    		    	flag = true;
+    	    	}
+    		    
+    		    return flag;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+        } catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+        } 
+    }
+    
     //資料を在庫台帳に追加するメソッド
     public void addBookToStock(String isbn , String title , String author ,  Date arrivalDate) throws DAOException{
     	//SQL文の作成
@@ -142,26 +180,48 @@ public class CatalogDAO {
 	}
 	
 	//新規資料登録時、資料目録に資料が存在するかを確認するメソッド
-    public boolean isFindBook(String title , int code , String author , String publicher ,
-    		Date publicationDate) throws DAOException {
+    public boolean isFindBook(String isbn , String title , int code , String author ,
+    		String publicher , Date publicationDate) throws DAOException {
     	
     	//flagがtrueの時、資料目録に資料は既に存在している
     	boolean flag = false;
     	
         // SQL文の作成
-        String sql = "SELECT * FROM catalog WHERE title = ? AND code = ?"
-        		+ " AND author = ? AND publicher = ? AND publication_date = ?";
+        String sql = "";
 		
+        if(isbn != null && isbn.length() != 0) {
+        	
+        	sql = "SELECT * FROM catalog WHERE isbn = ? AND title = ? AND code = ?"
+            		+ " AND author = ? AND publicher = ? AND publication_date = ?";
+        	
+        }else {
+        	
+        	sql = "SELECT * FROM catalog WHERE title = ? AND code = ?"
+            		+ " AND author = ? AND publicher = ? AND publication_date = ?";
+        }
+        
         try (// データベースへの接続
              Connection con = DriverManager.getConnection(url, user, pass);
 			 // PreparedStatementオブジェクトの取得
 			 PreparedStatement st = con.prepareStatement(sql);) {
         	
-        	st.setString(1, title);
-        	st.setInt(2, code);
-        	st.setString(3, author);
-        	st.setString(4, publicher);
-        	st.setDate(5, publicationDate);
+        	if(isbn != null && isbn.length() != 0) {
+        		
+        		st.setLong(1, Long.parseLong(isbn));
+        		st.setString(2, title);
+            	st.setInt(3, code);
+            	st.setString(4, author);
+            	st.setString(5, publicher);
+            	st.setDate(6, publicationDate);
+        		
+        	}else {
+        		
+        		st.setString(1, title);
+            	st.setInt(2, code);
+            	st.setString(3, author);
+            	st.setString(4, publicher);
+            	st.setDate(5, publicationDate);
+        	}
         	
         	try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
