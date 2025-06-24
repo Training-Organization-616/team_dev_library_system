@@ -202,22 +202,26 @@ public class ReservationServlet extends HttpServlet {
 
 				// バリデーションチェック
 				Pattern pattern = Pattern.compile("[0-9]+");
-				Matcher lendIdMatcher = pattern.matcher(paramReservationId);
-				if (lendIdMatcher.matches() == false) {
-					request.setAttribute("message", "数字で入力してください");
-					request.setAttribute("bookId", paramBookId);
-					request.setAttribute("title", paramTitle);
-					gotoPage(request, response, "/lend/reservation_search.jsp");
-					return;
+				if (paramReservationId != null && paramReservationId.length() != 0) {
+					Matcher reservationIdMatcher = pattern.matcher(paramReservationId);
+					if (reservationIdMatcher.matches() == false) {
+						request.setAttribute("message", "数字で入力してください");
+						request.setAttribute("bookId", paramBookId);
+						request.setAttribute("title", paramTitle);
+						gotoPage(request, response, "/lend/reservation_search.jsp");
+						return;
+					}
 				}
 
-				Matcher bookIdMatcher = pattern.matcher(paramBookId);
-				if (bookIdMatcher.matches() == false) {
-					request.setAttribute("message", "数字で入力してください");
-					request.setAttribute("reservationId", paramReservationId);
-					request.setAttribute("title", paramTitle);
-					gotoPage(request, response, "/lend/reservation_search.jsp");
-					return;
+				if (paramBookId != null && paramBookId.length() != 0) {
+					Matcher bookIdMatcher = pattern.matcher(paramBookId);
+					if (bookIdMatcher.matches() == false) {
+						request.setAttribute("message", "数字で入力してください");
+						request.setAttribute("reservationId", paramReservationId);
+						request.setAttribute("title", paramTitle);
+						gotoPage(request, response, "/lend/reservation_search.jsp");
+						return;
+					}
 				}
 
 				if (paramTitle.length() > 50) {
@@ -234,12 +238,17 @@ public class ReservationServlet extends HttpServlet {
 
 				list = dao.searchReservation(paramReservationId, paramBookId, paramTitle);
 
-				// セッションスコープにパラメータと検索結果を入れて、検索画面を表示
-
+				// セッションスコープにパラメータと検索値、検索結果を入れて、検索画面を表示
 				if (list == null) {
 					request.setAttribute("message", "検索結果がありません");
+					session.setAttribute("reservationId", paramReservationId);
+					session.setAttribute("bookId", paramBookId);
+					session.setAttribute("title", paramTitle);
 					session.setAttribute("reservations", null);
 				} else {
+					session.setAttribute("reservationId", paramReservationId);
+					session.setAttribute("bookId", paramBookId);
+					session.setAttribute("title", paramTitle);
 					session.setAttribute("reservations", list);
 				}
 
@@ -280,7 +289,7 @@ public class ReservationServlet extends HttpServlet {
 				// パラメータの取得
 				int reservationId = Integer.parseInt(request.getParameter("reservation_id"));
 				String reservationDate = request.getParameter("reservation_date");
-				int userId = Integer.parseInt(request.getParameter("userId"));
+				int userId = Integer.parseInt(request.getParameter("user_id"));
 				String name = request.getParameter("name");
 				String tel = request.getParameter("tel");
 				String email = request.getParameter("email");
@@ -296,6 +305,17 @@ public class ReservationServlet extends HttpServlet {
 					boolean checkAlreadyLent = dao.getAlreadyLentByBookId(bookId);
 					if (checkAlreadyLent == false) {
 						request.setAttribute("message", "この資料は他の予約で資料確保されています");
+						gotoPage(request, response, "/lend/reservation_edit.jsp");
+					}
+				}
+
+				// その資料が返却されていなかったら資料確保不可
+				if (alreadyLent == 1) {
+					LendDAO lendDao = new LendDAO();
+					StockBean stockBean = lendDao.getStock(bookId);
+					int stock = stockBean.getStock();
+					if (stock == 1) {
+						request.setAttribute("message", "この資料は貸出中です");
 						gotoPage(request, response, "/lend/reservation_edit.jsp");
 					}
 				}

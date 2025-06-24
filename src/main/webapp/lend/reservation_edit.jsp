@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,7 @@
 
 	<div class="container">
 		<div>
-			<p>編集事項に入力してください</p>
+			<p>編集する項目を入力してください</p>
 		</div>
 
 		<div class="message">${message}</div>
@@ -39,7 +40,7 @@
 					<tr>
 						<th>予約ID</th>
 						<td>
-							${reservatioin.reservationId} 
+							${reservation.reservationId} 
 							<input type="hidden" name="reservation_id" value="${reservation.reservationId}">
 						</td>
 					</tr>
@@ -96,17 +97,17 @@
 						<th>貸出有無</th>
 						<td>
 							<c:choose>
-			    				<c:when test="${reserve.alreadyLent == 0}">
+			    				<c:when test="${reservation.alreadyLent == 0}">
 			    					<input type="radio" name="already_lent" value="0" checked>返却待ち
 			    					<input type="radio" name="already_lent" value="1">資料確保
 				    				<input type="radio" name="already_lent" value="2">対応終了
 			    				</c:when>
-			    				<c:when test="${reserve.alreadyLent == 1}">
+			    				<c:when test="${reservation.alreadyLent == 1}">
 			    					<input type="radio" name="already_lent" value="0">返却待ち
 			    					<input type="radio" name="already_lent" value="1" checked>資料確保
 			    					<input type="radio" name="already_lent" value="2">対応終了
 			    				</c:when>
-			    				<c:when test="${reserve.alreadyLent == 2}">
+			    				<c:when test="${reservation.alreadyLent == 2}">
 			    					<input type="radio" name="already_lent" value="0">返却待ち
 				    				<input type="radio" name="already_lent" value="1">資料確保
 			    					<input type="radio" name="already_lent" value="2" checked>対応終了

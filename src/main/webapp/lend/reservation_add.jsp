@@ -22,7 +22,7 @@
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
 		</div>
-		<div class="menu_name">貸出</div>
+		<div class="menu_name">新規予約</div>
 	</div>
 
 	<div class="container">
@@ -50,6 +50,13 @@
 				<button class="general_button">予約</button>
 			</form>
 		</div>
+	</div>
+	
+	<div>
+		<form action="/team_dev_library_system/ReservationServlet" method="post">
+			<button class="return_button">戻る</button>
+			<input type="hidden" name="action" value="return_add">
+		</form>
 	</div>
 
 </body>

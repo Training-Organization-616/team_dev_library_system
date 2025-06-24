@@ -176,19 +176,25 @@ public class ReservationDAO {
 
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				// 結果の取得および表示
-				List<SearchReservationBean> list = new ArrayList<SearchReservationBean>();
-
 				// 検索結果がない場合
 				if (!rs.next()) {
 					return null;
 				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				// 結果の取得および表示
+				List<SearchReservationBean> list = new ArrayList<SearchReservationBean>();
 
 				// 検索結果がある場合
 				while (rs.next()) {
 					int reservationId = rs.getInt("reservation_id");
 					String reservationDate = rs.getString("reservation_date");
-					int userId = rs.getInt("userId");
+					int userId = rs.getInt("user_id");
 					String name = rs.getString("name");
 					String tel = rs.getString("tel");
 					String email = rs.getString("email");

@@ -26,12 +26,12 @@
 	</div>
 
 	<div class="button_container">
-		<form action="/team_dev_library_system/ReservationServlet" method="post">
+		<form action="/team_dev_library_system/lend/reservation_add.jsp" method="post">
 			<input type="hidden" name="action" value="add_page">
 			<button class="top_button">新規予約</button>
 		</form>
 
-		<form action="/team_dev_library_system/ReservationServlet" method="post">
+		<form action="/team_dev_library_system/lend/reservation_search.jsp" method="post">
 			<input type="hidden" name="action" value="search_page">
 			<button class="top_button">予約検索</button>
 		</form>

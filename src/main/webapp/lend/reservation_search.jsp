@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@
 	
 	<div class="container">
 		<div>
-			<p>予約ID、会員ID、資料IDを入力してください</p>
+			<p>予約ID、資料ID、資料名を入力してください</p>
 		</div>
 		
 		<div class="message">
@@ -91,15 +92,15 @@
 					    <td>${reserve.bookId}</td>
 					    <td>${reserve.title}</td>
 					    <td>
-					    <c:if test="${reserve.alreadyLent==0}">
-							貸出中
-						</c:if>
-						<c:if test="${reserve.alreadyLent==1}">
-							資料確保
-						</c:if>
-						<c:if test="${reserve.alreadyLent==2}">
-							対応終了
-						</c:if>
+						    <c:if test="${reserve.alreadyLent==0}">
+								貸出中
+							</c:if>
+							<c:if test="${reserve.alreadyLent==1}">
+								資料確保
+							</c:if>
+							<c:if test="${reserve.alreadyLent==2}">
+								対応終了
+							</c:if>
 						</td>
 					    <td>
 					    	<form action="/team_dev_library_system/ReservationServlet" method="post">
@@ -124,7 +125,7 @@
 	</c:if>
 
 	<div>
-		<form action="/team_dev_library_system/UserServlet" method="post">
+		<form action="/team_dev_library_system/ReservationServlet" method="post">
 			<button class="return_button">戻る</button>
 			<input type="hidden" name="action" value="return_add">
 		</form>

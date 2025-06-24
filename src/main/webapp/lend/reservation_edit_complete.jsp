@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@
 	<div class="container">
 		<div>
 			<p>編集完了しました</p>
-			<p>トップページへ遷移します</p>
+			<p>検索ページへ遷移します</p>
 		</div>
 
 		<div>
@@ -44,13 +45,13 @@
 				<li>資料名：${reservation.title}</li>
 				<li>
 					貸出有無：
-					<c:if test="${reserve.alreadyLent == 0}">
+					<c:if test="${reservation.alreadyLent == 0}">
 						返却待ち
 					</c:if>
-					<c:if test="${reserve.alreadyLent == 1}">
+					<c:if test="${reservation.alreadyLent == 1}">
 						資料確保
 					</c:if>
-					<c:if test="${reserve.alreadyLent == 2}">
+					<c:if test="${reservation.alreadyLent == 2}">
 						対応終了
 					</c:if>
 				</li>
