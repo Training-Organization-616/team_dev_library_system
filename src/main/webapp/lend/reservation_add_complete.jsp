@@ -22,7 +22,6 @@
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">新規予約</div>
 	</div>
@@ -42,10 +41,9 @@
 		</div>
 	
 		<div>				
-			<div>${count}</div>件目の予約です。
+			<div>${reservationAmount}</div>件目の予約です。
 		</div>
-
-	<jsp:include page="../top/footer.jsp" />
+	</div>
 
 </body>
 

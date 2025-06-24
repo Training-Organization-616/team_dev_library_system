@@ -21,7 +21,6 @@
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">貸出</div>
 	</div>
@@ -52,8 +51,6 @@
 			</form>
 		</div>
 	</div>
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

@@ -61,7 +61,6 @@ public class LendServlet extends HttpServlet {
 				Matcher userIdMatcher = pattern.matcher(paramUserId);
 				if (userIdMatcher.matches() == false) {
 					request.setAttribute("message", "数字で入力してください");
-					request.setAttribute("userId", paramUserId);
 					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
@@ -70,7 +69,6 @@ public class LendServlet extends HttpServlet {
 				if (bookIdMatcher.matches() == false) {
 					request.setAttribute("message", "数字で入力してください");
 					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
 				}
@@ -85,7 +83,6 @@ public class LendServlet extends HttpServlet {
 
 				if (!checkUser) {
 					request.setAttribute("message", "この会員IDは登録されていません");
-					request.setAttribute("userId", paramUserId);
 					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
@@ -96,8 +93,6 @@ public class LendServlet extends HttpServlet {
 
 				if (lending >= 5) {
 					request.setAttribute("message", "貸出上限数に達しています");
-					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
 				}
@@ -108,8 +103,6 @@ public class LendServlet extends HttpServlet {
 				if (passDueDateBook >= 1) {
 					String message = "貸出期限を超過した貸出が" + passDueDateBook + "件あります";
 					request.setAttribute("message", message);
-					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
 				}
@@ -121,7 +114,6 @@ public class LendServlet extends HttpServlet {
 				if (stockBean == null) {
 					request.setAttribute("message", "この資料IDは登録されていません");
 					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
 				}
@@ -132,13 +124,11 @@ public class LendServlet extends HttpServlet {
 				if (stock == 0) {
 					request.setAttribute("message", "この資料は貸出中です");
 					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
 				} else if (stock == 2) {
 					request.setAttribute("message", "この資料は廃棄処理済です");
 					request.setAttribute("userId", paramUserId);
-					request.setAttribute("bookId", paramBookId);
 					gotoPage(request, response, "/lend/lend_add.jsp");
 					return;
 				}
@@ -155,7 +145,6 @@ public class LendServlet extends HttpServlet {
 					if (userId != firstReserveUserId) {
 						request.setAttribute("message", "この資料は他の会員が予約しています");
 						request.setAttribute("userId", paramUserId);
-						request.setAttribute("bookId", paramBookId);
 						gotoPage(request, response, "/lend/lend_add.jsp");
 						return;
 					}

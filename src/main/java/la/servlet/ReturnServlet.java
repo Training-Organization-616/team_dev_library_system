@@ -59,7 +59,6 @@ public class ReturnServlet extends HttpServlet {
 					Matcher lendIdMatcher = pattern.matcher(paramLendId);
 					if (lendIdMatcher.matches() == false) {
 						request.setAttribute("message", "数字で入力してください");
-						request.setAttribute("lendId", paramLendId);
 						request.setAttribute("userId", paramUserId);
 						request.setAttribute("bookId", paramBookId);
 						gotoPage(request, response, "/lend/return_add.jsp");
@@ -70,7 +69,6 @@ public class ReturnServlet extends HttpServlet {
 					if (userIdMatcher.matches() == false) {
 						request.setAttribute("message", "数字で入力してください");
 						request.setAttribute("lendId", paramLendId);
-						request.setAttribute("userId", paramUserId);
 						request.setAttribute("bookId", paramBookId);
 						gotoPage(request, response, "/lend/return_add.jsp");
 						return;
@@ -80,7 +78,6 @@ public class ReturnServlet extends HttpServlet {
 						request.setAttribute("message", "数字で入力してください");
 						request.setAttribute("lendId", paramLendId);
 						request.setAttribute("userId", paramUserId);
-						request.setAttribute("bookId", paramBookId);
 						gotoPage(request, response, "/lend/return_add.jsp");
 						return;
 					}
@@ -98,9 +95,6 @@ public class ReturnServlet extends HttpServlet {
 						int checkBookId = bean.getBookId();
 						if (userId != checkUserId || bookId != checkBookId) {
 							request.setAttribute("message", "貸出情報が一致しません");
-							request.setAttribute("lendId", lendId);
-							request.setAttribute("userId", userId);
-							request.setAttribute("bookId", bookId);
 							gotoPage(request, response, "/lend/return_add.jsp");
 							return;
 						}

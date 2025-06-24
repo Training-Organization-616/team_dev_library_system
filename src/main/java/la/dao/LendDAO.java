@@ -343,7 +343,6 @@ public class LendDAO {
 				String memo = rs.getString("memo");
 				bean = new LendBean(lendId, userId, bookId, lendDate, dueDate, returnDate, memo);
 			}
-			// カテゴリ一覧をListとして返す
 			return bean;
 		} catch (SQLException e) {
 			e.printStackTrace();

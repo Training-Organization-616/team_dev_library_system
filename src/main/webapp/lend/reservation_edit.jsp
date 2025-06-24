@@ -21,7 +21,6 @@
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">予約編集</div>
 	</div>
@@ -39,77 +38,91 @@
 				<table>
 					<tr>
 						<th>予約ID</th>
-						<td>${reservationId} 
-						<input type="hidden" name="reservation_id" value="${reservationId}">
+						<td>
+							${reservatioin.reservationId} 
+							<input type="hidden" name="reservation_id" value="${reservation.reservationId}">
 						</td>
 					</tr>
 					<tr>
 						<th>予約年月日</th>
-						<td>${reservation.reservationDate} 
-						<input type="hidden" name="reservation_date"value="${reservation.reservationDate}">
+						<td>
+							${reservation.reservationDate} 
+							<input type="hidden" name="reservation_date"value="${reservation.reservationDate}">
 						</td>
 					</tr>
 					<tr>
 						<th>会員ID</th>
-						<td>${reservation.userId} <input type="hidden" name="user_id"
-							value="${reservation.userId}">
+						<td>
+							${reservation.userId}
+							<input type="hidden" name="user_id" value="${reservation.userId}">
 						</td>
 					</tr>
 					<tr>
 						<th>氏名</th>
-						<td>${reservation.userName} 
-						<input type="hidden" name="user_name" value="${reservation.userName}">
+						<td>
+							${reservation.name} 
+							<input type="hidden" name="name" value="${reservation.name}">
 						</td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td>${reservation.userTel} 
-						<input type="hidden" name="user_tel" value="${reservation.userTel}">
+						<td>
+							${reservation.tel} 
+							<input type="hidden" name="tel" value="${reservation.tel}">
 						</td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
-						<td>${reservation.userEmail}
-						 <input type="hidden" name="user_email" value="${reservation.userEmail}">
+						<td>
+							${reservation.email}
+						 	<input type="hidden" name="email" value="${reservation.email}">
 						</td>
 					</tr>
 					<tr>
 						<th>資料ID</th>
-						<td>${reservation.bookId} 
-						<input type="hidden" name="book_id"value="${reservation.bookId}">
+						<td>
+							${reservation.bookId} 
+							<input type="hidden" name="book_id"value="${reservation.bookId}">
 						</td>
 					</tr>
 					<tr>
 						<th>資料名</th>
-						<td>${reservation.bookTitle}
-						 	<input type="hidden" name="book_title" value="${reservation.bookTitle}">
+						<td>
+							${reservation.title}
+						 	<input type="hidden" name="title" value="${reservation.title}">
 						</td>
 					</tr>
 					<tr>
 						<th>貸出有無</th>
 						<td>
-						<c:if test="${reserve.alreadyLent==0}">
-							貸出中
-						</c:if>
-						<c:if test="${reserve.alreadyLent==1}">
-							資料確保
-						</c:if>
-						<c:if test="${reserve.alreadyLent==2}">
-							対応終了
-						</c:if>
-						<input type="hidden" name="already_lent" value="${reservation.alreadyLent}">
-						</td>>
+							<c:choose>
+			    				<c:when test="${reserve.alreadyLent == 0}">
+			    					<input type="radio" name="already_lent" value="0" checked>返却待ち
+			    					<input type="radio" name="already_lent" value="1">資料確保
+				    				<input type="radio" name="already_lent" value="2">対応終了
+			    				</c:when>
+			    				<c:when test="${reserve.alreadyLent == 1}">
+			    					<input type="radio" name="already_lent" value="0">返却待ち
+			    					<input type="radio" name="already_lent" value="1" checked>資料確保
+			    					<input type="radio" name="already_lent" value="2">対応終了
+			    				</c:when>
+			    				<c:when test="${reserve.alreadyLent == 2}">
+			    					<input type="radio" name="already_lent" value="0">返却待ち
+				    				<input type="radio" name="already_lent" value="1">資料確保
+			    					<input type="radio" name="already_lent" value="2" checked>対応終了
+			    				</c:when>
+			    			</c:choose>
+						</td>
 					</tr>
 					<tr>
 						<th>備考</th>
 						<td>
-							<input class="input_form" type="text" name="memo" value="${reservation.memo}">
+							<textarea name="memo">${reservation.memo}</textarea>
 						</td>
 					</tr>
 				</table>
 				<button class="general_button edit_button">変更</button>
 			</form>
-
 		</div>
 
 		<div>
@@ -119,9 +132,6 @@
 			</form>
 		</div>
 	</div>
-
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

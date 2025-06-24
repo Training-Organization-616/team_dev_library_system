@@ -17,12 +17,11 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">予約編集完了</div>
 	</div>
@@ -38,22 +37,22 @@
 				<li>予約ID：${reservation.reservationId}</li>
 				<li>予約年月日：${reservation.reservationDate}</li>
 				<li>会員ID：${reservation.userId}</li>
-				<li>氏名：${reservation.userName}</li>
-				<li>電話番号：${reservation.userTel}</li>
-				<li>E-mail：${reservation.userEmail}</li>
+				<li>氏名：${reservation.name}</li>
+				<li>電話番号：${reservation.tel}</li>
+				<li>E-mail：${reservation.email}</li>
 				<li>資料ID：${reservation.bookId}</li>
-				<li>資料名：${reservation.bookTitle}</li>
+				<li>資料名：${reservation.title}</li>
 				<li>
-				貸出有無：
-						<c:if test="${reserve.alreadyLent==0}">
-							貸出中
-						</c:if>
-						<c:if test="${reserve.alreadyLent==1}">
-							資料確保
-						</c:if>
-						<c:if test="${reserve.alreadyLent==2}">
-							対応終了
-						</c:if>
+					貸出有無：
+					<c:if test="${reserve.alreadyLent == 0}">
+						返却待ち
+					</c:if>
+					<c:if test="${reserve.alreadyLent == 1}">
+						資料確保
+					</c:if>
+					<c:if test="${reserve.alreadyLent == 2}">
+						対応終了
+					</c:if>
 				</li>
 				<li>備考：${reservation.memo}</li>
 			</ul>
@@ -66,7 +65,6 @@
 			</form>
 		</div>
 
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

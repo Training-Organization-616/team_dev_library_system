@@ -22,8 +22,7 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
-			
+			<img src="/team_dev_library_system/image/menu_icon.png">			
 		</div>
 		<div class="menu_name">予約検索</div>
 	</div>
@@ -42,15 +41,9 @@
 				<input type="hidden" name="action" value="search">
 				<table>
 					<tr>
-				    	<th>貸出ID</th>
+				    	<th>予約ID</th>
 				    	<td>
 				    		<input class="input_form" type="text" name="reservation_id" value="${reservationId}">
-				    	</td>
-				    </tr>
-				    <tr>
-				    	<th>会員ID</th>
-				    	<td>
-				    		<input class="input_form" type="text" name="user_id" value="${userId}">
 				    	</td>
 				    </tr>
 				    <tr>
@@ -59,10 +52,15 @@
 				    		<input class="input_form" type="text" name="book_id" value="${bookId}">
 				    	</td>
 				    </tr>
+				    <tr>
+				    	<th>資料名</th>
+				    	<td>
+				    		<input class="input_form" type="text" name="title" value="${title}">
+				    	</td>
+				    </tr>
 				</table>				
 				<button class="general_button">検索</button>
 			</form>
-			
 		</div>	
 	</div>
 
@@ -125,15 +123,12 @@
 		 </div>
 	</c:if>
 
-
 	<div>
 		<form action="/team_dev_library_system/UserServlet" method="post">
 			<button class="return_button">戻る</button>
 			<input type="hidden" name="action" value="return_add">
 		</form>
 	</div>
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 
