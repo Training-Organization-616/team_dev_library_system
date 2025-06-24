@@ -40,43 +40,46 @@
 				<table>
 					<tr>
 						<th>会員ID</th>
-						<td><input class="input_form" type="text" name="user_id"
+						<td><input class="input_form" type="text" size="80" name="user_id"
 							value="${userId}"></td>
 					</tr>
 					<tr>
 						<th>氏名</th>
-						<td><input class="input_form" type="text" name="user_name"
+						<td><input class="input_form" type="text" size="80" name="user_name"
 							value="${userName}"></td>
 					</tr>
 					<tr>
 						<th>住所</th>
-						<td><input class="input_form" type="text" name="user_address"
+						<td><input class="input_form" type="text" size="80" name="user_address"
 							value="${address}"></td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td><input class="input_form" type="text" name="user_tel"
+						<td><input class="input_form" type="text" size="80" name="user_tel"
 							value="${tel}"></td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
-						<td><input class="input_form" type="text" name="user_email"
+						<td><input class="input_form" type="text" size="80" name="user_email"
 							value="${email}"></td>
 					</tr>
 					<tr>
 						<th>生年月日</th>
-						<td><input class="input_form" type="date"
+						<td><input class="input_form" type="date" 
 							name="user_birthday" value="${birthday}"></td>
 					</tr>
 				</table>
-				<button class="general_button search_button">検索</button>
+				<button class="general_button_search_button">検索</button>
 			</form>
 
 		</div>
 
+
+		<br>
+		<br>
 		<c:if test="${!empty users}">
-			<div class="search_result_table">
-				<table>
+			<div class="search_result_table_container">
+				<table class="search_result_table">
 					<tr>
 						<th>会員ID</th>
 						<th>氏名</th>
@@ -93,7 +96,7 @@
 							<td>
 								<form action="/team_dev_library_system/UserServlet"
 									method="post">
-									<button class="edit_button">変更</button>
+									<button class="table_edit_button">変更</button>
 									<input type="hidden" name="action" value="edit_page"> <input
 										type="hidden" name="user_id" value="${user.userId}">
 								</form>
@@ -101,7 +104,7 @@
 							<td>
 								<form action="/team_dev_library_system/UserServlet"
 									method="post">
-									<button class="edit_button">削除</button>
+									<button class="table_edit_button">削除</button>
 									<input type="hidden" name="action" value="delete_page">
 									<input type="hidden" name="user_id" value="${user.userId}">
 								</form>
@@ -114,13 +117,11 @@
 
 		<div>
 			<form action="/team_dev_library_system/UserServlet" method="post">
-				<button class="return_button">戻る</button>
+				<button class="search_return_button">戻る</button>
 				<input type="hidden" name="action" value="return_add">
 			</form>
 		</div>
 
-
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

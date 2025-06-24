@@ -20,7 +20,7 @@ body {
 
 /*headerの文字*/
 .library_system {
-	
+
 	color: white;
 	background-color: #A5a58d;
 	border: none;
@@ -53,16 +53,28 @@ body {
 	z-index: 1000;
 }
 
+.left_contents {
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
 /*menu背景*/
 .menu_container {
+	width: 75%;
+	height: 1200px;
 	background-color: #Cb997e;
 	color: white;
 	font-size: 25px;
-	/*下、右の余白*/
-	padding-top: 10px;
-	padding-bottom: 100%;
 	padding-right: 50px;
-	position: relative;
+
+}
+
+.side_menu {
+	position: -webkit-sticky;
+	/* 任意 */
+	position: sticky;
+	top: 0;
 }
 
 /*見出し*/
@@ -87,9 +99,9 @@ body {
 
 /*menuボタン*/
 .menu_button {
-	
+
 	background-color: #Cb997e;
-	font-size: 20px;
+	font-size: 25px;
 	/*枠線なし*/
 	border: none;
 	color: white;
@@ -100,8 +112,10 @@ body {
 img {
 	/*カーソルが指さしの手になる*/
 	cursor: pointer;
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
+	margin-top: 5px;
+	margin-left: 10px;
 }
 
 /*メニューの画像の背景色・大きさ*/
@@ -119,8 +133,10 @@ img {
 
 p {
 	margin-left: 30px;
-
 }
+
+
+/*ボタン*/
 
 button {
 	/*カーソルが指さしの手になる*/
@@ -172,10 +188,7 @@ button {
 }
 
 
-
-
 /*新規登録ボタン*/
-
 .general_button {
 	/*背景色*/
 	background-color: #Ffe8d6;
@@ -189,12 +202,10 @@ button {
 	border-radius: 100px;
 	font-size: 25px;
 	float: left;
-
-
 }
 
 
-/**/
+/*戻るボタン　右寄せ*/
 .return_button {
 
 	/*背景色*/
@@ -209,9 +220,92 @@ button {
 	border-radius: 100px;
 	font-size: 25px;
 	float: right;
-
-
 }
+
+/*戻るボタン　中央寄せ*/
+.search_return_button {
+	/*背景色*/
+	background-color: #Ddbea9;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 83px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+}
+
+/*テーブル内の変更・削除ボタン*/
+.table_edit_button {
+	/*背景色*/
+	background-color: #6b705c;
+	/*文字の色*/
+	color: white;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 30px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	margin-left: 40px;
+}
+
+
+/*変更・削除のボタン*/
+.edit_button {
+
+	/*背景色*/
+	background-color: #6b705c;
+	/*文字の色*/
+	color: white;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 83px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+}
+
+/*検索ボタン*/
+.general_button_search_button {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 83px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+}
+
+/*続けて貸出・返却ボタン*/
+.transfar_link {
+	width: 500px;
+	margin: auto;
+}
+
+/*返却・貸出完了画面の続けて返却・貸出ボタン*/
+.transfar_link button {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 70px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+}
+
+/*続けて貸出・返却ボタン*/
 
 
 
@@ -222,7 +316,6 @@ button {
 	color: red;
 	font-size: 20px;
 }
-
 /*------------エラーメッセージ------------*/
 
 
@@ -242,8 +335,6 @@ table {
 	margin: auto;
 	width: 800px;
 	height: 100px;
-
-
 }
 
 
@@ -251,6 +342,12 @@ table th {
 	width: 200px;
 }
 
+input {
+	margin-bottom: 0.8em;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding: 5px;
+}
 
 th,
 td {
@@ -258,32 +355,17 @@ td {
 	/* 点線 */
 }
 
-
-
-.serch_result_table {
+/*検索結果のテーブル*/
+.search_result_table {
 	width: 800px;
-	height: 200px;
+	height: 100px;
+	background-color: #Ffe8d6;
+	color: #6b422b;
 }
+
 
 
 /*-----------------table------------------*/
-
-/*変更・削除のボタン*/
-
-.edit_button {
-
-	/*背景色*/
-	background-color: #6b705c;
-	/*文字の色*/
-	color: white;
-	/*枠線なし*/
-	border: none;
-	/*ボタンの内側の余白*/
-	padding: 10px 10px;
-	/*ボタン丸くする*/
-	border-radius: 100px;
-
-}
 
 
 
@@ -327,25 +409,3 @@ ul li {
 
 
 
-/*-----------------続けて貸出・返却ボタン------------------*/
-.transfar_link {
-	width: 500px;
-	margin: auto;
-}
-
-/*返却・貸出完了画面の続けて返却・貸出ボタン*/
-.transfar_link button {
-	/*背景色*/
-	background-color: #Ffe8d6;
-	/*文字の色*/
-	color: #6b422b;
-	/*枠線なし*/
-	border: none;
-	/*ボタンの内側の余白*/
-	padding: 10px 70px;
-	/*ボタン丸くする*/
-	border-radius: 100px;
-	font-size: 25px;
-}
-
-/*-----------------続けて貸出・返却ボタン------------------*/
