@@ -314,7 +314,7 @@ public class ReservationServlet extends HttpServlet {
 					LendDAO lendDao = new LendDAO();
 					StockBean stockBean = lendDao.getStock(bookId);
 					int stock = stockBean.getStock();
-					if (stock == 1) {
+					if (stock == 0) {
 						request.setAttribute("message", "この資料は貸出中です");
 						gotoPage(request, response, "/lend/reservation_edit.jsp");
 					}
