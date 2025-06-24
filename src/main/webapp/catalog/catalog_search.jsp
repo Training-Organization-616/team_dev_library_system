@@ -94,14 +94,14 @@
 				    	</td>
 				    </tr>
 				</table>				
-				<button class="general_button search_button">検索</button>
+				<button class="general_button_search_button">検索</button>
 			</form>			
 		</div>
 		<br>
 		<br>
 		<c:if test="${!empty books}">
 			<div class="search_result_table_container">
-			 	<table class="search_result_table">
+			 	<table class="search_result_table_catalog">
 			 		<tr>
 				    	<th>資料ID</th>
 				    	<th>ISBN番号</th>
@@ -154,7 +154,7 @@
 			</div>
 		</c:if>
 		<br>
-		<div>
+		<div class="return_button_contents">
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
  				<button class="search_return_button">戻る</button>
 				<input type="hidden" name="action" value="return_add">

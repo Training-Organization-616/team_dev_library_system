@@ -16,19 +16,17 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-		<%-- メニューはいったんぜんぶ表示してます --%>
 	</div>
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">新規会員登録</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>新規登録が完了しました</p>
+			<p>　　　新規登録が完了しました</p>
 		</div>
 
 		<div>

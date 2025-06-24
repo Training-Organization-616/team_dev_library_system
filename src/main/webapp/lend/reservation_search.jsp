@@ -30,12 +30,10 @@
 	
 	<div class="container">
 		<div>
-			<p>予約ID、資料ID、資料名を入力してください</p>
+			<p>　　　予約ID、資料ID、資料名を入力してください</p>
 		</div>
 		
-		<div class="message">
-			${message}
-		</div>
+		<div class="message">　　　　${message}</div>
 		
 		<div class="input_table">
 			<form action="/team_dev_library_system/ReservationServlet" method="post">
@@ -44,19 +42,19 @@
 					<tr>
 				    	<th>予約ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="reservation_id" value="${reservationId}">
+				    		<input class="input_form" type="text" size="70" name="reservation_id" value="${reservationId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="book_id" value="${bookId}">
+				    		<input class="input_form" type="text" size="70" name="book_id" value="${bookId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="title" value="${title}">
+				    		<input class="input_form" type="text" size="70" name="title" value="${title}">
 				    	</td>
 				    </tr>
 				</table>				

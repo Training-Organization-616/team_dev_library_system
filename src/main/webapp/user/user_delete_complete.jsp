@@ -18,20 +18,18 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">会員情報削除</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>会員情報を削除しました</p>
-			<p>トップページへ遷移します</p>
+			<p>　　　会員情報を削除しました</p>
+			<p>　　　　トップページへ遷移します</p>
 		</div>
 
 		<div>
@@ -46,7 +44,7 @@
 			</ul>
 		</div>
 
-		<div class="transfar_link">
+		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/user/user_top.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">

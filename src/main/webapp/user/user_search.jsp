@@ -17,12 +17,10 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">会員検索</div>
 	</div>
@@ -31,9 +29,7 @@
 		<div>
 			<p>　　　検索する会員情報を入力してください</p>
 		</div>
-
 		<div class="message">　　　　${message}</div>
-
 		<div class="input_table">
 			<form action="/team_dev_library_system/UserServlet" method="post">
 				<input type="hidden" name="action" value="search">
@@ -71,9 +67,7 @@
 				</table>
 				<button class="general_button_search_button">検索</button>
 			</form>
-
 		</div>
-
 
 		<br>
 		<br>
@@ -87,7 +81,6 @@
 						<th>変更</th>
 						<th>削除</th>
 					</tr>
-
 					<c:forEach items="${users}" var="user">
 						<tr>
 							<td>${user.userId}</td>
@@ -114,8 +107,8 @@
 				</table>
 			</div>
 		</c:if>
-
-		<div>
+		<br>
+		<div class="return_button_contents">
 			<form action="/team_dev_library_system/UserServlet" method="post">
 				<button class="search_return_button">戻る</button>
 				<input type="hidden" name="action" value="return_add">

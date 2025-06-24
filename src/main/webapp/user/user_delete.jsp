@@ -21,7 +21,6 @@
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">会員情報削除</div>
 	</div>
@@ -30,7 +29,6 @@
 		<div class="delete_message">
 			<p>以下の会員情報を削除しますか？</p>
 		</div>
-
 		<div>
 			<ul>
 				<li>会員ID：${user.userId}</li>
@@ -42,7 +40,6 @@
 				<li>入会年月日：${user.admissionDate}</li>
 			</ul>
 		</div>
-
 		<div>
 			<form action="/team_dev_library_system/UserServlet" method="post">
 				<input type="hidden" name="action" value="delete"> <input

@@ -29,7 +29,7 @@
 	
 	<div class="container">
 		<div>
-			<p>貸出が完了しました</p>
+			<p>　　　貸出が完了しました</p>
 		</div>
 		
 		<div>
@@ -48,7 +48,6 @@
 			</form>
 		</div>
 
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 
