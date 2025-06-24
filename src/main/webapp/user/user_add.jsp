@@ -16,22 +16,20 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">新規会員登録</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>登録する会員情報を入力してください</p>
+			<p>　　　登録する会員情報を入力してください</p>
 		</div>
 
-		<div class="message">${message}</div>
+		<div class="message">　　　　${message}</div>
 
 		<div class="input_table">
 			<form action="/team_dev_library_system/UserServlet" method="post">
@@ -44,28 +42,24 @@
 					</tr>
 					<tr>
 						<th>住所</th>
-						<td><input class="input_form" type="text" size="70" name="user_address"
-							value="${address}"></td>
+						<td><input class="input_form" type="text" size="70" name="user_address" value="${address}"></td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td><input class="input_form" type="text" size="70" name="user_tel"
-							value="${tel}"></td>
+						<td><input class="input_form" type="text" size="70" name="user_tel" value="${tel}"></td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
-						<td><input class="input_form" type="email" size="70" name="user_email"
-							value="${email}"></td>
+						<td><input class="input_form" type="email" size="70" name="user_email" value="${email}"></td>
 					</tr>
 					<tr>
 						<th>生年月日</th>
-						<td><input class="input_form" type="date"
-							name="user_birthday" value="${birthday}"></td>
+						<td><input class="input_form" type="date" name="user_birthday" value="${birthday}"></td>
 					</tr>
 				</table>
+				<br>
 				<button class="general_button">新規登録</button>
 			</form>
-
 		</div>
 
 		<div>
