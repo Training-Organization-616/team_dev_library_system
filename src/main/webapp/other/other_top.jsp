@@ -16,7 +16,6 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
 	<div class="holder">
 		<div class="menu_image">
@@ -26,21 +25,16 @@
 	</div>
 
 	<div class="button_container">
-		<form action="/team_dev_library_system/OverdueServlet"
-			method="post">
+		<form action="/team_dev_library_system/OverdueServlet" method="post">
 			<input type="hidden" name="action" value="list">
-			
 			<button class="top_button">延滞者対応</button>
 		</form>
 
-		<form action="/team_dev_library_system/InquiriesServlet"
-			method="post">
+		<form action="/team_dev_library_system/InquiriesServlet" method="post">
 			<input type="hidden" name="action" value="list">
 			<button class="top_button">お問い合わせ</button>
 		</form>
 	</div>
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

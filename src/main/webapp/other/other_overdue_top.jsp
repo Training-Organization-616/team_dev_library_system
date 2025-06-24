@@ -17,28 +17,23 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">延滞者対応</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>延滞者一覧</p>
+			<p>　　　延滞者一覧</p>
 		</div>
-
 		<div class="message">${message}</div>
-
-
-			
-			<div class="search_result_table">
+			<div class="search_result_table_contents">
 				<c:if test = "${not empty overdue10days }">
-					<table>
+					<table class="overdue_table">
 						<caption>超過した日数　10日以上</caption>
 						<tr>
 							<th>No</th>
@@ -50,7 +45,6 @@
 							<th>一次対応</th>
 							<th>編集</th>
 						</tr>
-	
 						<c:forEach items="${overdue10days}" var="day" varStatus="status">
 							<tr>
 								<td>${status.count }</td>
@@ -69,9 +63,8 @@
 								<td>対応済み</td>
 								</c:if>
 								<td>
-									<form action="/team_dev_library_system/OverdueServlet"
-										method="post">
-										<button class="edit_button">編集</button>
+									<form action="/team_dev_library_system/OverdueServlet" method="post">
+										<button class="orverdue_edit_button">編集</button>
 										<input type="hidden" name="action" value="edit_page">
 										<input type="hidden" name="lend_id" value="${day.lendId}">
 										<input type="hidden" name="user_id" value="${day.userId}">
@@ -82,7 +75,7 @@
 										<input type="hidden" name="title" value="${day.title}">
 										<input type="hidden" name="due_date" value="${day.dueDate}">
 										<input type="hidden" name="first_reminder" value="${day.firstReminder}">
-										<input type="hidden" name="second_reminder" value="${day.secondReminder}"
+										<input type="hidden" name="second_reminder" value="${day.secondReminder}">
 										<input type="hidden" name="memo" value="${day.memo}">
 									</form>
 								</td>
@@ -92,9 +85,9 @@
 				</c:if>
 			</div>
 			
-			<div class="search_result_table">
+			<div class="search_result_table_contents">
 				<c:if test = "${not empty overdue30days }">
-					<table>
+					<table class="overdue_table">
 						<caption>超過した日数　30日以上</caption>
 						<tr>
 							<th>No</th>
@@ -106,7 +99,6 @@
 							<th>二次対応</th>
 							<th>編集</th>
 						</tr>
-	
 						<c:forEach items="${overdue30days}" var="month" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
@@ -125,9 +117,8 @@
 								<td>対応済み</td>
 								</c:if>
 								<td>
-									<form action="/team_dev_library_system/OverdueServlet"
-										method="post">
-										<button class="edit_button">編集</button>
+									<form action="/team_dev_library_system/OverdueServlet" method="post">
+										<button class="orverdue_edit_button">編集</button>
 										<input type="hidden" name="action" value="edit_page">
 										<input type="hidden" name="lend_id" value="${month.lendId}">
 										<input type="hidden" name="user_id" value="${month.userId}">
@@ -138,7 +129,7 @@
 										<input type="hidden" name="title" value="${month.title}">
 										<input type="hidden" name="due_date" value="${month.dueDate}">
 										<input type="hidden" name="first_reminder" value="${month.firstReminder}">
-										<input type="hidden" name="second_reminder" value="${month.secondReminder}"
+										<input type="hidden" name="second_reminder" value="${month.secondReminder}">
 										<input type="hidden" name="memo" value="${month.memo}">
 									</form>
 								</td>
@@ -147,19 +138,16 @@
 					</table>
 				</c:if>
 			</div>
-			
-		
-
-		<div>
+		<br>
+		<br>
+		<div class="return_button_contents">
 			<form action="/team_dev_library_system/OverdueServlet" method="post">
-				<button class="return_button">戻る</button>
+				<button class="search_return_button">戻る</button>
 				<input type="hidden" name="action" value="top">
-				
 			</form>
 		</div>
 	</div>
-	
-		<jsp:include page="../top/footer.jsp" />
+
 </body>
 
 </html>

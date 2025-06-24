@@ -27,7 +27,7 @@
 
 	<div class="container">
 		<div>
-			<p>登録完了しました</p>
+			<p>　　　登録完了しました</p>
 		</div>
 
 		<div>
@@ -50,8 +50,6 @@
 			</ul>
 		</div>
 
-
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

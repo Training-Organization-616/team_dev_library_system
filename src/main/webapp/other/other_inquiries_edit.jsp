@@ -79,13 +79,9 @@
 					<tr>
 						<th>備考</th>
 						<td>
-						<textarea name = "memo">${inquiry.memo}</textarea>
+						<textarea name = "memo" >${inquiry.memo}</textarea>
 						</td>
 					</tr>
-					
-						
-					
-					
 				</table>
 				<button class="general_button edit_button">編集</button>
 			</form>
@@ -100,8 +96,6 @@
 		</div>
 	</div>
 
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

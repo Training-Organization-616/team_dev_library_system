@@ -15,7 +15,7 @@ body {
 	/*背景色*/
 	background-color: #A5a58d;
 	/*余白*/
-	padding: 30px;
+	padding: 50px;
 }
 
 /*headerの文字*/
@@ -35,7 +35,7 @@ body {
 	/*背景色*/
 	background-color: #A5a58d;
 	width: auto;
-	height: 145px;
+	height: 150px;
 }
 
 
@@ -57,7 +57,7 @@ body {
 /*menu背景*/
 .menu_container {
 	width: 75%;
-	height: 1200px;
+	height: 800px;
 	background-color: #Cb997e;
 	color: white;
 	font-size: 25px;
@@ -142,11 +142,12 @@ button {
 
 
 .top_container {
-	margin-top: 100px;
 	margin-bottom: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	max-width: 1300px;  /* コンテナ幅を制限して広がりすぎないようにする */
+	margin: 100px auto;     /* 中央寄せ */
 
 }
 
@@ -170,12 +171,17 @@ button {
 /*資料管理画面・会員管理のボタン*/
 
 .button_container {
-	/*上、下、左に余白*/
-	margin-top: 100px;
 	/*横並び*/
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	max-width: 1000px;  /* コンテナ幅を制限して広がりすぎないようにする */
+	margin: 100px auto;     /* 中央寄せ */
+}
+
+.button_container button{
+	width: 350px;
+	height: 250px;
 }
 
 .container {
@@ -215,7 +221,15 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	float: right;
+
+}
+
+.return_button_contents {
+	display: flex;
+	justify-content: center;
+	/* 水平方向の中央揃え */
+	align-items: center;
+	/* 垂直方向の中央揃え */
 }
 
 /*戻るボタン　中央寄せ*/
@@ -301,11 +315,51 @@ button {
 	font-size: 25px;
 }
 
-/*続けて貸出・返却ボタン*/
+.transfar_link_top button {
+	/*背景色*/
+	background-color: #Ddbea9;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 70px;
+	float: right;
+}
 
+.inquiries_edit_button {
+	/*背景色*/
+	background-color: #6b705c;
+	/*文字の色*/
+	color: white;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 10px 83px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+	margin-left: 10px;
+}
 
+.orverdue_edit_button {
+	/*背景色*/
+	background-color: #6b705c;
+	/*文字の色*/
+	color: white;
+	/*枠線なし*/
+	border: none;
+	/*ボタンの内側の余白*/
+	padding: 5px 60px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 20px;
+	margin-left: 10px;
+}
 
-
+.button_center {
+	text-align: center;
+}
 
 /*------------エラーメッセージ------------*/
 .message {
@@ -330,6 +384,16 @@ input {
 	margin-left: 1em;
 	margin-right: 1em;
 	padding: 5px;
+}
+
+textarea {
+	width: 500px;
+	height: 100px;
+	margin-bottom: 0.8em;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding: 5px;
+
 }
 
 
@@ -371,6 +435,22 @@ td {
 	color: #6b422b;
 }
 
+.overdue_table {
+	width: 1200px;
+	height: 60px;
+	background-color: #Ffe8d6;
+	color: #6b422b;
+}
+
+/* 1列目のスタイル */
+.overdue_table tr td:nth-of-type(1) {
+	text-align: center;
+}
+
+/* 2列目のスタイル */
+.overdue_table tr td:nth-of-type(2) {
+	text-align: center;
+}
 
 
 /*-----------------table------------------*/

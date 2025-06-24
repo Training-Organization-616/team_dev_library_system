@@ -29,16 +29,12 @@
 
 	<div class="container">
 		<div>
-			<p>お問い合わせ一覧</p>
+			<p>　　　お問い合わせ一覧</p>
 		</div>
-
-		<div class="message">${message}</div>
-
-
-			
-			<div class="search_result_table">
+		<div class="message">　　　　${message}</div>
+			<div class="search_result_table_contents">
 				<c:if test = "${not empty inquiries }">
-					<table>
+					<table class="overdue_table">
 					<caption>お問い合わせ一覧</caption>
 						<tr>
 							<th>No</th>
@@ -66,7 +62,7 @@
 								<td>
 									<form action="/team_dev_library_system/InquiriesServlet"
 										method="post">
-										<button class="edit_button">詳細</button>
+										<button class="inquiries_edit_button">詳細</button>
 										<input type="hidden" name="action" value="edit_page">
 										<input type="hidden" name="inquiries_id" value="${inquiry.inquiriesId}">
 										<input type="hidden" name="reception_date" value="${inquiry.receptionDate}">
@@ -86,7 +82,7 @@
 		<div>	
 			<form action="/team_dev_library_system/other/other_inquiries_add.jsp"
 			method="post">
-			<button class="top_button">登録</button>
+			<button class="general_button">登録</button>
 		</form>
 		</div>
 
@@ -99,7 +95,6 @@
 		</div>
 	</div>
 
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

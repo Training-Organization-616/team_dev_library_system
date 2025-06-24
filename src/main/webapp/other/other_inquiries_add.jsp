@@ -44,7 +44,7 @@
 					</tr>
 					<tr>
 						<th>タイトル</th>
-						<td><input class="input_form" type="text" name="title"
+						<td><input class="input_form" type="text" size="70" name="title"
 							value="${title}"></td>
 					</tr>
 					<tr>
@@ -85,8 +85,6 @@
 		</div>
 	</div>
 
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

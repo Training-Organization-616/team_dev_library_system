@@ -29,7 +29,7 @@
 
 	<div class="container">
 		<div>
-			<p>編集完了しました</p>
+			<p>　　　編集完了しました</p>
 		</div>
 
 		<div>
@@ -69,14 +69,14 @@
 			</ul>
 		</div>
 
-		<div class="transfar_link">
+		<br>
+		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/other/other_overdue_top.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">
 			</form>
 		</div>
 
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

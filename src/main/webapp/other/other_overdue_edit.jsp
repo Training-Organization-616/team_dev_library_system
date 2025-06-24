@@ -28,10 +28,10 @@
 
 	<div class="container">
 		<div>
-			<p>延滞者の対応状況を入力してください</p>
+			<p>　　　延滞者の対応状況を入力してください</p>
 		</div>
 
-		<div class="message">${message}</div>
+		<div class="message">　　　　${message}</div>
 
 		<div class="input_table">
 			<form action="/team_dev_library_system/OverdueServlet" method="post">
@@ -116,8 +116,7 @@
 					<tr>
 						<th>備考</th>
 						<td>
-						<input class="input_form" type="text"
-							name="memo" value="${overdue.memo}">
+						<input class="input_form" type="text" size="70" name="memo" value="${overdue.memo}">
 						</td>
 					</tr>
 				</table>
@@ -137,8 +136,6 @@
 		</div>
 	</div>
 
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 
