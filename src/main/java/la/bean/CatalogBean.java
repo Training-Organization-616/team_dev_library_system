@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CatalogBean implements Serializable{
 
-	private int isbn;
+	private Long isbn;
 	private String title;
 	private int code;
 	private String author;
@@ -15,7 +15,7 @@ public class CatalogBean implements Serializable{
 	
 	CatalogBean(){}
 	
-	CatalogBean(int isbn , String title , int code , String author , String publicher ,
+	CatalogBean(Long isbn , String title , int code , String author , String publicher ,
 			String publicationDate , int volumeNumber , String stockAmount){
 		
 		this.isbn = isbn;
@@ -28,10 +28,10 @@ public class CatalogBean implements Serializable{
 		this.stockAmount = stockAmount;
 	}
 
-	public int getIsbn() {
+	public Long getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(Long isbn) {
 		this.isbn = isbn;
 	}
 

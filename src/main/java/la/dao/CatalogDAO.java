@@ -33,18 +33,20 @@ public class CatalogDAO {
     }
     
     //資料を在庫台帳に追加するメソッド
-    public void addBookToStock(String isbn , String title , Date arrivalDate) throws DAOException{
+    public void addBookToStock(String isbn , String title , String author ,  Date arrivalDate) throws DAOException{
     	//SQL文の作成
     	String sql = "";
     	
     	if(isbn != null && isbn.length() != 0) {
     		
     		//isbnが入力されている場合
-    		sql = "INSERT INTO stock(isbn , title , arrival_date , stock) VALUES(? , ? , ? , 1)";
+    		sql = "INSERT INTO stock(isbn , title , author , arrival_date , stock ,"
+    				+ " reservation , reservation_amount) VALUES(? , ? , ? , ? , 1 , 0 , 0)";
     		
     	}else {
     		//isbnが入力されていない場合
-    		sql = "INSERT INTO stock(title , arrival_date , stock) VALUES(? , ? , 1)";
+    		sql = "INSERT INTO stock(title , author , arrival_date , stock ,"
+    				+ " reservation , reservation_amount) VALUES(? , ? , ? , 1 , 0 , 0)";
     	}
     	
     	try (// データベースへの接続
@@ -56,15 +58,17 @@ public class CatalogDAO {
         		
         		//isbnが入力されている場合
     			//パラメータ設定
-        		st.setInt(1, Integer.parseInt(isbn));
+        		st.setLong(1, Long.parseLong(isbn));
         		st.setString(2, title);
-        		st.setDate(3, arrivalDate);
+        		st.setString(3, author);
+        		st.setDate(4, arrivalDate);
         		
         	}else {
         		//isbnが入力されていない場合
         		//パラメータ設定
         		st.setString(1, title);
-        		st.setDate(2, arrivalDate);
+        		st.setString(2, author);
+        		st.setDate(3, arrivalDate);
         	}
     		
     		// SQLの実行
@@ -104,7 +108,7 @@ public class CatalogDAO {
 
 				//isbnが入力されている場合
 				//パラメータ設定
-				st.setInt(1, Integer.parseInt(isbn));
+				st.setLong(1, Long.parseLong(isbn));
 				st.setString(2, title);
 
 			} else {
@@ -266,7 +270,7 @@ public class CatalogDAO {
 
 				//isbnが入力されている場合
 				//パラメータ設定
-    			st.setInt(1, Integer.parseInt(isbn));
+    			st.setLong(1, Long.parseLong(isbn));
         		st.setString(2, title);
         		st.setInt(3, code);
         		st.setString(4, author);
@@ -310,14 +314,14 @@ public class CatalogDAO {
     		sql = "SELECT s.book_id , s.isbn , s.title , c.code , c.author , "
     				+ "c.publicher , c.publication_date , s.arrival_date "
     				+ "FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
-    				+ "ORDER BY s.book_id DESC LIMIT 1";
+    				+ " ORDER BY s.book_id DESC LIMIT 1";
     		
     	}else {
     		//isbnが入力されていない場合
     		sql = "SELECT s.book_id , s.title , c.code , c.author , "
     				+ "c.publicher , c.publication_date , s.arrival_date "
-    				+ "FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
-    				+ "ORDER BY s.book_id DESC LIMIT 1";
+    				+ " FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
+    				+ " ORDER BY s.book_id DESC LIMIT 1";
     	}
     	
     	try (// データベースへの接続
@@ -332,7 +336,7 @@ public class CatalogDAO {
         		//isbnが入力されている場合
         		rs.next();
         		int resultBookId = rs.getInt("book_id");
-        		int resultIsbn = rs.getInt("isbn");
+        		Long resultIsbn = rs.getLong("isbn");
         		String resultTitle = rs.getString("title");
         		int resultCode = rs.getInt("code");
         		String resultAuthor = rs.getString("author");
@@ -383,7 +387,7 @@ public class CatalogDAO {
         //検索時、資料名が入力されているとき
         if(title != null && title.length() != 0) {
         	
-        	sql += " AND s.title ?";	
+        	sql += " AND s.title LIKE ?";	
         }
         //検索時、分類コードが入力されているとき
         if(code != null && code.length() != 0) {
@@ -393,12 +397,12 @@ public class CatalogDAO {
         //検索時、著者が入力されているとき
         if(author != null && author.length() != 0) {
         	
-        	sql += " AND c.author ?";
+        	sql += " AND c.author LIKE ?";
         }
         //検索時、出版社が入力されているとき
         if(publicher != null && publicher.length() != 0) {
         	
-        	sql += " AND c.publicher ?";
+        	sql += " AND c.publicher LIKE ?";
         	
         }
         //検索時、背ラベルが入力されているとき
@@ -484,7 +488,7 @@ public class CatalogDAO {
 				while (rs.next()) {
 					//検索結果のデータを取得
 					int bookId = rs.getInt("book_id");
-					int resultIsbn = rs.getInt("isbn");
+					Long resultIsbn = rs.getLong("isbn");
 					String resultTitle = rs.getString("title");
 					int resultCode = rs.getInt("code");
 					String resultAuthor = rs.getString("author");
@@ -541,7 +545,7 @@ public class CatalogDAO {
 			//パラメータ設定
 			if(isbn != null && isbn.length() != 0) {
 				
-				st.setInt(1, Integer.parseInt(isbn));
+				st.setLong(1, Long.parseLong(isbn));
 	    		st.setString(2, title);
 	    		st.setDate(3, arrivalDate);
 	    		st.setInt(4, bookId);
@@ -583,7 +587,7 @@ public class CatalogDAO {
 			//パラメータ設定
 			if(isbn != null && isbn.length() != 0) {
 				
-				st.setInt(1, Integer.parseInt(isbn));
+				st.setLong(1, Long.parseLong(isbn));
 				st.setString(2, title);
 				st.setInt(3, Integer.parseInt(code));
 				st.setString(4, author);
@@ -622,7 +626,7 @@ public class CatalogDAO {
 					PreparedStatement st = con.prepareStatement(sql);) {
 				
 				//パラメータ設定
-				st.setInt(1, bookId);
+				st.setString(1, "%" + bookId + "%");
 				
 				try (// SQLの実行
 						ResultSet rs = st.executeQuery();) {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class SearchResultsBean implements Serializable{
 
 	private int bookId;
-	private int isbn;
+	private Long isbn;
 	private String title;
 	private int code;
 	private String author;
@@ -16,7 +16,7 @@ public class SearchResultsBean implements Serializable{
 	
 	public SearchResultsBean(){}
 	
-	public SearchResultsBean(int bookId , int isbn , String title , int code , String author , 
+	public SearchResultsBean(int bookId , Long isbn , String title , int code , String author , 
 			String publicher , String publicationDate , String arrivalDate){
 		
 		this.bookId = bookId;
@@ -29,7 +29,7 @@ public class SearchResultsBean implements Serializable{
 		this.arrivalDate = arrivalDate;
 	}
 	
-	public SearchResultsBean(int bookId , int isbn , String title , int code , String author , 
+	public SearchResultsBean(int bookId , Long isbn , String title , int code , String author , 
 			String publicher , String publicationDate , String arrivalDate , String reservationAmount){
 		
 		this.bookId = bookId;
@@ -50,10 +50,10 @@ public class SearchResultsBean implements Serializable{
 		this.bookId = bookId;
 	}
 
-	public int getIsbn() {
+	public Long getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(Long isbn) {
 		this.isbn = isbn;
 	}
 

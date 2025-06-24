@@ -163,7 +163,7 @@ public class CatalogServlet extends HttpServlet {
             		CatalogDAO dao = new CatalogDAO();
             		
             		//在庫台帳に資料を追加する
-            		dao.addBookToStock(isbn , title , arrivalDate);
+            		dao.addBookToStock(isbn , title , author , arrivalDate);
             		
             		//在庫台帳から今追加した資料の資料IDを取得する
             		List<Integer> idList = dao.getBookId(isbn , title);
@@ -363,7 +363,7 @@ public class CatalogServlet extends HttpServlet {
         		
         		//資料変更画面に渡す値をbeanに保存
         		SearchResultsBean bean = new SearchResultsBean
-        				(Integer.parseInt(bookId) , Integer.parseInt(isbn) , title,
+        				(Integer.parseInt(bookId) , Long.parseLong(isbn) , title,
         						Integer.parseInt(code) , author , publicher ,
         						publicationDate , arrivalDate);
         		
@@ -461,7 +461,7 @@ public class CatalogServlet extends HttpServlet {
             		
             		//資料変更完了画面に渡す値をbeanに保存
             		SearchResultsBean bean = new SearchResultsBean
-            				(Integer.parseInt(bookId) , Integer.parseInt(isbn) , title,
+            				(Integer.parseInt(bookId) , Long.parseLong(isbn) , title,
             						Integer.parseInt(code) , author ,
             						publicher , strPublicationDate , strArrivalDate);
             		
@@ -494,7 +494,7 @@ public class CatalogServlet extends HttpServlet {
         		
         		//資料変更画面に渡す値をbeanに保存
         		SearchResultsBean bean = new SearchResultsBean(Integer.parseInt(bookId) ,
-        				Integer.parseInt(isbn) , title , Integer.parseInt(code) ,
+        				Long.parseLong(isbn) , title , Integer.parseInt(code) ,
         				author , publicher , publicationDate , arrivalDate);
         		
         		//リクエストスコープで送る
@@ -522,7 +522,7 @@ public class CatalogServlet extends HttpServlet {
         			
         			//資料変更画面に渡す値をbeanに保存
             		SearchResultsBean bean = new SearchResultsBean(Integer.parseInt(bookId) ,
-            				Integer.parseInt(isbn) , title , Integer.parseInt(code) ,
+            				Long.parseLong(isbn) , title , Integer.parseInt(code) ,
             				author , publicher , publicationDate , arrivalDate);
             		
             		//リクエストスコープで送る
@@ -533,7 +533,7 @@ public class CatalogServlet extends HttpServlet {
         		
         		//資料変更画面に渡す値をbeanに保存
         		SearchResultsBean bean = new SearchResultsBean(Integer.parseInt(bookId) ,
-        				Integer.parseInt(isbn) , title , Integer.parseInt(code) ,
+        				Long.parseLong(isbn) , title , Integer.parseInt(code) ,
         				author , publicher , publicationDate , arrivalDate);
         		
         		//リクエストスコープで送る
@@ -717,14 +717,10 @@ public class CatalogServlet extends HttpServlet {
   		//id格納用リスト
   		List<Integer> stockAmounts = new ArrayList<Integer>();
   		
-  		//カウンタ変数
-  		int j = 0;
-  		
   		//数字のみを抽出
-  		for(int i = 1; i < stockAmounts.size(); i += 2) {
+  		for(int i = 1; i < splitStockAmounts.size(); i += 2) {
   			
-  			stockAmounts.set(j, Integer.parseInt(splitStockAmounts.get(i)));
-  			j++;
+  			stockAmounts.add(Integer.parseInt(splitStockAmounts.get(i)));
   		}
   		
   		return stockAmounts;
