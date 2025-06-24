@@ -34,7 +34,7 @@
 		<div class="message">${message}</div>
 
 		<div class="input_table">
-			<form action="/team_dev_library_system/InquireisServlet" method="post">
+			<form action="/team_dev_library_system/InquiriesServlet" method="post">
 				<input type="hidden" name="action" value="add">
 				<table>
 					<tr>
@@ -49,8 +49,7 @@
 					</tr>
 					<tr>
 						<th>内容</th>
-						<td><input class="input_form" type="text" name="contents"
-							value="${contents}"></td>
+						<td><textarea name = "contents">${contents}</textarea></td>
 					</tr>
 					<tr>
 						<th>対応有無</th>
@@ -70,8 +69,7 @@
 					</tr>
 					<tr>
 						<th>備考</th>
-						<td><input class="input_form" type="text"
-							name="memo" value="${memo}"></td>
+						<td><textarea name = "memo">${memo}</textarea></td>
 					</tr>
 				</table>
 				<button class="general_button">登録</button>

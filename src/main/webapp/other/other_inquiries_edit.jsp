@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -55,23 +55,23 @@
 					<tr>
 						<th>内容</th>
 						<td>
-						${inquiry.contents}
-						 <input type="hidden" name="contents" value="${inquiry.contents}">
+							${inquiry.contents} 
+						<input type="hidden" name="contents" value="${inquiry.contents}">
 						</td>
 					</tr>
 					<tr>
 						<th>対応有無</th>
 						<td>
 							<label>
-								<input class="input_form" type="radio"name="handing" value="0" <c:if test="${inquiry.handing==0}">checked</c:if>>
+								<input class="input_form" type="radio"name="handling" value="0" ${inquiry.handling == 0 ? 'checked = "checked"' : ''}>
 								未対応
 							</label>
 							<label>
-								<input class="input_form" type="radio"name="handing" value="1" <c:if test="${inquiry.handing==1}">checked</c:if>>
+								<input class="input_form" type="radio"name="handling" value="1" ${inquiry.handling == 1 ? 'checked = "checked"' : ''}>
 								対応中
 							</label>
 							<label>
-								<input class="input_form" type="radio"name="handing" value="2" <c:if test="${inquiry.handing==2}">checked</c:if>>
+								<input class="input_form" type="radio"name="handling" value="2" ${inquiry.handling == 2 ? 'checked = "checked"' : ''}>
 								対応済み
 							</label>
 						</td>
@@ -79,8 +79,7 @@
 					<tr>
 						<th>備考</th>
 						<td>
-						${inquiry.memo}
-						 <input type="hidden" name="memo" value="${inquiry.memo}">
+						<textarea name = "memo">${inquiry.memo}</textarea>
 						</td>
 					</tr>
 					

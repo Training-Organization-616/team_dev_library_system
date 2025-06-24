@@ -12,14 +12,14 @@ public class OverdueBean implements Serializable{
 	private int bookId;
 	private String title;
 	private String dueDate;
-	private String firstReminder;
-	private String secondReminder;
+	private int firstReminder;
+	private int secondReminder;
 	private String memo;
 	
 	public OverdueBean() {}
 	
 	public OverdueBean(int lendId , int userId , String name , String email , String tel , int bookId ,
-			String title , String dueDate , String firstReminder , String secondReminder , String memo) {
+			String title , String dueDate , int firstReminder , int secondReminder , String memo) {
 		
 		this.lendId = lendId;
 		this.userId = userId;
@@ -90,17 +90,17 @@ public class OverdueBean implements Serializable{
 		this.dueDate = dueDate;
 	}
 
-	public String getTelReminder() {
+	public int getFirstReminder() {
 		return firstReminder;
 	}
-	public void setTelReminder(String firstReminder) {
+	public void setFirstReminder(int firstReminder) {
 		this.firstReminder = firstReminder;
 	}
 
-	public String getDemandLetter() {
+	public int getSecondReminder() {
 		return secondReminder;
 	}
-	public void setDemandLetter(String secondReminder) {
+	public void setSecondReminder(int secondReminder) {
 		this.secondReminder = secondReminder;
 	}
 

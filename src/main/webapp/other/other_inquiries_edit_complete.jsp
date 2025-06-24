@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -36,13 +36,13 @@
 				<li>タイトル：${inquiry.contentsTitle}</li>
 				<li>内容：${inquiry.contents}</li>
 				<li>対応有無：
-					<c:if test="${inquiry.handing==0}">
+					<c:if test = "${inquiry.handling eq 0}" >
 						未対応
 					</c:if>
-					<c:if test="${inquiry.handing==1}">
+					<c:if test="${inquiry.handling eq 1}">
 						対応中
 					</c:if>
-					<c:if test="${inquiry.handing==2}">
+					<c:if test="${inquiry.handling eq 2}">
 						対応済み
 					</c:if>
 				</li>
@@ -50,6 +50,12 @@
 			</ul>
 		</div>
 
+		<div class="transfar_link">				
+			<form action="/team_dev_library_system/other/other_inquiries_top.jsp" method="post">
+ 				<button>自動で遷移しない場合はこちらをクリック</button>
+				<input type="hidden" name="action" value="">
+			</form>
+		</div>
 
 		<jsp:include page="../top/footer.jsp" />
 </body>

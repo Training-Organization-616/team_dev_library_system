@@ -39,7 +39,7 @@ public class OverdueServlet extends HttpServlet {
                 gotoPage(request, response, "/top/top.jsp");
                 
                 
-            }else if(action.equals("return")){
+            }else if(action.equals("return_add")){
             	//actionの値が「return」の場合
             	//お問い合わせ登録、編集画面から、お問い合わせ対応画面に戻る
             	gotoPage(request , response , "/other/other_overdue_top.jsp");
@@ -49,6 +49,8 @@ public class OverdueServlet extends HttpServlet {
             	//延滞者一覧を取得する
             	
             	OverdueDAO dao = new OverdueDAO();
+            	
+            	dao.setReminder();
             	
             	List<OverdueBean> list10days = new ArrayList<OverdueBean>();
             	List<OverdueBean> list30days = new ArrayList<OverdueBean>();
@@ -98,31 +100,28 @@ public class OverdueServlet extends HttpServlet {
             	//日にちの差を取得
             	long daysBetween = ChronoUnit.DAYS.between(dueDate , dateNow);
             	
+            	//延滞者更新完了画面に渡す値をbeanに保存
+        		OverdueBean bean = new OverdueBean
+        				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
+        						email , tel , Integer.parseInt(bookId) , title ,
+        						strDueDate , Integer.parseInt(firstReminder) , Integer.parseInt(secondReminder) , memo);
+        		
+        		//リクエストスコープで送る
+        		request.setAttribute("overdue", bean);
+            	
             	if(daysBetween >= 30) {
             		
-            		//延滞者更新画面に渡す値をbeanに保存
-            		OverdueBean bean = new OverdueBean
-            				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
-            						email , tel , Integer.parseInt(bookId) , title ,
-            						strDueDate , firstReminder , secondReminder , memo);
-            		
             		//リクエストスコープで送る
-            		request.setAttribute("overdue30days", bean);
-            		gotoPage(request , response , "/other/other_overdue_edit.jsp");
+            		request.setAttribute("month", secondReminder);
             		
             	}else if(daysBetween >= 10){
             		
-            		//延滞者更新画面に渡す値をbeanに保存
-            		OverdueBean bean = new OverdueBean
-            				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
-            						email , tel , Integer.parseInt(bookId) , title ,
-            						strDueDate , firstReminder , secondReminder , memo);
-            		
             		//リクエストスコープで送る
-            		request.setAttribute("overdue10days", bean);
-            		gotoPage(request , response , "/other/other_overdue_edit.jsp");
-            		
+            		request.setAttribute("day", firstReminder);
             	}
+            	
+            	gotoPage(request , response , "/other/other_overdue_edit.jsp");
+            	
             }else if(action.equals("update")) {
             	//actionの値が「update」の場合
             	//延滞者対応を更新する
@@ -143,7 +142,7 @@ public class OverdueServlet extends HttpServlet {
         		
         		//延滞者情報を入力内容で更新する
         		dao.updateOverdue(Integer.parseInt(lendId) , Integer.parseInt(firstReminder) ,
-        				secondReminder , memo);
+        				Integer.parseInt(secondReminder) , memo);
         		
         		//更新内容をセッションに反映
         		List<OverdueBean> list10days = new ArrayList<OverdueBean>();
@@ -169,30 +168,27 @@ public class OverdueServlet extends HttpServlet {
             	//日にちの差を取得
             	long daysBetween = ChronoUnit.DAYS.between(dueDate , dateNow);
             	
+            	//延滞者更新完了画面に渡す値をbeanに保存
+        		OverdueBean bean = new OverdueBean
+        				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
+        						email , tel , Integer.parseInt(bookId) , title ,
+        						strDueDate , Integer.parseInt(firstReminder) , Integer.parseInt(secondReminder) , memo);
+        		
+        		//リクエストスコープで送る
+        		request.setAttribute("overdue", bean);
+            	
             	if(daysBetween >= 30) {
             		
-            		//延滞者更新完了画面に渡す値をbeanに保存
-            		OverdueBean bean = new OverdueBean
-            				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
-            						email , tel , Integer.parseInt(bookId) , title ,
-            						strDueDate , firstReminder , secondReminder , memo);
-            		
             		//リクエストスコープで送る
-            		request.setAttribute("overdue30days", bean);
-            		gotoPage(request , response , "/other/other_overdue_edit_complete.jsp");
+            		request.setAttribute("month", secondReminder);
             		
             	}else if(daysBetween >= 10){
             		
-            		//延滞者更新完了画面に渡す値をbeanに保存
-            		OverdueBean bean = new OverdueBean
-            				(Integer.parseInt(lendId) , Integer.parseInt(userId) , name ,
-            						email , tel , Integer.parseInt(bookId) , title ,
-            						strDueDate , firstReminder , secondReminder , memo);
-            		
             		//リクエストスコープで送る
-            		request.setAttribute("overdue10days", bean);
-            		gotoPage(request , response , "/other/other_overdue_edit_complete.jsp");
+            		request.setAttribute("day", firstReminder);
             	}
+            	
+            	gotoPage(request , response , "/other/other_overdue_edit_complete.jsp");
             }
         } catch (DAOException e) {
         	

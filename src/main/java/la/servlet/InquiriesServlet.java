@@ -36,7 +36,7 @@ public class InquiriesServlet extends HttpServlet {
                 gotoPage(request, response, "/top/top.jsp");
                 
                 
-            }else if(action.equals("return")){
+            }else if(action.equals("return_add")){
             	//actionの値が「return」の場合
             	//お問い合わせ登録、編集画面から、お問い合わせ対応画面に戻る
             	gotoPage(request , response , "/other/other_inquiries_top.jsp");
@@ -72,13 +72,13 @@ public class InquiriesServlet extends HttpServlet {
             	String strReceptionDate = request.getParameter("reception_date");
             	String title = request.getParameter("title");
             	String contents = request.getParameter("contents");
-            	String handing = request.getParameter("handing");
+            	String handling = request.getParameter("handling");
             	String memo = request.getParameter("memo");
             	
             	if((strReceptionDate != null && strReceptionDate.length() != 0)
             			&& (title != null && title.length() != 0)
             			&& (contents != null && contents.length() != 0)
-            			&& (handing != null && handing.length() != 0)) {
+            			&& (handling != null && handling.length() != 0)) {
             		
             		//問合せを追加するときに
             		//必要事項が全て入力されているとき
@@ -93,7 +93,7 @@ public class InquiriesServlet extends HttpServlet {
             			//request.setAttribute("code", code);
             			request.setAttribute("receptionDate", strReceptionDate);
             			request.setAttribute("contents", contents);
-            			request.setAttribute("handing", handing);
+            			request.setAttribute("handling", handling);
             			request.setAttribute("memo", memo);
                 		gotoPage(request , response , "/other/other_inquiries_add.jsp");
                 		return;
@@ -105,7 +105,7 @@ public class InquiriesServlet extends HttpServlet {
             		InquiriesDAO dao = new InquiriesDAO();
             		
             		//お問い合わせListに入力内容を追加する
-            		dao.addInquiries(receptionDate , title , contents , Integer.parseInt(handing) , memo);
+            		dao.addInquiries(receptionDate , title , contents , Integer.parseInt(handling) , memo);
             		
             		//追加されたListをセッションに反映
             		List<InquiriesBean> list = new ArrayList<InquiriesBean>();
@@ -118,7 +118,7 @@ public class InquiriesServlet extends HttpServlet {
             		
             		//追加完了画面表示用
             		InquiriesBean bean = new InquiriesBean(strReceptionDate , title , contents ,
-            				Integer.parseInt(handing) , memo);
+            				Integer.parseInt(handling) , memo);
             		
             		request.setAttribute("inquiry" , bean);
             		gotoPage(request , response , "/other/other_inquiries_add_complete.jsp");
@@ -130,7 +130,7 @@ public class InquiriesServlet extends HttpServlet {
             		request.setAttribute("receptionDate", strReceptionDate);
             		request.setAttribute("title", title);
         			request.setAttribute("contents", contents);
-        			request.setAttribute("handing", handing);
+        			request.setAttribute("handing", handling);
         			request.setAttribute("memo", memo);
             		gotoPage(request , response , "/other/other_inquiries_add.jsp");
             	}
@@ -142,13 +142,13 @@ public class InquiriesServlet extends HttpServlet {
         		String strReceptionDate = request.getParameter("reception_date");
             	String title = request.getParameter("title");
             	String contents = request.getParameter("contents");
-            	String handing = request.getParameter("handing");
+            	String handling = request.getParameter("handling");
             	String memo = request.getParameter("memo");
         		
         		//資料変更画面に渡す値をbeanに保存
         		InquiriesBean bean = new InquiriesBean
         				(Integer.parseInt(inquiriesId) , strReceptionDate , title,
-        						contents ,Integer.parseInt(handing) , memo);
+        						contents ,Integer.parseInt(handling) , memo);
         		
         		//リクエストスコープで送る
         		request.setAttribute("inquiry", bean);
@@ -161,10 +161,10 @@ public class InquiriesServlet extends HttpServlet {
         		String strReceptionDate = request.getParameter("reception_date");
             	String title = request.getParameter("title");
             	String contents = request.getParameter("contents");
-            	String handing = request.getParameter("handing");
+            	String handling = request.getParameter("handling");
             	String memo = request.getParameter("memo");
             	
-        		if(handing != null && handing.length() != 0) {
+        		if(handling != null && handling.length() != 0) {
         			
         			//問合せを変更するときに
             		//必要事項が全て入力されているとき
@@ -172,7 +172,7 @@ public class InquiriesServlet extends HttpServlet {
             		InquiriesDAO dao = new InquiriesDAO();
             		
             		//問合せListを入力内容で更新する
-            		dao.updateInquiries(Integer.parseInt(inquiriesId) , Integer.parseInt(handing) , memo);
+            		dao.updateInquiries(Integer.parseInt(inquiriesId) , Integer.parseInt(handling) , memo);
             		
             		//更新されたListをセッションに反映
             		List<InquiriesBean> list = new ArrayList<InquiriesBean>();
@@ -185,7 +185,7 @@ public class InquiriesServlet extends HttpServlet {
             		
             		//更新完了画面表示用
             		InquiriesBean bean = new InquiriesBean(strReceptionDate , title , contents ,
-            				Integer.parseInt(handing) , memo);
+            				Integer.parseInt(handling) , memo);
             		
             		request.setAttribute("inquiry" , bean);
             		gotoPage(request , response , "/other/other_inquiries_edit_complete.jsp");

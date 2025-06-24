@@ -37,48 +37,50 @@
 
 			
 			<div class="search_result_table">
-				<table>
-				<caption>お問い合わせ一覧</caption>
-					<tr>
-						<th>No</th>
-						<th>受付日</th>
-						<th>タイトル</th>
-						<th>対応有無</th>
-						<th>詳細</th>
-					</tr>
-
-					<c:forEach items="${inquiries}" var="inquiry" varStatus="status">
+				<c:if test = "${not empty inquiries }">
+					<table>
+					<caption>お問い合わせ一覧</caption>
 						<tr>
-							<td>${status.count}</td>
-							<td>${inquiry.receptionDate}</td>
-							<td>${inquiry.contentsTitle}</td>
-							
-							<c:if test="${inquiry.handing==0}">
-							<td>未対応</td>
-							</c:if>
-							<c:if test="${inquiry.handing==1}">
-							<td>対応中</td>
-							</c:if>
-							<c:if test="${inquiry.handing==2}">
-							<td>対応済み</td>
-							</c:if>
-							<td>
-								<form action="/team_dev_library_system/InquiriesServlet"
-									method="post">
-									<button class="edit_button">詳細</button>
-									<input type="hidden" name="action" value="edit_page">
-									<input type="hidden" name="inquiries_id" value="${inquiry.inquiriesId}">
-									<input type="hidden" name="reception_date" value="${inquiry.receptionDate}">
-									<input type="hidden" name="title" value="${inquiry.contentsTitle}">
-									<input type="hidden" name="contents" value="${inquiry.contents}">
-									<input type="hidden" name="handing" value="${inquiry.handing}">
-									<input type="hidden" name="memo" value="${inquiry.memo}">
-									
-								</form>
-							</td>
+							<th>No</th>
+							<th>受付日</th>
+							<th>タイトル</th>
+							<th>対応有無</th>
+							<th>詳細</th>
 						</tr>
-					</c:forEach>
-				</table>
+	
+						<c:forEach items="${inquiries}" var="inquiry" varStatus="status">
+							<tr>
+								<td>${status.count}</td>
+								<td>${inquiry.receptionDate}</td>
+								<td>${inquiry.contentsTitle}</td>
+								
+								<c:if test="${inquiry.handling==0}">
+								<td>未対応</td>
+								</c:if>
+								<c:if test="${inquiry.handling==1}">
+								<td>対応中</td>
+								</c:if>
+								<c:if test="${inquiry.handling==2}">
+								<td>対応済み</td>
+								</c:if>
+								<td>
+									<form action="/team_dev_library_system/InquiriesServlet"
+										method="post">
+										<button class="edit_button">詳細</button>
+										<input type="hidden" name="action" value="edit_page">
+										<input type="hidden" name="inquiries_id" value="${inquiry.inquiriesId}">
+										<input type="hidden" name="reception_date" value="${inquiry.receptionDate}">
+										<input type="hidden" name="title" value="${inquiry.contentsTitle}">
+										<input type="hidden" name="contents" value="${inquiry.contents}">
+										<input type="hidden" name="handling" value="${inquiry.handling}">
+										<input type="hidden" name="memo" value="${inquiry.memo}">
+										
+									</form>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:if>
 			</div>
 			
 		<div>	
@@ -95,7 +97,7 @@
 				
 			</form>
 		</div>
-
+	</div>
 
 		<jsp:include page="../top/footer.jsp" />
 </body>

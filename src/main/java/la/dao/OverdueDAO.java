@@ -29,7 +29,28 @@ public class OverdueDAO {
         }
     }
     
-    //延滞期間が10日以上のlistを取得するメソッド
+    //延滞期間10日を過ぎた情報にreminderを付与するメソッド
+  	public void setReminder () throws DAOException {
+  		
+  		String sql = "UPDATE lend SET first_reminder = 0 , second_reminder = 0"
+  				+ " WHERE return_date IS NULL AND current_date - due_date > 10";
+  		
+  		try (// データベースへの接続
+      			Connection con = DriverManager.getConnection(url, user, pass);
+      			// PreparedStatementオブジェクトの取得
+      			PreparedStatement st = con.prepareStatement(sql);) {
+      		
+      		// SQLの実行
+  			st.executeUpdate();
+  			
+  		} catch (SQLException e) {
+  			e.printStackTrace();
+  			throw new DAOException("レコードの操作に失敗しました。");
+  			
+  		}	
+  	}
+  	
+  	//延滞期間が10日以上のlistを取得するメソッド
     public List<OverdueBean> findOverdue10Days() throws DAOException{
     	
     	String sql = "SELECT l.lend_id , l.user_id , u.name , u.email , u.tel , s.book_id ,"
@@ -77,8 +98,8 @@ public class OverdueDAO {
 					int bookId = rs.getInt("book_id");
 					String title = rs.getString("title");
 					String dueDate = rs.getString("due_date");
-					String firstReminder = rs.getString("first_reminder");
-					String secondReminder = rs.getString("second_reminder");
+					int firstReminder = rs.getInt("first_reminder");
+					int secondReminder = rs.getInt("second_reminder");
 					String memo = rs.getString("memo");
 
 					OverdueBean bean = 
@@ -148,8 +169,8 @@ public class OverdueDAO {
 					int bookId = rs.getInt("book_id");
 					String title = rs.getString("title");
 					String dueDate = rs.getString("due_date");
-					String firstReminder = rs.getString("first_reminder");
-					String secondReminder = rs.getString("second_reminder");
+					int firstReminder = rs.getInt("first_reminder");
+					int secondReminder = rs.getInt("second_reminder");
 					String memo = rs.getString("memo");
 
 					OverdueBean bean = 
@@ -172,18 +193,18 @@ public class OverdueDAO {
     }
     
     //延滞情報を更新するメソッド
-	public void updateOverdue (int lendId , int firstReminder , String secondReminder , String memo) throws DAOException {
+	public void updateOverdue (int lendId , int firstReminder , int secondReminder , String memo) throws DAOException {
 		
 		String sql = "";
 		// 在庫台帳の更新
-		if(secondReminder != null && secondReminder.length() != 0) {
+		if(memo != null && memo.length() != 0) {
 			
 			sql = "UPDATE lend SET first_reminder = ? , second_reminder  = ? ,"
 					+ " memo = ? WHERE lend_id = ?";
 			
 		}else {
 			
-			sql = "UPDATE lend SET first_reminder = ? , memo = ? WHERE lend_id = ?";
+			sql = "UPDATE lend SET first_reminder = ? , second_reminder = ? WHERE lend_id = ?";
 		}
 		
 		try (// データベースへの接続
@@ -192,17 +213,17 @@ public class OverdueDAO {
     			PreparedStatement st = con.prepareStatement(sql);) {
     		
 			//パラメータ設定
-			if(secondReminder != null && secondReminder.length() != 0) {
+			if(memo != null && memo.length() != 0) {
 				
 				st.setInt(1, firstReminder);
-				st.setInt(2, Integer.parseInt(secondReminder));
+				st.setInt(2, secondReminder);
 				st.setString(3, memo);
 				st.setInt(4, lendId);
 	    		
 			}else {
 				
 				st.setInt(1, firstReminder);
-				st.setString(2, memo);
+				st.setInt(2, secondReminder);
 				st.setInt(3, lendId);
 			}
     		

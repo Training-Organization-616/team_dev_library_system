@@ -36,13 +36,13 @@
 				<li>タイトル：${inquiry.contentsTitle}</li>
 				<li>内容：${inquiry.contents}</li>
 				<li>対応有無：
-					<c:if test="${inquiry.handing==0}">
+					<c:if test="${inquiry.handling==0}">
 						未対応
 					</c:if>
-					<c:if test="${inquiry.handing==1}">
+					<c:if test="${inquiry.handling==1}">
 						対応中
 					</c:if>
-					<c:if test="${inquiry.handing==2}">
+					<c:if test="${inquiry.handling==2}">
 						対応済み
 					</c:if>
 				</li>

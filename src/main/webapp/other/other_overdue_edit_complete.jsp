@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -37,30 +37,30 @@
 				<li>会員ID：${overdue.userId}</li>
 				<li>氏名：${overdue.name}</li>
 				<li>E-Mail：${overdue.email}</li>
-				<li>資料ID：${overdue.birthday}</li>
-				<li>返却期日：${overdue.admissionDate}</li>
-				<c:if test="${empty overdue.demandLetter}">
+				<li>資料ID：${overdue.bookId}</li>
+				<li>返却期日：${overdue.dueDate}</li>
+				<c:if test="${not empty day}">
 				<li>一次対応:
-					<c:if test="${overdue.telReminder==0}">
+					<c:if test="${overdue.firstReminder==0}">
 						未対応
 					</c:if>
-					<c:if test="${overdue.telReminder==1}">
+					<c:if test="${overdue.firstReminder==1}">
 						対応中
 					</c:if>
-					<c:if test="${overdue.telReminder==2}">
+					<c:if test="${overdue.firstReminder==2}">
 						対応済み
 					</c:if>
 				</li>
 				</c:if>
-				<c:if test="${!empty overdue.demandLetter}">
+				<c:if test="${not empty month}">
 				<li>二次対応:
-					<c:if test="${overdue.demandLetter==0}">
+					<c:if test="${overdue.secondReminder==0}">
 						未対応
 					</c:if>
-					<c:if test="${overdue.demandLetter==1}">
+					<c:if test="${overdue.secondReminder==1}">
 						対応中
 					</c:if>
-					<c:if test="${overdue.demandLetter==2}">
+					<c:if test="${overdue.secondReminder==2}">
 						対応済み
 					</c:if>
 				</li>

@@ -3,6 +3,7 @@ package la.servlet;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -440,10 +441,23 @@ public class CatalogServlet extends HttpServlet {
             		Date publicationDate = setDate(strPublicationDate);
             		Date arrivalDate = setDate(strArrivalDate);
             		
+            		
             		CatalogDAO dao = new CatalogDAO();
             		
-            		dao.updateCatalog(Integer.parseInt(bookId) , isbn , title ,
-            				code , author , publicher , publicationDate , arrivalDate);
+            		//同じ資料があるか資料目録を確認
+            		String stockAmount = dao.getStockAmount(Integer.parseInt(bookId));
+            		
+            		//Stringのstock_amountからbook_idを抽出
+            		List<Integer> stockAmounts = new ArrayList<Integer>();
+            		stockAmounts = getStockAmount(stockAmount);
+            		
+            		//idごとに更新
+            		for(int id : stockAmounts) {
+            			
+            			//在庫台帳、資料目録の更新
+                		dao.updateCatalog(id , isbn , title ,
+                				code , author , publicher , publicationDate , arrivalDate);
+            		}
             		
             		//資料変更完了画面に渡す値をbeanに保存
             		SearchResultsBean bean = new SearchResultsBean
@@ -693,6 +707,28 @@ public class CatalogServlet extends HttpServlet {
     	
     	return date;
     }
+    
+    //catalogのstock_amountを分割するメソッド
+  	public List<Integer> getStockAmount(String stockAmount) {
+  		
+  		//カンマでスプリット
+  		List<String> splitStockAmounts = Arrays.asList(stockAmount.split(","));
+  		
+  		//id格納用リスト
+  		List<Integer> stockAmounts = new ArrayList<Integer>();
+  		
+  		//カウンタ変数
+  		int j = 0;
+  		
+  		//数字のみを抽出
+  		for(int i = 1; i < stockAmounts.size(); i += 2) {
+  			
+  			stockAmounts.set(j, Integer.parseInt(splitStockAmounts.get(i)));
+  			j++;
+  		}
+  		
+  		return stockAmounts;
+  	}
     
     //HTTPリクエストのPOSTリクエストが送信された場合実行される
     protected void doPost(HttpServletRequest request,

@@ -610,6 +610,38 @@ public class CatalogDAO {
 		}
 	}
     
+	//資料目録からstock_amountを得るためのメソッド
+		public String getStockAmount(int bookId) throws DAOException {
+
+			// SQL文の作成
+			String sql = "SELECT stock_amount FROM catalog WHERE stock_amount LIKE ?";
+
+			try (// データベースへの接続
+					Connection con = DriverManager.getConnection(url, user, pass);
+					// PreparedStatementオブジェクトの取得
+					PreparedStatement st = con.prepareStatement(sql);) {
+				
+				//パラメータ設定
+				st.setInt(1, bookId);
+				
+				try (// SQLの実行
+						ResultSet rs = st.executeQuery();) {
+
+					rs.next();
+					String stockAmount = rs.getString("stock_amount");
+					
+					return stockAmount;
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+					throw new DAOException("レコードの取得に失敗しました。");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		}
+	
 	//本を廃棄した時のメソッド
 	public void deleteCatalog (int bookId , Date disposalDate , String memo) throws DAOException {
 		
@@ -709,7 +741,7 @@ public class CatalogDAO {
 	}
 	
 	
-	//catalogのstock_amountから削除するためのメソッド
+	//catalogのstock_amount分割するメソッド
 	public String makeStockAmount(int bookId , String oldStockAmount) {
 		
 		String newStockAmount = "";

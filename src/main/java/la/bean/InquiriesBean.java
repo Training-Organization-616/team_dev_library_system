@@ -8,29 +8,29 @@ public class InquiriesBean implements Serializable{
 	private String receptionDate;
 	private String contentsTitle;
 	private String contents;
-	private int handing;
+	private int handling;
 	private String memo;
 	
 	public InquiriesBean() {}
 	
 	public InquiriesBean(String receptionDate , String contentsTitle ,
-			String contents , int handing , String memo) {
+			String contents , int handling , String memo) {
 		
 		this.receptionDate = receptionDate;
 		this.contentsTitle = contentsTitle;
 		this.contents = contents;
-		this.handing = handing;
+		this.handling = handling;
 		this.memo = memo;
 	}
 	
 	public InquiriesBean(int inquiriesId , String receptionDate , String contentsTitle ,
-			String contents , int handing , String memo) {
+			String contents , int handling , String memo) {
 		
 		this.inquiriesId = inquiriesId;
 		this.receptionDate = receptionDate;
 		this.contentsTitle = contentsTitle;
 		this.contents = contents;
-		this.handing = handing;
+		this.handling = handling;
 		this.memo = memo;
 	}
 
@@ -62,11 +62,11 @@ public class InquiriesBean implements Serializable{
 		this.contents = contents;
 	}
 
-	public int getHanding() {
-		return handing;
+	public int getHandling() {
+		return handling;
 	}
-	public void setHanding(int handing) {
-		this.handing = handing;
+	public void setHandling(int handling) {
+		this.handling = handling;
 	}
 
 	public String getMemo() {
