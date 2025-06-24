@@ -30,11 +30,11 @@
 	
 	<div class="container">
 		<div>
-			<p>貸出ID、会員ID、資料IDを入力してください</p>
+			<p>　　　貸出ID、会員ID、資料IDを入力してください</p>
 		</div>
 		
 		<div class="message">
-			${message}
+			　　　　${message}
 		</div>
 		
 		<div class="input_table">
@@ -44,19 +44,19 @@
 					<tr>
 				    	<th>貸出ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="lend_id" value="${lendId}">
+				    		<input class="input_form" type="text" size="70" name="lend_id" value="${lendId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>会員ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="user_id" value="${userId}">
+				    		<input class="input_form" type="text" size="70" name="user_id" value="${userId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="book_id" value="${bookId}">
+				    		<input class="input_form" type="text" size="70" name="book_id" value="${bookId}">
 				    	</td>
 				    </tr>
 				</table>				
@@ -66,7 +66,6 @@
 		</div>	
 	</div>
 
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

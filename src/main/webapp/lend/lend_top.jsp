@@ -28,7 +28,7 @@
 	</div>
 
 
-	<div class="button_container">
+	<div class="button_container_lend">
 		<form action="/team_dev_library_system/lend/lend_add.jsp"
 			method="post">
 			<button class="top_button">貸出</button>
@@ -46,7 +46,6 @@
 
 	</div>
 
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

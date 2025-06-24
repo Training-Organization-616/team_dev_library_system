@@ -28,10 +28,10 @@
 
 	<div class="container">
 		<div>
-			<p>編集する項目を入力してください</p>
+			<p>　　　編集する項目を入力してください</p>
 		</div>
 
-		<div class="message">${message}</div>
+		<div class="message">　　　　${message}</div>
 
 		<div class="input_table">
 			<form action="/team_dev_library_system/ReservationServlet" method="post">

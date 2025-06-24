@@ -28,10 +28,10 @@
 
 	<div class="container">
 		<div>
-			<p>会員ID、資料IDを入力してください</p>
+			<p>　　　会員ID、資料IDを入力してください</p>
 		</div>
 
-		<div class="message">${message}</div>
+		<div class="message">　　　　${message}</div>
 
 		<div class="input_table">
 			<form action="/team_dev_library_system/LendServlet" method="post">
@@ -39,12 +39,12 @@
 				<table>
 					<tr>
 						<th>会員ID</th>
-						<td><input class="input_form" type="text" name="user_id"
+						<td><input class="input_form" type="text" size="70" name="user_id"
 							value="${userId}"></td>
 					</tr>
 					<tr>
 						<th>資料ID</th>
-						<td><input class="input_form" type="text" name="book_id"
+						<td><input class="input_form" type="text" size="70" name="book_id"
 							value="${bookId}"></td>
 					</tr>
 				</table>
@@ -53,7 +53,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

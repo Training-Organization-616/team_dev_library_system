@@ -28,7 +28,7 @@
 	
 	<div class="container">
 		<div>
-			<p>予約が完了しました</p>
+			<p>　　　予約が完了しました</p>
 		</div>
 		
 		<div>
