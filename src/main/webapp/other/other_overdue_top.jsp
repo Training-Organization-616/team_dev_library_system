@@ -35,11 +35,12 @@
 		<div class="message">${message}</div>
 
 
-			<%//<c:if test="${!empty overdue10days}">%>
+			
 			<div class="search_result_table">
 				<table>
 				<caption>超過した日数　10日以上</caption>
 					<tr>
+						<th>No</th>
 						<th>会員ID</th>
 						<th>氏名</th>
 						<th>E-Mail</th>
@@ -49,20 +50,21 @@
 						<th>編集</th>
 					</tr>
 
-					<c:forEach items="${overdue10days}" var="day">
+					<c:forEach items="${overdue10days}" var="day" varStatus="status">
 						<tr>
+							<td>${status.count }</td>
 							<td>${day.userId}</td>
 							<td>${day.userName}</td>
 							<td>${day.email}</td>
 							<td>${day.bookId}</td>
 							<td>${day.dueDate}</td>
-							<c:if test="${day.firstReminder==0}">
+							<c:if test="${day.telReminder==0}">
 							<td>未対応</td>
 							</c:if>
-							<c:if test="${day.firstReminder==1}">
+							<c:if test="${day.telReminder==1}">
 							<td>対応中</td>
 							</c:if>
-							<c:if test="${day.firstReminder==2}">
+							<c:if test="${day.telReminder==2}">
 							<td>対応済み</td>
 							</c:if>
 							<td>
@@ -70,6 +72,7 @@
 									method="post">
 									<button class="edit_button">編集</button>
 									<input type="hidden" name="action" value="edit_page">
+									<input type="hidden" name="lend_id" value="${day.lendId}">
 									<input type="hidden" name="user_id" value="${day.userId}">
 								</form>
 							</td>
@@ -77,17 +80,12 @@
 					</c:forEach>
 				</table>
 			</div>
-			<% //</c:if>%>
 			
-			<%/*<c:if test="${empty overdue30days}">
-			10日以上超過している人はいません<br><br>
-			</c:if>*/%>
-			
-			<%// <c:if test="${!empty overdue10days}">%>
 			<div class="search_result_table">
 				<table>
 				<caption>超過した日数　30日以上</caption>
 					<tr>
+						<th>No</th>
 						<th>会員ID</th>
 						<th>氏名</th>
 						<th>E-Mail</th>
@@ -97,20 +95,21 @@
 						<th>編集</th>
 					</tr>
 
-					<c:forEach items="${overdue30days}" var="month">
+					<c:forEach items="${overdue30days}" var="month" varStatus="status">
 						<tr>
+							<td>${status.count}</td>
 							<td>${month.userId}</td>
-							<td>${month.userName}</td>
+							<td>${month.name}</td>
 							<td>${month.email}</td>
 							<td>${month.bookId}</td>
 							<td>${month.dueDate}</td>
-							<c:if test="${month.secondReminder==0}">
+							<c:if test="${month.demandLetter==0}">
 							<td>未対応</td>
 							</c:if>
-							<c:if test="${month.secondReminder==1}">
+							<c:if test="${month.demandLetter==1}">
 							<td>対応中</td>
 							</c:if>
-							<c:if test="${month.secondReminder==2}">
+							<c:if test="${month.demandLetter==2}">
 							<td>対応済み</td>
 							</c:if>
 							<td>
@@ -118,6 +117,7 @@
 									method="post">
 									<button class="edit_button">編集</button>
 									<input type="hidden" name="action" value="edit_page">
+									<input type="hidden" name="lend_id" value="${month.lendId}">
 									<input type="hidden" name="user_id" value="${month.userId}">
 								</form>
 							</td>
@@ -126,11 +126,6 @@
 				</table>
 			</div>
 			
-			<%/*></c:if>
-			
-			<c:if test="${empty overdue30days}">
-			30日以上超過している人はいません<br><br>
-			</c:if>*/%>
 		
 
 		<div>

@@ -46,10 +46,13 @@ public class UserServlet extends HttpServlet {
 			} else if (action.equals("return_add")) {
 				//新規入力画面から会員メニューに戻る
 
+				session.removeAttribute("users");
 				gotoPage(request, response, "./user/user_top.jsp");
 				return;
 			} else if (action.equals("return_search")) {
 				//検索結果画面から検索画面に戻る
+
+				session.removeAttribute("users");
 
 				gotoPage(request, response, "./user/user_search.jsp");
 				return;
@@ -258,6 +261,7 @@ public class UserServlet extends HttpServlet {
 				dao.updateUser(userId, userName, address, tel, email, birthday, today);
 				UserBean list = dao.findOneUser(userId);
 				request.setAttribute("user", list);
+				session.removeAttribute("users");
 				gotoPage(request, response, "./user/user_edit_complete.jsp");
 			} else if (action.equals("delete_page")) {
 				//削除確認画面
@@ -282,6 +286,7 @@ public class UserServlet extends HttpServlet {
 				dao.deleteUser(userId, today);
 				UserBean list = dao.findOneUser(userId);
 				request.setAttribute("user", list);
+				session.removeAttribute("users");
 				gotoPage(request, response, "./user/user_delete_complete.jsp");
 			}
 		} catch (SQLException | ServletException | IOException | DAOException | ParseException e) {
