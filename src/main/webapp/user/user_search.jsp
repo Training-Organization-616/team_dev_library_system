@@ -29,10 +29,10 @@
 
 	<div class="container">
 		<div>
-			<p>検索する会員情報を入力してください</p>
+			<p>　　　検索する会員情報を入力してください</p>
 		</div>
 
-		<div class="message">${message}</div>
+		<div class="message">　　　　${message}</div>
 
 		<div class="input_table">
 			<form action="/team_dev_library_system/UserServlet" method="post">
@@ -40,27 +40,27 @@
 				<table>
 					<tr>
 						<th>会員ID</th>
-						<td><input class="input_form" type="text" size="80" name="user_id"
+						<td><input class="input_form" type="text" size="70" name="user_id"
 							value="${userId}"></td>
 					</tr>
 					<tr>
 						<th>氏名</th>
-						<td><input class="input_form" type="text" size="80" name="user_name"
+						<td><input class="input_form" type="text" size="70" name="user_name"
 							value="${userName}"></td>
 					</tr>
 					<tr>
 						<th>住所</th>
-						<td><input class="input_form" type="text" size="80" name="user_address"
+						<td><input class="input_form" type="text" size="70" name="user_address"
 							value="${address}"></td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td><input class="input_form" type="text" size="80" name="user_tel"
+						<td><input class="input_form" type="text" size="70" name="user_tel"
 							value="${tel}"></td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
-						<td><input class="input_form" type="text" size="80" name="user_email"
+						<td><input class="input_form" type="text" size="70" name="user_email"
 							value="${email}"></td>
 					</tr>
 					<tr>

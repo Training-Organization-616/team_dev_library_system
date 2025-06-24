@@ -17,22 +17,21 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-		
 	</div>
-	
+
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
 		</div>
 		<div class="menu_name">資料情報変更</div>
 	</div>
-	
+
 	<div class="container">
 		<div>
-			<p>資料の情報を変更しました</p>
-			<p>トップページへ遷移します</p>
+			<p>　　　資料の情報を変更しました</p>
+			<p>　　　トップページへ遷移します</p>
 		</div>
-		
+
 		<div>
 			<ul>
 				<li>資料ID：${book.bookId}</li>
@@ -53,8 +52,6 @@
 				<input type="hidden" name="action" value="">
 			</form>
 		</div>
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

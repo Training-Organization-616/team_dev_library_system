@@ -29,19 +29,14 @@ body {
 
 /*---------header--------*/
 
-/*-------------------------------------------------*/
 
-
-/*フッター背景色　★修正*/
+/*フッター背景色*/
 .footer {
 	/*背景色*/
 	background-color: #A5a58d;
 	width: auto;
 	height: 145px;
 }
-
-
-/*--------------------------------------------------*/
 
 
 
@@ -95,6 +90,7 @@ body {
 	/*横に背景色を伸ばす*/
 	width: 100vw;
 	height: 50px;
+
 }
 
 /*menuボタン*/
@@ -116,6 +112,7 @@ img {
 	height: 30px;
 	margin-top: 5px;
 	margin-left: 10px;
+	margin-right: 10px;
 }
 
 /*メニューの画像の背景色・大きさ*/
@@ -173,7 +170,6 @@ button {
 /*資料管理画面・会員管理のボタン*/
 
 .button_container {
-
 	/*上、下、左に余白*/
 	margin-top: 100px;
 	/*横並び*/
@@ -316,8 +312,25 @@ button {
 	color: red;
 	font-size: 20px;
 }
+
 /*------------エラーメッセージ------------*/
 
+
+/*セレクトボックス*/
+select {
+	font-size: 20px;
+	margin-top: 0.4em;
+	margin-bottom: 0.3em;
+	margin-left: 0.7em;
+	width: 130px;
+}
+
+input {
+	margin-bottom: 0.8em;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding: 5px;
+}
 
 
 
@@ -342,12 +355,7 @@ table th {
 	width: 200px;
 }
 
-input {
-	margin-bottom: 0.8em;
-	margin-left: 1em;
-	margin-right: 1em;
-	padding: 5px;
-}
+
 
 th,
 td {
@@ -404,8 +412,3 @@ ul li {
 
 
 /*-----------------リスト------------------*/
-
-
-
-
-

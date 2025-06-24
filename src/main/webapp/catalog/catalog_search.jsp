@@ -17,26 +17,20 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-		
 	</div>
 	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">資料検索</div>
 	</div>
 	
 	<div class="container">
 		<div>
-			<p>検索する資料の情報を入力してください</p>
+			<p>　　　検索する資料の情報を入力してください</p>
 		</div>
-		
-		<div class="message">
-			${message}
-		</div>
-		
+		<div class="message">　　　　${message}</div>
 		<div class="input_table">
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="search">
@@ -44,7 +38,7 @@
 					<tr>
 				    	<th>資料名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="title" value="${title}">
+				    		<input class="input_form" type="text" size="70" name="title" value="${title}">
 				    	</td>
 				    </tr>
 					<tr>
@@ -68,13 +62,13 @@
 				    <tr>
 				    	<th>著者</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="author" value="${author}">
+				    		<input class="input_form" type="text" size="70" name="author" value="${author}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>出版社</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="publicher" value="${publicher}">
+				    		<input class="input_form" type="text" size="70" name="publicher" value="${publicher}">
 				    	</td>
 				    </tr>
 				    <tr>
@@ -94,7 +88,7 @@
 				    			<option value="9">文学</option>
 				    		</select>
 				    		<span> - </span>
-				    		<input class="input_form label_form" type="text" name="label_author" value="${labelAuthor}">
+				    		<input class="input_form label_form" type="text"  name="label_author" value="${labelAuthor}">
 				    		<span> - </span>
 				    		<input class="input_form label_form" type="text" name="volume_number" value="${volumeNumber}">
 				    	</td>
@@ -103,10 +97,11 @@
 				<button class="general_button search_button">検索</button>
 			</form>			
 		</div>
-		
+		<br>
+		<br>
 		<c:if test="${!empty books}">
-			<div class="search_result_table">
-			 	<table>
+			<div class="search_result_table_container">
+			 	<table class="search_result_table">
 			 		<tr>
 				    	<th>資料ID</th>
 				    	<th>ISBN番号</th>
@@ -117,7 +112,6 @@
 				    	<th>変更</th>
 				    	<th>削除</th>
 				    </tr>
-		
 					<c:forEach items="${books}" var="book">
 					    <tr>
 					    	<td>${book.bookId}</td>
@@ -128,7 +122,7 @@
 					    	<td>${book.publicationDate}</td>
 					    	<td>
 					    		<form action="/team_dev_library_system/CatalogServlet" method="post">
-				    				<button class="edit_button">変更</button>
+				    				<button class="table_edit_button">変更</button>
 				    				<input type="hidden" name="action" value="edit_page">
 				    				<input type="hidden" name="book_id" value="${book.bookId}">
 				    				<input type="hidden" name="isbn" value="${book.isbn}">
@@ -142,7 +136,7 @@
 					    	</td>
 					    	<td>
 					    		<form action="/team_dev_library_system/CatalogServlet" method="post">
-				    				<button class="edit_button">削除</button>
+				    				<button class="table_edit_button">削除</button>
 				    				<input type="hidden" name="action" value="delete_page">
 				    				<input type="hidden" name="book_id" value="${book.bookId}">
 				    				<input type="hidden" name="isbn" value="${book.isbn}">
@@ -159,17 +153,13 @@
 			 	</table>
 			</div>
 		</c:if>
-		
+		<br>
 		<div>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
- 				<button class="return_button">戻る</button>
+ 				<button class="search_return_button">戻る</button>
 				<input type="hidden" name="action" value="return_add">
 			</form>
 		</div>
-	
-
-	<jsp:include page="../top/footer.jsp" />
-
 </body>
 
 </html>

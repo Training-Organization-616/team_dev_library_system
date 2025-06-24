@@ -27,9 +27,9 @@
 	</div>
 
 	<div class="container">
-		<div class="message">削除完了しました</div>
+		<div class="message" >　　　削除完了しました</div>
 		<div>
-			<p>トップページへ遷移します</p>
+			<p>　　　トップページへ遷移します</p>
 		</div>
 
 		<div>
@@ -53,8 +53,6 @@
 				<input type="hidden" name="action" value="">
 			</form>
 		</div>
-
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

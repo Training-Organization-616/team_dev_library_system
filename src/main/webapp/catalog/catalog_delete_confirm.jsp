@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="container">
-		<div class="message">以下の資料の情報を削除しますか？</div>
+		<div class="message">　　　以下の資料の情報を削除しますか？</div>
 
 		<div>
 			<ul>
@@ -65,7 +65,6 @@
 			</form>
 		</div>
 
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

@@ -16,26 +16,20 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-		
 	</div>
 	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">資料情報変更</div>
 	</div>
 	
 	<div class="container">
 		<div>
-			<p>変更項目を入力してください</p>
+			<p>　　　変更項目を入力してください</p>
 		</div>
-		
-		<div class="message">
-			${message}
-		</div>
-		
+		<div class="message">　　　　${message}</div>
 		<div class="input_table">
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="update">
@@ -50,13 +44,13 @@
 					<tr>
 				    	<th>ISBN番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="isbn" value="${book.isbn}">
+				    		<input class="input_form" type="text" size="70" name="isbn" value="${book.isbn}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料名</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="title" value="${book.title}">
+				    		<input class="input_form" type="text" size="70" name="title" value="${book.title}">
 				    	</td>
 				    </tr>
 				    <tr>
@@ -91,13 +85,13 @@
 				    <tr>
 				    	<th>著者</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="author" value="${book.author}">
+				    		<input class="input_form" type="text" size="70" name="author" value="${book.author}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>出版社</th>
 				    	<td>
-				    		<input class="input_form" type="text" name="publicher" value="${book.publicher}">
+				    		<input class="input_form" type="text" size="70" name="publicher" value="${book.publicher}">
 				    	</td>
 				    </tr>
 				    <tr>
@@ -116,7 +110,6 @@
 				</table>				
 				<button class="general_button edit_button">変更</button>
 			</form>
-			
 		</div>
 		
 		<div>
@@ -126,9 +119,6 @@
 			</form>
 		</div>
 	</div>
-	
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

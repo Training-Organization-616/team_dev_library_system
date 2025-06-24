@@ -27,23 +27,22 @@
 
 	<div class="container">
 		<div>
-			<p>登録する資料の情報を入力してください</p>
+			<p>　　　登録する資料の情報を入力してください</p>
 		</div>
-
-		<div class="message">${message}</div>
-
+		<div class="message">　　　　${message}</div>
+		<br>
 		<div class="input_table">
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="add">
 				<table>
 					<tr>
 						<th>ISBN番号</th>
-						<td><input class="input_form" type="text" name="isbn"
+						<td><input class="input_form" type="text" size="70" name="isbn"
 							value="${isbn}"></td>
 					</tr>
 					<tr>
 						<th>資料名</th>
-						<td><input class="input_form" type="text" name="title"
+						<td><input class="input_form" type="text" size="70" name="title"
 							value="${title}"></td>
 					</tr>
 					<tr>
@@ -64,28 +63,23 @@
 					</tr>
 					<tr>
 						<th>著者</th>
-						<td><input class="input_form" type="text" name="author"
-							value="${author}"></td>
+						<td><input class="input_form" type="text" size="70" name="author" value="${author}"></td>
 					</tr>
 					<tr>
 						<th>出版社</th>
-						<td><input class="input_form" type="text" name="publicher"
-							value="${publicher}"></td>
+						<td><input class="input_form" type="text" size="70" name="publicher" value="${publicher}"></td>
 					</tr>
 					<tr>
 						<th>出版日</th>
-						<td><input class="input_form" type="date"
-							name="publication_date" value="${publicationDate}"></td>
+						<td><input class="input_form" type="date" name="publication_date" value="${publicationDate}"></td>
 					</tr>
 					<tr>
 						<th>入荷年月日</th>
-						<td><input class="input_form" type="date" name="arrival_date"
-							value="${arrivalDate}"></td>
+						<td><input class="input_form" type="date" name="arrival_date" value="${arrivalDate}"></td>
 					</tr>
 				</table>
 				<button class="general_button">新規登録</button>
 			</form>
-
 		</div>
 
 		<div>
@@ -95,9 +89,6 @@
 			</form>
 		</div>
 	</div>
-
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

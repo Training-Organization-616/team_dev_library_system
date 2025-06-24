@@ -39,22 +39,22 @@
 				<table>
 					<tr>
 						<th>氏名</th>
-						<td><input class="input_form" type="text" name="user_name"
+						<td><input class="input_form" type="text" size="70" name="user_name"
 							value="${userName}"></td>
 					</tr>
 					<tr>
 						<th>住所</th>
-						<td><input class="input_form" type="text" name="user_address"
+						<td><input class="input_form" type="text" size="70" name="user_address"
 							value="${address}"></td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td><input class="input_form" type="text" name="user_tel"
+						<td><input class="input_form" type="text" size="70" name="user_tel"
 							value="${tel}"></td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
-						<td><input class="input_form" type="email" name="user_email"
+						<td><input class="input_form" type="email" size="70" name="user_email"
 							value="${email}"></td>
 					</tr>
 					<tr>

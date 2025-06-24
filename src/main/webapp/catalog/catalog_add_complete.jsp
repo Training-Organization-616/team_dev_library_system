@@ -27,7 +27,7 @@
 
 	<div class="container">
 		<div>
-			<p>新規登録が完了しました</p>
+			<p>　　　新規登録が完了しました</p>
 		</div>
 
 		<div>
@@ -45,7 +45,6 @@
 			</ul>
 		</div>
 
-		<jsp:include page="../top/footer.jsp" />
 </body>
 
 </html>

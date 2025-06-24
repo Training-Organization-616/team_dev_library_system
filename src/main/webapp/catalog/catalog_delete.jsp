@@ -30,12 +30,10 @@
 	<div class="container">
 		
 		<div>
-			<p>削除する資料を確認し、項目を入力してください</p>
+			<p>　　　削除する資料を確認し、項目を入力してください</p>
 		</div>
 		
-		<div class="message">
-			${message}
-		</div>
+		<div class="message">　　　　${message}</div>
 		
 		<div class="input_table">
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
