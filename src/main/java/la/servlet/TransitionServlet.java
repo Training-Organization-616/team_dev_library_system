@@ -36,25 +36,25 @@ public class TransitionServlet extends HttpServlet {
 
 		// actionがlendのときは貸出管理画面に遷移
 		else if (action.equals("lend")) {
-			gotoPage(request, response, "/team_dev_library_system/lend/lend_top.jsp");
+			gotoPage(request, response, "/lend/lend_top.jsp");
 			return;
 		}
 
 		// actionがcatalogのときは資料管理画面に遷移
 		else if (action.equals("catalog")) {
-			gotoPage(request, response, "/team_dev_library_system/catalog/catalog_top.jsp");
+			gotoPage(request, response, "/catalog/catalog_top.jsp");
 			return;
 		}
 
 		// actionがuserのときは会員管理画面に遷移
 		else if (action.equals("user")) {
-			gotoPage(request, response, "/team_dev_library_system/user/user_top.jsp");
+			gotoPage(request, response, "/user/user_top.jsp");
 			return;
 		}
 
 		// actionがotherのときはその他画面に遷移
 		else if (action.equals("other")) {
-			gotoPage(request, response, "/team_dev_library_system/other/other_top.jsp");
+			gotoPage(request, response, "/other/other_top.jsp");
 			return;
 		}
 
