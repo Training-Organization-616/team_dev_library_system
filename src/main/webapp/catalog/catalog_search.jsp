@@ -38,7 +38,7 @@
 					<tr>
 				    	<th>資料名</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="title" value="${title}">
+				    		<input class="input_form" type="text" size="40" name="title" value="${title}">
 				    	</td>
 				    </tr>
 					<tr>
@@ -62,13 +62,13 @@
 				    <tr>
 				    	<th>著者</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="author" value="${author}">
+				    		<input class="input_form" type="text" size="40" name="author" value="${author}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>出版社</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="publicher" value="${publicher}">
+				    		<input class="input_form" type="text" size="40" name="publicher" value="${publicher}">
 				    	</td>
 				    </tr>
 				    <tr>

@@ -45,13 +45,13 @@
 					<tr>
 				    	<th>ISBN番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="isbn" value="${book.isbn}">
+				    		<input class="input_form" type="text" size="40" name="isbn" value="${book.isbn}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料名</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="title" value="${book.title}">
+				    		<input class="input_form" type="text" size="40" name="title" value="${book.title}">
 				    	</td>
 				    </tr>
 				    <tr>
@@ -76,13 +76,13 @@
 				    <tr>
 				    	<th>著者</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="author" value="${book.author}">
+				    		<input class="input_form" type="text" size="40" name="author" value="${book.author}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>出版社</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="publicher" value="${book.publicher}">
+				    		<input class="input_form" type="text" size="40" name="publicher" value="${book.publicher}">
 				    	</td>
 				    </tr>
 				    <tr>
