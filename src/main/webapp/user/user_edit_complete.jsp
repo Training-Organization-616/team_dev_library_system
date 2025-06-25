@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
 	<link href="/team_dev_library_system/style.css" rel="stylesheet">
-	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/user/user_top.jsp">
+	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/user/user_search.jsp">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
 		</div>
 		<br>
 		<div class="transfar_link">
-			<form action="/team_dev_library_system/user/user_top.jsp" method="post">
+			<form action="/team_dev_library_system/user/user_search.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">
 			</form>
