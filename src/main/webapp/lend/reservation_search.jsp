@@ -36,7 +36,7 @@
 		<div class="input_table">
 			<form action="/team_dev_library_system/ReservationServlet" method="post">
 				<input type="hidden" name="action" value="search">
-				<table>
+				<table class="input_search_table_reservation">
 					<tr>
 				    	<th>予約ID</th>
 				    	<td>

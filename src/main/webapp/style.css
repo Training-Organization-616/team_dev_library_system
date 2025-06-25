@@ -516,7 +516,7 @@ td {
 	/* 垂直方向の中央揃え */
 }
 
-.input_table tr:nth-of-type(7){
+.input_search_table_reservation tr:nth-of-type(4){
 	text-align: center;
 }
 

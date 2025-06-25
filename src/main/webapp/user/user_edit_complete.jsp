@@ -45,7 +45,7 @@
 			</ul>
 		</div>
 		<br>
-		<div class="transfar_link">
+		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/user/user_search.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">
