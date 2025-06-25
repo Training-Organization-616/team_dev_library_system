@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -58,18 +58,17 @@
 				    	<th>分類コード</th>
 				    	<td>
 				    		<select name="code">
-				    			<c:choose>
-				    				<c:when test="${book.code == 0}"><option value="0" selected>総記</option></c:when>
-				    				<c:when test="${book.code == 1}"><option value="1" selected>哲学</option></c:when>
-				    				<c:when test="${book.code == 2}"><option value="2" selected>歴史</option></c:when>
-				    				<c:when test="${book.code == 3}"><option value="3" selected>社会科学</option></c:when>
-				    				<c:when test="${book.code == 4}"><option value="4" selected>自然科学</option></c:when>
-				    				<c:when test="${book.code == 5}"><option value="5" selected>技術</option></c:when>
-				    				<c:when test="${book.code == 6}"><option value="6" selected>産業</option></c:when>
-				    				<c:when test="${book.code == 7}"><option value="7" selected>芸術</option></c:when>
-				    				<c:when test="${book.code == 8}"><option value="8" selected>言語</option></c:when>
-				    				<c:when test="${book.code == 9}"><option value="9" selected>文学</option></c:when>
-			    				</c:choose>
+				    			<option value="">選択</option>
+				    			<option value="0"<c:if test="${book.code==0}">selected</c:if>>総記</option>
+				    			<option value="1"<c:if test="${book.code==1}">selected</c:if>>哲学</option>
+				    			<option value="2"<c:if test="${book.code==2}">selected</c:if>>歴史</option>
+				    			<option value="3"<c:if test="${book.code==3}">selected</c:if>>社会科学</option>
+				    			<option value="4"<c:if test="${book.code==4}">selected</c:if>>自然科学</option>
+				    			<option value="5"<c:if test="${book.code==5}">selected</c:if>>技術</option>
+				    			<option value="6"<c:if test="${book.code==6}">selected</c:if>>産業</option>
+				    			<option value="7"<c:if test="${book.code==7}">selected</c:if>>芸術</option>
+				    			<option value="8"<c:if test="${book.code==8}">selected</c:if>>言語</option>
+				    			<option value="9"<c:if test="${book.code==9}">selected</c:if>>文学</option>
 				    		</select>
 				    	</td>
 				    </tr>

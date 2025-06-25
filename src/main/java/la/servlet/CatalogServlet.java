@@ -249,6 +249,14 @@ public class CatalogServlet extends HttpServlet {
             	String authorHead = request.getParameter("label_author");
             	String volumeNumber = request.getParameter("volume_number");
             	
+            	if(code.equals("10")) {
+            		code = "";
+            	}
+            	
+            	if(code2.equals("10")) {
+            		code2 = "";
+            	}
+            	
             	//資料名が入力されているとき
             	if(title != null && title.length() != 0) {
             		
@@ -372,6 +380,16 @@ public class CatalogServlet extends HttpServlet {
             	session.setAttribute("labelCode", code2);
             	session.setAttribute("labelAuthor", authorHead);
             	session.setAttribute("volumeNumber", volumeNumber);
+            	
+            	if(code == null || code.length() == 0) {
+            		
+            		session.setAttribute("code", null);
+            	}
+            	
+            	if(code2 == null || code2.length() == 0) {
+            		
+            		session.setAttribute("labelCode", null);
+            	}
             	
             	if(list == null) {
             		//検索結果が存在しなかった場合
