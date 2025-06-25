@@ -85,7 +85,7 @@
 					</table>
 				</c:if>
 			</div>
-			
+			<br>
 			<div class="search_result_table_contents">
 				<c:if test = "${not empty overdue30days }">
 					<table class="overdue_table">
