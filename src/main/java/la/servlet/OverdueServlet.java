@@ -39,8 +39,13 @@ public class OverdueServlet extends HttpServlet {
                 gotoPage(request, response, "/top/top.jsp");
                 
                 
-            }else if(action.equals("return_add")){
+            }else if(action.equals("return")){
             	//actionの値が「return」の場合
+            	//お問い合わせ登録、編集画面から、お問い合わせ対応画面に戻る
+            	gotoPage(request , response , "/other/other_top.jsp");
+            	
+            }else if(action.equals("return_add")){
+            	//actionの値が「return_add」の場合
             	//お問い合わせ登録、編集画面から、お問い合わせ対応画面に戻る
             	gotoPage(request , response , "/other/other_overdue_top.jsp");
             	

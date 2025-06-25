@@ -148,7 +148,7 @@
 		<div class="return_button_contents">
 			<form action="/team_dev_library_system/OverdueServlet" method="post">
 				<button class="search_return_button">戻る</button>
-				<input type="hidden" name="action" value="top">
+				<input type="hidden" name="action" value="return">
 			</form>
 		</div>
 	</div>

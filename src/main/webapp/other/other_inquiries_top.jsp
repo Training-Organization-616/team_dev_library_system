@@ -86,7 +86,7 @@
 		<div>
 			<form action="/team_dev_library_system/InquiriesServlet" method="post">
 				<button class="return_button">戻る</button>
-				<input type="hidden" name="action" value="return_add">
+				<input type="hidden" name="action" value="return">
 			</form>
 		</div>
 	</div>
