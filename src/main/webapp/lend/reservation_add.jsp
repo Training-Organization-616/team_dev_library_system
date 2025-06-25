@@ -45,6 +45,7 @@
 						<td><input class="input_form" type="text" size="40" name="book_id" value="${bookId}"></td>
 					</tr>
 				</table>
+				<br>
 				<button class="general_button">予約</button>
 			</form>
 		</div>

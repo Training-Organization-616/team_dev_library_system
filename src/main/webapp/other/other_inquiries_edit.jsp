@@ -85,6 +85,7 @@
 						</td>
 					</tr>
 				</table>
+				<br>
 				<button class="general_button edit_button">編集</button>
 			</form>
 		</div>

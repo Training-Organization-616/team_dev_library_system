@@ -119,10 +119,11 @@
 					<tr>
 						<th>備考</th>
 						<td>
-							<input class="input_form" type="text" size="40" name="memo" value="${overdue.memo}">
+							<textarea name="memo" >${overdue.memo}</textarea>
 						</td>
 					</tr>
 				</table>
+				<br>
 				<input type="hidden" name="tel" value="${overdue.tel}">
 				<input type="hidden" name="title" value="${overdue.title}">
 				<input type="hidden" name="due_date" value="${overdue.dueDate}">

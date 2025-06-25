@@ -76,13 +76,13 @@
 				</table>
 			</c:if>
 		</div>
-			
+		<br>
+		<br>
 		<div>	
 			<form action="/team_dev_library_system/other/other_inquiries_add.jsp" method="post">
 				<button class="general_button">登録</button>
 			</form>
 		</div>
-
 		<div>
 			<form action="/team_dev_library_system/InquiriesServlet" method="post">
 				<button class="return_button">戻る</button>

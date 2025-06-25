@@ -80,6 +80,7 @@
 						<td><input class="input_form" type="date" name="arrival_date" value="${arrivalDate}"></td>
 					</tr>
 				</table>
+				<br>
 				<button class="general_button">新規登録</button>
 			</form>
 		</div>

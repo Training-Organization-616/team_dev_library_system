@@ -70,7 +70,7 @@
 		<br>
 		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/other/other_overdue_top.jsp" method="post">
-				<button>自動で遷移しない場合はこちらをクリック</button>
+				<button>自動で遷移しない場合は<br>こちらをクリック</button>
 				<input type="hidden" name="action" value="">
 			</form>
 		</div>

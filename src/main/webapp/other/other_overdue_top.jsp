@@ -30,6 +30,7 @@
 		<div>
 			<p>　　　延滞者一覧</p>
 		</div>
+		<br>
 		<div class="message">${message}</div>
 			<div class="search_result_table_contents">
 				<c:if test = "${not empty overdue10days }">
