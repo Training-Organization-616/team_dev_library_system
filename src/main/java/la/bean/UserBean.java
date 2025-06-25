@@ -10,6 +10,8 @@ public class UserBean {
 	private String admissionDate;
 	private String updateDate;
 	private String cancelDate;
+	private int lendBooks;
+	private String reservationBooks;
 
 	public UserBean() {
 
@@ -50,8 +52,38 @@ public class UserBean {
 		this.cancelDate = cancelDate;
 
 	}
+	
+	//検索結果
+		public UserBean(int userId, String userName, String address, String tel, String email, String birthday,
+				int lendBooks , String reservationBooks) {
+			this.userId = userId;
+			this.userName = userName;
+			this.address = address;
+			this.tel = tel;
+			this.email = email;
+			this.birthday = birthday;
+			this.lendBooks = lendBooks;
+			this.reservationBooks = reservationBooks;
+
+		}
 
 	//ゲッターセッター
+
+	public int getLendBooks() {
+		return lendBooks;
+	}
+
+	public void setLendBooks(int lendBooks) {
+		this.lendBooks = lendBooks;
+	}
+
+	public String getReservationBooks() {
+		return reservationBooks;
+	}
+
+	public void setReservationBooks(String reservationBooks) {
+		this.reservationBooks = reservationBooks;
+	}
 
 	public int getUserId() {
 		return userId;

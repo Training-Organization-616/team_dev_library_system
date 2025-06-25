@@ -79,6 +79,8 @@
 						<th>会員ID</th>
 						<th>氏名</th>
 						<th>E-Mail</th>
+						<th>貸出冊数</th>
+						<th>予約中</th>
 						<th>変更</th>
 						<th>削除</th>
 					</tr>
@@ -87,6 +89,8 @@
 							<td>${user.userId}</td>
 							<td>${user.userName}</td>
 							<td>${user.email}</td>
+							<td>${user.lendBooks }</td>
+							<td>${user.reservationBooks }</td>
 							<td>
 								<form action="/team_dev_library_system/UserServlet"
 									method="post">
