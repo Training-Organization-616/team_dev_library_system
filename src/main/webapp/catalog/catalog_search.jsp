@@ -88,13 +88,15 @@
 				    			<option value="9"<c:if test="${labelCode==9}">selected</c:if>>文学</option>
 				    		</select>
 				    		<span> - </span>
-				    		<input class="input_form label_form" type="text"  name="label_author" value="${labelAuthor}">
+				    		<input class="input_form label_form" type="text" size="5" name="label_author" value="${labelAuthor}">
 				    		<span> - </span>
-				    		<input class="input_form label_form" type="text" name="volume_number" value="${volumeNumber}">
+				    		<input class="input_form label_form" type="text" size="5" name="volume_number" value="${volumeNumber}">
 				    	</td>
 				    </tr>
-				</table>				
-				<button class="general_button_search_button">検索</button>
+				    <tr>
+				    	<td colspan="2"><button class="general_button_search_button">検索</button></td>
+				    </tr>
+				</table>
 			</form>			
 		</div>
 		<br>

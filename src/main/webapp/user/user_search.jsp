@@ -65,8 +65,12 @@
 						<td><input class="input_form" type="date" 
 							name="user_birthday" value="${birthday}"></td>
 					</tr>
+					<tr>
+						<td colspan="2"><button class="general_button_search_button">検索</button></td>
+					</tr>
+					
 				</table>
-				<button class="general_button_search_button">検索</button>
+				
 			</form>
 		</div>
 

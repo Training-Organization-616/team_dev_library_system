@@ -55,8 +55,10 @@
 				    		<input class="input_form" type="text" size="40" name="title" value="${title}">
 				    	</td>
 				    </tr>
+				    <tr>
+				    	<td colspan="2"><button class="general_button_search_button">検索</button></td>
+				    </tr>
 				</table>
-				<button class="general_button_search_button">検索</button>
 			</form>
 		</div>	
 	</div>
