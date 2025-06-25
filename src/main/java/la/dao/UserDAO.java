@@ -225,7 +225,22 @@ public class UserDAO {
 
 	//ユーザーが借りている本があるかどうか
 	public boolean isUserLend(int userId) throws SQLException {
-		String sql = "SELECT COUNT(*) FROM lend WHERE user_id = ?";
+		String sql = "SELECT COUNT(*) FROM lend WHERE user_id = ? AND return_date IS NULL";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, userId);
+			try (ResultSet rs = st.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1) > 0; // 1以上なら借りている本有り
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean isUserReservation(int userId) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM reservation WHERE user_id = ? AND already_lent != 2";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {

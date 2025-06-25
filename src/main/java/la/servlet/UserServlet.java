@@ -51,9 +51,6 @@ public class UserServlet extends HttpServlet {
 				return;
 			} else if (action.equals("return_search")) {
 				//検索結果画面から検索画面に戻る
-
-				session.removeAttribute("users");
-
 				gotoPage(request, response, "./user/user_search.jsp");
 				return;
 			} else if (action.equals("add")) {
@@ -278,11 +275,21 @@ public class UserServlet extends HttpServlet {
 				String userIdAttr = request.getParameter("user_id");
 				int userId = safeGetInt(userIdAttr);
 
+				String message = "";
+				//貸出があるか
 				if (dao.isUserLend(userId)) {
-					request.setAttribute("message", "この会員は借りている本が存在するので削除することが出来ません");
+					message = message + "この会員は借りている本が存在するので削除することが出来ません<br>";
+				}
+				//予約があるか
+				if (dao.isUserReservation(userId)) {
+					message = message + "この会員は予約している本が存在するので削除することが出来ません<br>";
+				}
+				if (!message.isEmpty()) {
+					request.setAttribute("message", message);
 					gotoPage(request, response, "./user/user_search.jsp");
 					return;
 				}
+
 				dao.deleteUser(userId, today);
 				UserBean list = dao.findOneUser(userId);
 				request.setAttribute("user", list);
