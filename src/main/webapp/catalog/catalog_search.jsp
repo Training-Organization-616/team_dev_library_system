@@ -45,17 +45,17 @@
 				    	<th>分類コード</th>
 				    	<td>
 				    		<select name="code">
-				    			<option value="" selected>選択</option>
-				    			<option value="0">総記</option>
-				    			<option value="1">哲学</option>
-				    			<option value="2">歴史</option>
-				    			<option value="3">社会科学</option>
-				    			<option value="4">自然科学</option>
-				    			<option value="5">技術</option>
-				    			<option value="6">産業</option>
-				    			<option value="7">芸術</option>
-				    			<option value="8">言語</option>
-				    			<option value="9">文学</option>
+				    			<option value="">選択</option>
+				    			<option value="0"<c:if test="${code==0}">selected</c:if>>総記</option>
+				    			<option value="1"<c:if test="${code==1}">selected</c:if>>哲学</option>
+				    			<option value="2"<c:if test="${code==2}">selected</c:if>>歴史</option>
+				    			<option value="3"<c:if test="${code==3}">selected</c:if>>社会科学</option>
+				    			<option value="4"<c:if test="${code==4}">selected</c:if>>自然科学</option>
+				    			<option value="5"<c:if test="${code==5}">selected</c:if>>技術</option>
+				    			<option value="6"<c:if test="${code==6}">selected</c:if>>産業</option>
+				    			<option value="7"<c:if test="${code==7}">selected</c:if>>芸術</option>
+				    			<option value="8"<c:if test="${code==8}">selected</c:if>>言語</option>
+				    			<option value="9"<c:if test="${code==9}">selected</c:if>>文学</option>
 				    		</select>
 				    	</td>
 				    </tr>
@@ -75,17 +75,17 @@
 				    	<th>背ラベル</th>
 				    	<td>
 				    		<select name="label_code">
-				    			<option value="" selected>選択</option>
-				    			<option value="0">総記</option>
-				    			<option value="1">哲学</option>
-				    			<option value="2">歴史</option>
-				    			<option value="3">社会科学</option>
-				    			<option value="4">自然科学</option>
-				    			<option value="5">技術</option>
-				    			<option value="6">産業</option>
-				    			<option value="7">芸術</option>
-				    			<option value="8">言語</option>
-				    			<option value="9">文学</option>
+				    			<option value="">選択</option>
+				    			<option value="0"<c:if test="${labelCode==0}">selected</c:if>>総記</option>
+				    			<option value="1"<c:if test="${labelCode==1}">selected</c:if>>哲学</option>
+				    			<option value="2"<c:if test="${labelCode==2}">selected</c:if>>歴史</option>
+				    			<option value="3"<c:if test="${labelCode==3}">selected</c:if>>社会科学</option>
+				    			<option value="4"<c:if test="${labelCode==4}">selected</c:if>>自然科学</option>
+				    			<option value="5"<c:if test="${labelCode==5}">selected</c:if>>技術</option>
+				    			<option value="6"<c:if test="${labelCode==6}">selected</c:if>>産業</option>
+				    			<option value="7"<c:if test="${labelCode==7}">selected</c:if>>芸術</option>
+				    			<option value="8"<c:if test="${labelCode==8}">selected</c:if>>言語</option>
+				    			<option value="9"<c:if test="${labelCode==9}">selected</c:if>>文学</option>
 				    		</select>
 				    		<span> - </span>
 				    		<input class="input_form label_form" type="text"  name="label_author" value="${labelAuthor}">
