@@ -41,6 +41,7 @@
 							<th>会員ID</th>
 							<th>氏名</th>
 							<th>E-Mail</th>
+							<th>電話番号</th>
 							<th>資料ID</th>
 							<th>返却期日</th>
 							<th>一次対応</th>
@@ -52,6 +53,7 @@
 								<td>${day.userId}</td>
 								<td>${day.name}</td>
 								<td>${day.email}</td>
+								<td>${day.tel }</td>
 								<td>${day.bookId}</td>
 								<td>${day.dueDate}</td>
 								<c:if test="${day.firstReminder==0}">
@@ -95,6 +97,7 @@
 							<th>会員ID</th>
 							<th>氏名</th>
 							<th>E-Mail</th>
+							<th>電話番号</th>
 							<th>資料ID</th>
 							<th>返却期日</th>
 							<th>二次対応</th>
@@ -106,6 +109,7 @@
 								<td>${month.userId}</td>
 								<td>${month.name}</td>
 								<td>${month.email}</td>
+								<td>${month.tel }</td>
 								<td>${month.bookId}</td>
 								<td>${month.dueDate}</td>
 								<c:if test="${month.secondReminder==0}">
