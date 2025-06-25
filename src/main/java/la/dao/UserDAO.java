@@ -52,7 +52,6 @@ public class UserDAO {
 		}
 		sql = sql + " ORDER BY user_id";
 
-		
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql)) {
 			int index = 1;
@@ -83,15 +82,15 @@ public class UserDAO {
 					String userTel = rs.getString("tel");
 					String userEmail = rs.getString("email");
 					String userBirthday = rs.getString("birthday");
-					
+
 					//ユーザが借りている本のIDを取得
 					int lendBooks = findLendBooks(id);
-					
+
 					//ユーザが予約している本のIDを取得
 					String reservationBooks = findReservationBooks(id);
-					
+
 					UserBean bean = new UserBean(id, name, userAddress, userTel,
-							userEmail, userBirthday , lendBooks , reservationBooks);
+							userEmail, userBirthday, lendBooks, reservationBooks);
 					list.add(bean);
 				}
 				return list.isEmpty() ? Collections.emptyList() : list;//ヒットしなければ空のlistを送信
@@ -105,68 +104,69 @@ public class UserDAO {
 			throw new DAOException("データベース接続に失敗しました。");
 		}
 	}
-	
-		//ユーザーが借りている本のidを検索
-		public int findLendBooks(int userId)
-				throws DAOException {
 
-			String sql = "SELECT book_id FROM lend WHERE user_id = ? AND return_date IS NULL";
-			
-			try (Connection con = DriverManager.getConnection(url, user, pass);
-					PreparedStatement st = con.prepareStatement(sql)) {
-				
-				st.setInt(1, userId);
-				
-				try (ResultSet rs = st.executeQuery()) {
-					
-					int lendBooks = 0;
-					
-					while (rs.next()) {
-						
-						lendBooks++;
-					}
-					return lendBooks;
-				} catch (SQLException e) {
-					e.printStackTrace();
-					throw new DAOException("レコードの取得に失敗しました。");
+	//ユーザーが借りている本のidを検索
+	public int findLendBooks(int userId)
+			throws DAOException {
+
+		String sql = "SELECT book_id FROM lend WHERE user_id = ? AND return_date IS NULL";
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql)) {
+
+			st.setInt(1, userId);
+
+			try (ResultSet rs = st.executeQuery()) {
+
+				int lendBooks = 0;
+
+				while (rs.next()) {
+
+					lendBooks++;
 				}
-
+				return lendBooks;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("データベース接続に失敗しました。");
+				throw new DAOException("レコードの取得に失敗しました。");
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("データベース接続に失敗しました。");
 		}
+	}
 
-		//ユーザーが借りている本のidを検索
-		public String findReservationBooks(int userId) throws DAOException {
+	//ユーザーが借りている本のidを検索
+	public String findReservationBooks(int userId) throws DAOException {
 
-			String sql = "SELECT book_id FROM reservation"
-					+ " WHERE user_id = ? AND NOT already_lent = 2";
+		String sql = "SELECT book_id FROM reservation"
+				+ " WHERE user_id = ? AND NOT already_lent = 2";
 
-			try (Connection con = DriverManager.getConnection(url, user, pass);
-					PreparedStatement st = con.prepareStatement(sql)) {
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql)) {
 
-				st.setInt(1, userId);
+			st.setInt(1, userId);
 
-				try (ResultSet rs = st.executeQuery()) {
+			try (ResultSet rs = st.executeQuery()) {
 
-					String reservationBooks = "無";
+				String reservationBooks = "無";
 
-					while (rs.next()) {
+				while (rs.next()) {
 
-						reservationBooks = "有";
-					}
-					return reservationBooks;
-				} catch (SQLException e) {
-					e.printStackTrace();
-					throw new DAOException("レコードの取得に失敗しました。");
+					reservationBooks = "有";
 				}
-
+				return reservationBooks;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("データベース接続に失敗しました。");
+				throw new DAOException("レコードの取得に失敗しました。");
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("データベース接続に失敗しました。");
 		}
+	}
+
 	//一件のデータを取得
 	public UserBean findOneUser(int userId) throws DAOException {
 		String sql = "SELECT * FROM users WHERE user_id = ?";
@@ -210,6 +210,23 @@ public class UserDAO {
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, email);
+			try (ResultSet rs = st.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1) > 0; // 1以上なら登録済み
+				}
+			}
+		}
+		return false;
+	}
+
+	//他ユーザーが登録しているメールかどうか判定
+	public boolean isOtherUserUseEmail(String email, int userId) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM users WHERE email = ? AND user_id != ?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, email);
+			st.setInt(2, userId);
 			try (ResultSet rs = st.executeQuery()) {
 				if (rs.next()) {
 					return rs.getInt(1) > 0; // 1以上なら登録済み

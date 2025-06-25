@@ -228,29 +228,26 @@ public class UserServlet extends HttpServlet {
 
 				if (userName.length() > 50) {
 					message = message + "氏名は50文字以内で入力してください<br>";
-				} else {
-					request.setAttribute("userName", userName);
 				}
 				if (address.length() > 100) {
 					message = message + "住所は100文字以内で入力してください<br>";
-				} else {
-					request.setAttribute("address", address);
 				}
 				if (tel.length() > 20) {
 					message = message + "電話番号は20桁以内で入力してください<br>";
 				} else if (!tel.matches("\\d+") && tel.length() > 0) {
 					message = message + "電話番号は数字で入力してください<br>";
-				} else {
-					request.setAttribute("tel", tel);
 				}
 				if (email.length() > 100) {
 					message = message + "メールアドレスは100文字以内で入力してください<br>";
-				} else {
-					request.setAttribute("email", email);
+				}
+				if (dao.isOtherUserUseEmail(email, userId)) {
+					message = message + "このメールアドレスは既に登録されています<br>";
 				}
 
 				if (!message.isEmpty()) {
 					request.setAttribute("message", message);
+					UserBean list = dao.findOneUser(userId);
+					request.setAttribute("user", list);
 					gotoPage(request, response, "./user/user_edit.jsp");
 					return;
 				}
