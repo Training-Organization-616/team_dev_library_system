@@ -22,7 +22,6 @@
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">資料削除</div>
 	</div>
@@ -42,24 +41,28 @@
 					<tr>
 				    	<th>資料ID</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.bookId}
 				    	</td>
 				    </tr>
 					<tr>
 				    	<th>ISBN番号</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.isbn}
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料名</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.title}
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>分類コード</th>
 				    	<td>
+				    		<span>&nbsp</span>
 			    			<c:choose>
 			    				<c:when test="${book.code == 0}">総記</c:when>
 			    				<c:when test="${book.code == 1}">哲学</c:when>
@@ -77,40 +80,41 @@
 				    <tr>
 				    	<th>著者</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.author}
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>出版社</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.publicher}
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>出版日</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.publicationDate}
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>入荷年月日</th>
 				    	<td>
+				    		<span>&nbsp</span>
 				    		${book.arrivalDate}
-				    		<%-- これも入荷年月日はリストにできない想定で書いています --%>
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>廃棄年月日</th>
 				    	<td>
 				    		<input class="input_form" type="date" name="disposal_date" value="${disposalDate}">
-				    		<%-- 廃棄年月日もリストにできない想定で書いています --%>
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>備考</th>
 				    	<td>
 				    		<textarea name = "memo">${memo}</textarea>
-				    		<%-- 備考も同上です --%>
 				    	</td>
 				    </tr>
 				</table>		
@@ -134,9 +138,6 @@
 			</form>
 		</div>
 	</div>
-	
-
-	<jsp:include page="../top/footer.jsp" />
 
 </body>
 

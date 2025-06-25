@@ -17,10 +17,10 @@
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">お問い合わせ編集完了</div>
 	</div>
@@ -49,10 +49,10 @@
 				<li>備考：${inquiry.memo}</li>
 			</ul>
 		</div>
-
+		<br>
 		<div class="transfar_link">				
 			<form action="/team_dev_library_system/other/other_inquiries_top.jsp" method="post">
- 				<button>自動で遷移しない場合はこちらをクリック</button>
+				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">
 			</form>
 		</div>

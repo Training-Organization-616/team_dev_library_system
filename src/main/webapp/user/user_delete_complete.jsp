@@ -8,8 +8,7 @@
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
 	<link href="/team_dev_library_system/style.css" rel="stylesheet">
-<meta http-equiv="refresh"
-	content="5;url=/team_dev_library_system/user/user_top.jsp">
+	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/user/user_top.jsp">
 </head>
 
 <body>
@@ -19,6 +18,7 @@
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
@@ -29,7 +29,7 @@
 	<div class="container">
 		<div>
 			<p>　　　会員情報を削除しました</p>
-			<p>　　　　トップページへ遷移します</p>
+			<p>　　　検索画面へ遷移します</p>
 		</div>
 
 		<div>
@@ -43,7 +43,7 @@
 				<li>入会年月日：${user.admissionDate}</li>
 			</ul>
 		</div>
-
+		<br>
 		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/user/user_top.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>

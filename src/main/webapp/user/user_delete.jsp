@@ -27,7 +27,7 @@
 
 	<div class="container">
 		<div class="delete_message">
-			<p>以下の会員情報を削除しますか？</p>
+			<p>　　　以下の会員情報を削除しますか？</p>
 		</div>
 		<div>
 			<ul>
@@ -52,7 +52,6 @@
 			</form>
 		</div>
 	</div>
-
 
 </body>
 

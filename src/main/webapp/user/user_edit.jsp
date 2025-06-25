@@ -16,12 +16,11 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">会員情報変更</div>
 	</div>
@@ -39,39 +38,45 @@
 				<table>
 					<tr>
 						<th>会員ID</th>
-						<td>${user.userId} <input type="hidden" name="user_id"
-							value="${user.userId}">
+						<td>
+							<span>&nbsp</span>
+							${user.userId}
+							<input type="hidden" name="user_id" value="${user.userId}">
 						</td>
 					</tr>
 					<tr>
 						<th>氏名</th>
-						<td><input class="input_form" type="text" size="70" name="user_name"
-							value="${user.userName}"></td>
+						<td>
+							<input class="input_form" type="text" size="70" name="user_name" value="${user.userName}">
+						</td>
 					</tr>
 					<tr>
 						<th>住所</th>
-						<td><input class="input_form" type="text" size="70" name="user_address"
-							value="${user.address}"></td>
+						<td>
+							<input class="input_form" type="text" size="70" name="user_address" value="${user.address}">
+						</td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td><input class="input_form" type="text" size="70" name="user_tel"
-							value="${user.tel}"></td>
+						<td>
+							<input class="input_form" type="text" size="70" name="user_tel" value="${user.tel}">
+						</td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
-						<td><input class="input_form" type="email" size="70" name="user_email"
-							value="${user.email}"></td>
+						<td>
+							<input class="input_form" type="email" size="70" name="user_email" value="${user.email}">
+						</td>
 					</tr>
 					<tr>
 						<th>生年月日</th>
-						<td><input class="input_form" type="date"
-							name="user_birthday" value="${user.birthday}"></td>
+						<td>
+							<input class="input_form" type="date" name="user_birthday" value="${user.birthday}">
+						</td>
 					</tr>
 				</table>
 				<button class="general_button edit_button">変更</button>
 			</form>
-
 		</div>
 
 		<div>
@@ -81,7 +86,6 @@
 			</form>
 		</div>
 	</div>
-
 
 </body>
 

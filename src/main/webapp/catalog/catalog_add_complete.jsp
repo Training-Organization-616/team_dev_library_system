@@ -40,8 +40,6 @@
 				<li>出版社：${book.publicher}</li>
 				<li>出版日：${book.publicationDate}</li>
 				<li>入荷年月日：${book.arrivalDate}</li>
-				<%-- 入荷年月日はリストにできない想定（catalogBeanじゃないので単体でフォワードされる想定）で書いてます --%>
-				<%-- 必要に応じて修正お願いします --%>
 			</ul>
 		</div>
 

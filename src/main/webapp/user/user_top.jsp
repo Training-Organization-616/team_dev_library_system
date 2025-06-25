@@ -16,8 +16,8 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
@@ -33,7 +33,6 @@
 			<button class="top_button">会員検索</button>
 		</form>
 	</div>
-
 
 </body>
 

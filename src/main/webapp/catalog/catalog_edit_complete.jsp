@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
 	<link href="/team_dev_library_system/style.css" rel="stylesheet">
-	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/top/top.jsp">
+	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/catalog/catalog_search.jsp">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 	<div class="container">
 		<div>
 			<p>　　　資料の情報を変更しました</p>
-			<p>　　　トップページへ遷移します</p>
+			<p>　　　検索画面へ遷移します</p>
 		</div>
 
 		<div>
@@ -42,10 +42,9 @@
 				<li>出版社：${book.publicher}</li>
 				<li>出版日：${book.publicationDate}</li>
 				<li>入荷年月日：${book.arrivalDate}</li>
-				<%-- これも入荷年月日はリストにできない想定で書いています --%>
 			</ul>
 		</div>
-		
+		<br>
 		<div class="transfar_link">				
 			<form action="/team_dev_library_system/top/top.jsp" method="post">
  				<button>自動で遷移しない場合はこちらをクリック</button>

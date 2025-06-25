@@ -17,12 +17,11 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">延滞者編集完了</div>
 	</div>
@@ -40,35 +39,34 @@
 				<li>資料ID：${overdue.bookId}</li>
 				<li>返却期日：${overdue.dueDate}</li>
 				<c:if test="${not empty day}">
-				<li>一次対応:
-					<c:if test="${overdue.firstReminder==0}">
-						未対応
-					</c:if>
-					<c:if test="${overdue.firstReminder==1}">
-						対応中
-					</c:if>
-					<c:if test="${overdue.firstReminder==2}">
-						対応済み
-					</c:if>
-				</li>
+					<li>一次対応:
+						<c:if test="${overdue.firstReminder==0}">
+							未対応
+						</c:if>
+						<c:if test="${overdue.firstReminder==1}">
+							対応中
+						</c:if>
+						<c:if test="${overdue.firstReminder==2}">
+							対応済み
+						</c:if>
+					</li>
 				</c:if>
 				<c:if test="${not empty month}">
-				<li>二次対応:
-					<c:if test="${overdue.secondReminder==0}">
-						未対応
-					</c:if>
-					<c:if test="${overdue.secondReminder==1}">
-						対応中
-					</c:if>
-					<c:if test="${overdue.secondReminder==2}">
-						対応済み
-					</c:if>
-				</li>
+					<li>二次対応:
+						<c:if test="${overdue.secondReminder==0}">
+							未対応
+						</c:if>
+						<c:if test="${overdue.secondReminder==1}">
+							対応中
+						</c:if>
+						<c:if test="${overdue.secondReminder==2}">
+							対応済み
+						</c:if>
+					</li>
 				</c:if>
 				<li>備考:${overdue.memo}</li>
 			</ul>
 		</div>
-
 		<br>
 		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/other/other_overdue_top.jsp" method="post">

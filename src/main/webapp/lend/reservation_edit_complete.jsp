@@ -58,7 +58,7 @@
 				<li>備考：${reservation.memo}</li>
 			</ul>
 		</div>
-
+		<br>
 		<div class="transfar_link">
 			<form action="/team_dev_library_system/lend/reservation_search.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>

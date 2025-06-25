@@ -30,7 +30,7 @@
 	<div class="container">
 		<div>
 			<p>　　　会員情報を変更しました</p>
-			<p>　　　　トップページへ遷移します</p>
+			<p>　　　検索画面へ遷移します</p>
 		</div>
 
 		<div>
@@ -44,7 +44,7 @@
 				<li>入会年月日：${user.admissionDate}</li>
 			</ul>
 		</div>
-
+		<br>
 		<div class="transfar_link">
 			<form action="/team_dev_library_system/user/user_top.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>

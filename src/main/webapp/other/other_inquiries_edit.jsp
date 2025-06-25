@@ -16,19 +16,18 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">お問い合わせ編集</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>編集事項に入力してください</p>
+			<p>　　　編集事項を入力してください</p>
 		</div>
 
 		<div class="message">${message}</div>
@@ -41,22 +40,25 @@
 					<tr>
 						<th>受付日</th>
 						<td>
-						${inquiry.receptionDate} 
-						<input type="hidden" name="reception_date" value="${inquiry.receptionDate}">
+							<span>&nbsp</span>
+							${inquiry.receptionDate} 
+							<input type="hidden" name="reception_date" value="${inquiry.receptionDate}">
 						</td>
 					</tr>
 					<tr>
 						<th>タイトル</th>
 						<td>
-						${inquiry.contentsTitle} 
-						<input type="hidden" name="title" value="${inquiry.contentsTitle}">
+							<span>&nbsp</span>
+							${inquiry.contentsTitle} 
+							<input type="hidden" name="title" value="${inquiry.contentsTitle}">
 						</td>
 					</tr>
 					<tr>
 						<th>内容</th>
 						<td>
+							<span>&nbsp</span>
 							${inquiry.contents} 
-						<input type="hidden" name="contents" value="${inquiry.contents}">
+							<input type="hidden" name="contents" value="${inquiry.contents}">
 						</td>
 					</tr>
 					<tr>
@@ -79,13 +81,12 @@
 					<tr>
 						<th>備考</th>
 						<td>
-						<textarea name = "memo" >${inquiry.memo}</textarea>
+							<textarea name="memo" >${inquiry.memo}</textarea>
 						</td>
 					</tr>
 				</table>
 				<button class="general_button edit_button">編集</button>
 			</form>
-
 		</div>
 
 		<div>
@@ -95,7 +96,6 @@
 			</form>
 		</div>
 	</div>
-
 
 </body>
 

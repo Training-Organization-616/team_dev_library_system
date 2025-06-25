@@ -40,6 +40,7 @@
 					<tr>
 						<th>予約ID</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.reservationId} 
 							<input type="hidden" name="reservation_id" value="${reservation.reservationId}">
 						</td>
@@ -47,6 +48,7 @@
 					<tr>
 						<th>予約年月日</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.reservationDate} 
 							<input type="hidden" name="reservation_date"value="${reservation.reservationDate}">
 						</td>
@@ -54,6 +56,7 @@
 					<tr>
 						<th>会員ID</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.userId}
 							<input type="hidden" name="user_id" value="${reservation.userId}">
 						</td>
@@ -61,6 +64,7 @@
 					<tr>
 						<th>氏名</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.name} 
 							<input type="hidden" name="name" value="${reservation.name}">
 						</td>
@@ -68,6 +72,7 @@
 					<tr>
 						<th>電話番号</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.tel} 
 							<input type="hidden" name="tel" value="${reservation.tel}">
 						</td>
@@ -75,6 +80,7 @@
 					<tr>
 						<th>E-Mail</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.email}
 						 	<input type="hidden" name="email" value="${reservation.email}">
 						</td>
@@ -82,6 +88,7 @@
 					<tr>
 						<th>資料ID</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.bookId} 
 							<input type="hidden" name="book_id"value="${reservation.bookId}">
 						</td>
@@ -89,6 +96,7 @@
 					<tr>
 						<th>資料名</th>
 						<td>
+							<span>&nbsp</span>
 							${reservation.title}
 						 	<input type="hidden" name="title" value="${reservation.title}">
 						</td>

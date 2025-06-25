@@ -16,12 +16,11 @@
 
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">お問い合わせ登録</div>
 	</div>
@@ -74,7 +73,6 @@
 				</table>
 				<button class="general_button">登録</button>
 			</form>
-
 		</div>
 
 		<div>
@@ -84,7 +82,6 @@
 			</form>
 		</div>
 	</div>
-
 
 </body>
 

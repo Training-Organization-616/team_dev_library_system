@@ -7,7 +7,6 @@
 		<p>メニュー</p>
 
 		<div class="side-menu">
-
 			<form action="/team_dev_library_system/TransitionServlet"
 				method="post">
 				<button class="menu_button">貸出管理</button>
@@ -32,5 +31,6 @@
 				<input type="hidden" name="action" value="other">
 			</form>
 		</div>
+		
 	</div>
 </div>

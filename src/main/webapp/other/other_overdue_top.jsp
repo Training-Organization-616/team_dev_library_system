@@ -6,9 +6,9 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>図書管理システム</title>
-<link href="/team_dev_library_system/style.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>図書管理システム</title>
+	<link href="/team_dev_library_system/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 			<div class="search_result_table_contents">
 				<c:if test = "${not empty overdue10days }">
 					<table class="overdue_table">
-						<caption>超過した日数　10日以上</caption>
+						<caption>延滞日数：10日以上</caption>
 						<tr>
 							<th>No</th>
 							<th>会員ID</th>
@@ -54,13 +54,13 @@
 								<td>${day.bookId}</td>
 								<td>${day.dueDate}</td>
 								<c:if test="${day.firstReminder==0}">
-								<td>未対応</td>
+									<td>未対応</td>
 								</c:if>
 								<c:if test="${day.firstReminder==1}">
-								<td>対応中</td>
+									<td>対応中</td>
 								</c:if>
 								<c:if test="${day.firstReminder==2}">
-								<td>対応済み</td>
+									<td>対応済み</td>
 								</c:if>
 								<td>
 									<form action="/team_dev_library_system/OverdueServlet" method="post">
@@ -88,7 +88,7 @@
 			<div class="search_result_table_contents">
 				<c:if test = "${not empty overdue30days }">
 					<table class="overdue_table">
-						<caption>超過した日数　30日以上</caption>
+						<caption>延滞日数：30日以上</caption>
 						<tr>
 							<th>No</th>
 							<th>会員ID</th>
@@ -108,13 +108,13 @@
 								<td>${month.bookId}</td>
 								<td>${month.dueDate}</td>
 								<c:if test="${month.secondReminder==0}">
-								<td>未対応</td>
+									<td>未対応</td>
 								</c:if>
 								<c:if test="${month.secondReminder==1}">
-								<td>対応中</td>
+									<td>対応中</td>
 								</c:if>
 								<c:if test="${month.secondReminder==2}">
-								<td>対応済み</td>
+									<td>対応済み</td>
 								</c:if>
 								<td>
 									<form action="/team_dev_library_system/OverdueServlet" method="post">

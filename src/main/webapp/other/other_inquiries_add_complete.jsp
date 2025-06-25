@@ -17,10 +17,10 @@
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
 	</div>
+	
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-
 		</div>
 		<div class="menu_name">お問い合わせ登録完了</div>
 	</div>

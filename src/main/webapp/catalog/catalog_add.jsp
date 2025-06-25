@@ -47,7 +47,8 @@
 					</tr>
 					<tr>
 						<th>分類コード</th>
-						<td><select name="code">
+						<td>
+							<select name="code">
 								<option value="" selected>選択</option>
 								<option value="0">総記</option>
 								<option value="1">哲学</option>
@@ -59,7 +60,8 @@
 								<option value="7">芸術</option>
 								<option value="8">言語</option>
 								<option value="9">文学</option>
-						</select></td>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<th>著者</th>

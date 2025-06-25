@@ -14,15 +14,13 @@
 
 	<jsp:include page="../top/header.jsp" />
 
-	
-		<div class="menu">
-			<jsp:include page="../top/menu.jsp" />
-			
-		</div>
+	<div class="menu">
+		<jsp:include page="../top/menu.jsp" />
+	</div>
+		
 	<div class="holder">
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/menu_icon.png">
-			
 		</div>
 		<div class="menu_name">返却</div>
 	</div>
@@ -40,14 +38,14 @@
 				<li>資料名：${title}</li>
 			</ul>
 		</div>
-	
-		<div class="transfar_link">				
+		
+		<div class="message_lend">${message}</div>
+
+		<div class="transfar_link">
 			<form action="/team_dev_library_system/lend/return_add.jsp" method="post">
  				<button>続けて返却</button>
-				
 			</form>
 		</div>
-
 
 </body>
 

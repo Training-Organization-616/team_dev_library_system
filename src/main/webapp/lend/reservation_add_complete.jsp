@@ -14,7 +14,6 @@
 
 	<jsp:include page="../top/header.jsp" />
 
-	
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
 	</div>

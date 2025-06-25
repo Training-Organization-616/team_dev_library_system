@@ -62,7 +62,6 @@
 				</table>				
 				<button class="general_button">返却</button>
 			</form>
-			
 		</div>	
 	</div>
 

@@ -14,11 +14,9 @@
 <body>
 
 	<jsp:include page="../top/header.jsp" />
-
 	
 	<div class="menu">
 		<jsp:include page="../top/menu.jsp" />
-		
 	</div>
 	
 	<div class="holder">
@@ -57,7 +55,7 @@
 				    		<input class="input_form" type="text" size="70" name="title" value="${title}">
 				    	</td>
 				    </tr>
-				</table>				
+				</table>
 				<button class="general_button_search_button">検索</button>
 			</form>
 		</div>	
