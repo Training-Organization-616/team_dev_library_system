@@ -119,7 +119,7 @@
 					<tr>
 						<th>備考</th>
 						<td>
-							<input class="input_form" type="text" size="70" name="memo" value="${overdue.memo}">
+							<input class="input_form" type="text" size="40" name="memo" value="${overdue.memo}">
 						</td>
 					</tr>
 				</table>

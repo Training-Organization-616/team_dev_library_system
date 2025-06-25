@@ -33,7 +33,7 @@
 			<p>　　　検索ページへ遷移します</p>
 		</div>
 
-		<div>
+		<div class="ul_container">
 			<ul>
 				<li>予約ID：${reservation.reservationId}</li>
 				<li>予約年月日：${reservation.reservationDate}</li>
@@ -59,7 +59,7 @@
 			</ul>
 		</div>
 		<br>
-		<div class="transfar_link">
+		<div class="transfar_link_top">
 			<form action="/team_dev_library_system/lend/reservation_search.jsp" method="post">
 				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">

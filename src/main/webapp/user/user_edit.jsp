@@ -47,25 +47,25 @@
 					<tr>
 						<th>氏名</th>
 						<td>
-							<input class="input_form" type="text" size="70" name="user_name" value="${user.userName}">
+							<input class="input_form" type="text" size="40" name="user_name" value="${user.userName}">
 						</td>
 					</tr>
 					<tr>
 						<th>住所</th>
 						<td>
-							<input class="input_form" type="text" size="70" name="user_address" value="${user.address}">
+							<input class="input_form" type="text" size="40" name="user_address" value="${user.address}">
 						</td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
 						<td>
-							<input class="input_form" type="text" size="70" name="user_tel" value="${user.tel}">
+							<input class="input_form" type="text" size="40" name="user_tel" value="${user.tel}">
 						</td>
 					</tr>
 					<tr>
 						<th>E-Mail</th>
 						<td>
-							<input class="input_form" type="email" size="70" name="user_email" value="${user.email}">
+							<input class="input_form" type="email" size="40" name="user_email" value="${user.email}">
 						</td>
 					</tr>
 					<tr>

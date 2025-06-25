@@ -40,19 +40,19 @@
 					<tr>
 				    	<th>予約ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="reservation_id" value="${reservationId}">
+				    		<input class="input_form" type="text" size="40" name="reservation_id" value="${reservationId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="book_id" value="${bookId}">
+				    		<input class="input_form" type="text" size="40" name="book_id" value="${bookId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料名</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="title" value="${title}">
+				    		<input class="input_form" type="text" size="40" name="title" value="${title}">
 				    	</td>
 				    </tr>
 				</table>
@@ -60,10 +60,11 @@
 			</form>
 		</div>	
 	</div>
-
+	<br>
+	<br>
 	<c:if test="${!empty reservations}">
-		<div class="search_result_table">
-			 <table>
+		<div class="search_result_table_container">
+			<table class="search_result_table_reservation">
 				<tr>
 					<th>予約ID</th>
 					<th>予約年月日</th>
@@ -100,7 +101,7 @@
 						</td>
 					    <td>
 					    	<form action="/team_dev_library_system/ReservationServlet" method="post">
-				    			<button class="edit_button">編集</button>
+				    			<button class="table_edit_button">編集</button>
 				    			<input type="hidden" name="action" value="edit_page">
 				    			<input type="hidden" name="reservation_id" value="${reserve.reservationId}">
 				    			<input type="hidden" name="reservation_date" value="${reserve.reservationDate}">
@@ -119,7 +120,7 @@
 			</table>
 		 </div>
 	</c:if>
-
+	<br>
 	<div>
 		<form action="/team_dev_library_system/ReservationServlet" method="post">
 			<button class="return_button">戻る</button>

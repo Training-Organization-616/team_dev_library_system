@@ -38,11 +38,11 @@
 				<table>
 					<tr>
 						<th>会員ID</th>
-						<td><input class="input_form" type="text" size="70" name="user_id" value="${userId}"></td>
+						<td><input class="input_form" type="text" size="40" name="user_id" value="${userId}"></td>
 					</tr>
 					<tr>
 						<th>資料ID</th>
-						<td><input class="input_form" type="text" size="70" name="book_id" value="${bookId}"></td>
+						<td><input class="input_form" type="text" size="40" name="book_id" value="${bookId}"></td>
 					</tr>
 				</table>
 				<button class="general_button">予約</button>

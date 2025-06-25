@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	>
+
 	<jsp:include page="../top/header.jsp" />
 
 	<div class="menu">
@@ -24,7 +24,7 @@
 		</div>
 		<div class="menu_name">資料削除</div>
 	</div>
-
+	<br>
 	<div class="container">
 		<div class="message">　　　以下の資料の情報を削除しますか？</div>
 
@@ -42,7 +42,7 @@
 				<li>備考：${memo}</li>
 			</ul>
 		</div>
-
+		<br>
 		<div>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="delete"> <input

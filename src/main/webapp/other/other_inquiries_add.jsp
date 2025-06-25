@@ -43,7 +43,7 @@
 					</tr>
 					<tr>
 						<th>タイトル</th>
-						<td><input class="input_form" type="text" size="70" name="title"
+						<td><input class="input_form" type="text" size="40" name="title"
 							value="${title}"></td>
 					</tr>
 					<tr>

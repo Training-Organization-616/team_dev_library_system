@@ -60,7 +60,7 @@ body {
 /*menu背景*/
 .menu_container {
 	width: 75%;
-	height: 900px;
+	height: 1200px;
 	background-color: #Cb997e;
 	color: white;
 	font-size: 25px;
@@ -273,10 +273,10 @@ button {
 	/*枠線なし*/
 	border: none;
 	/*ボタンの内側の余白*/
-	padding: 10px 30px;
+	padding: 5px 30px;
 	/*ボタン丸くする*/
 	border-radius: 100px;
-	margin-left: 40px;
+	font-size: 20px;
 }
 
 
@@ -308,7 +308,6 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	float: right;
 }
 
 .button_container_lend {
@@ -324,10 +323,10 @@ button {
 
 /*続けて貸出・返却ボタン*/
 .transfar_link {
-	width: 500px;
+	width: 270px;
 	display: flex;
 	align-items: center;
-	margin: 70px auto;
+	margin: auto;
 	/* 中央寄せ */
 
 }
@@ -345,7 +344,7 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	margin: auto;
+	
 }
 
 /*自動遷移しないときのボタン*/
@@ -368,6 +367,7 @@ button {
 	padding: 10px 70px;
 	/*ボタン丸くする*/
 	border-radius: 100px;
+	font-size: 25px;
 }
 
 .inquiries_edit_button {
@@ -408,13 +408,19 @@ button {
 
 
 
-/*------------エラーメッセージ------------*/
+/*------------メッセージ------------*/
+/*エラーメッセージ*/
 .message {
 	color: red;
-	font-size: 20px;
+	font-size: 25px;
 }
 
-/*------------エラーメッセージ------------*/
+/*中央寄せメッセージ*/
+.message_lend{
+	text-align: center;
+}
+
+/*------------メッセージ------------*/
 
 
 /*--------------セレクトボックス---------------*/
@@ -432,12 +438,17 @@ select {
 
 /*--------------inout---------------*/
 input {
-	margin-bottom: 0.8em;
+	margin-bottom: 0.1em;
 	margin-left: 1em;
 	margin-right: 1em;
 	padding: 5px;
+	font-size: 20px;
 }
 
+
+.input[type="text"]{
+	
+}
 /*--------------inout---------------*/
 
 
@@ -466,9 +477,6 @@ table {
 	border-collapse: collapse;
 	color: white;
 	border: 3px solid white;
-	place-items: center;
-	padding: 50px;
-	margin: auto;
 	width: 800px;
 	height: 100px;
 }
@@ -496,14 +504,18 @@ td {
 	height: 100px;
 	background-color: #Ffe8d6;
 	color: #6b422b;
-}
-
-.search_result_table_catalog tr td:nth-of-type(1) {
 	text-align: center;
 }
 
-.search_result_table_catalog tr td:nth-of-type(2) {
+
+/*予約検索結果テーブル*/
+.search_result_table_reservation {
+	width: 1200px;
+	height: 100px;
+	background-color: #Ffe8d6;
+	color: #6b422b;
 	text-align: center;
+	font-size: 20px;
 }
 
 /*検索結果のテーブル*/
@@ -512,7 +524,9 @@ td {
 	height: 100px;
 	background-color: #Ffe8d6;
 	color: #6b422b;
+	text-align: center;
 }
+
 
 .overdue_table {
 	width: 1200px;
@@ -521,15 +535,7 @@ td {
 	color: #6b422b;
 }
 
-/* 1列目のスタイル */
-.overdue_table tr td:nth-of-type(1) {
-	text-align: center;
-}
 
-/* 2列目のスタイル */
-.overdue_table tr td:nth-of-type(2) {
-	text-align: center;
-}
 
 
 /*----------------テーブル----------------*/
@@ -544,16 +550,27 @@ td {
 
 /*返却・貸出リスト*/
 
+.ul_container {
+	width: 800px;
+	/* 親要素の幅 */
+	height: 700px;
+	/* 親要素の高さ */
+	align-items: center;
+	margin: 50px auto 10px;
+	/* 中央寄せ */
+
+}
+
 ul {
 	list-style-type: none;
 	/* デフォルトの丸い点 */
 	/*文字の色*/
 	color: #6b422b;
-	z-index: 100;
 	width: 800px;
-	margin: auto;
-
-
+	align-items: center;
+	margin: 50px auto;
+	/* 中央寄せ */
+	padding-left: 210px;
 }
 
 ul li {

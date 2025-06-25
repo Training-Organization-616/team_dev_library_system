@@ -38,9 +38,9 @@
 				<li>資料名：${title}</li>
 			</ul>
 		</div>
-	
-		<div>				
-			<div>${reservationAmount}</div>件目の予約です。
+		<br>
+		<div class="message_lend">				
+			<div class="message">${reservationAmount}</div>件目の予約です。
 		</div>
 	</div>
 

@@ -44,19 +44,19 @@
 					<tr>
 				    	<th>貸出ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="lend_id" value="${lendId}">
+				    		<input class="input_form" type="text" size="40" name="lend_id" value="${lendId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>会員ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="user_id" value="${userId}">
+				    		<input class="input_form" type="text" size="40" name="user_id" value="${userId}">
 				    	</td>
 				    </tr>
 				    <tr>
 				    	<th>資料ID</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="70" name="book_id" value="${bookId}">
+				    		<input class="input_form" type="text" size="40" name="book_id" value="${bookId}">
 				    	</td>
 				    </tr>
 				</table>				

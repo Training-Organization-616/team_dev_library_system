@@ -39,15 +39,16 @@
 				<table>
 					<tr>
 						<th>会員ID</th>
-						<td><input class="input_form" type="text" size="70" name="user_id"
+						<td><input class="input_form" type="text" size="40" name="user_id"
 							value="${userId}"></td>
 					</tr>
 					<tr>
 						<th>資料ID</th>
-						<td><input class="input_form" type="text" size="70" name="book_id"
+						<td><input class="input_form" type="text" size="40" name="book_id"
 							value="${bookId}"></td>
 					</tr>
 				</table>
+				<br>
 				<button class="general_button">貸出</button>
 			</form>
 		</div>
