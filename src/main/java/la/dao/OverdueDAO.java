@@ -33,7 +33,7 @@ public class OverdueDAO {
   	public void setReminder () throws DAOException {
   		
   		String sql = "UPDATE lend SET first_reminder = 0 , second_reminder = 0"
-  				+ " WHERE return_date IS NULL AND current_date - due_date > 10";
+  				+ " WHERE return_date IS NULL AND current_date - due_date > 9";
   		
   		try (// データベースへの接続
       			Connection con = DriverManager.getConnection(url, user, pass);
@@ -129,7 +129,7 @@ public class OverdueDAO {
     			+ " FROM lend l JOIN users u ON l.user_id = u.user_id"
     			+ " JOIN stock s ON l.book_id = s.book_id"
     			+ " WHERE l.return_date IS NULL"
-    			+ " AND current_date - l.due_date > 30 ORDER BY l.lend_id";
+    			+ " AND current_date - l.due_date > 29 ORDER BY l.lend_id";
     	
     	try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);

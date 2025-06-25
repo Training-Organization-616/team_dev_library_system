@@ -360,6 +360,17 @@ public class CatalogServlet extends HttpServlet {
             	list = dao.findBooks(title , code , author ,
             			publicher , code2 , authorHead , volumeNumber);
             	
+            	//検索内容を保持する
+            	HttpSession session = request.getSession();
+            	
+            	session.setAttribute("title", title);
+            	session.setAttribute("code", code);
+            	session.setAttribute("author", author);
+            	session.setAttribute("publicher", publicher);
+            	session.setAttribute("labelCode", code2);
+            	session.setAttribute("labelAuthor", authorHead);
+            	session.setAttribute("volumeNumber", volumeNumber);
+            	
             	if(list == null) {
             		//検索結果が存在しなかった場合
             		request.setAttribute("message", "検索結果がありません");
@@ -367,8 +378,6 @@ public class CatalogServlet extends HttpServlet {
             		
             	}else {
             		//検索結果が存在した場合
-            		HttpSession session = request.getSession();
-            		
             		session.setAttribute("books", list);
             		gotoPage(request , response , "/catalog/catalog_search.jsp");
             	}
