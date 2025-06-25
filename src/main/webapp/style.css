@@ -325,7 +325,11 @@ button {
 /*続けて貸出・返却ボタン*/
 .transfar_link {
 	width: 500px;
-	margin: auto;
+	display: flex;
+	align-items: center;
+	margin: 70px auto;
+	/* 中央寄せ */
+
 }
 
 /*返却・貸出完了画面の続けて返却・貸出ボタン*/
@@ -347,7 +351,10 @@ button {
 /*自動遷移しないときのボタン*/
 .transfar_link_top {
 	width: 500px;
-	margin: auto;
+	display: flex;
+	align-items: center;
+	margin: 70px auto;
+	/* 中央寄せ */
 }
 
 .transfar_link_top button {

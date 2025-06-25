@@ -58,7 +58,7 @@
 				    	</td>
 				    </tr>
 				</table>				
-				<button class="general_button">検索</button>
+				<button class="general_button_search_button">検索</button>
 			</form>
 		</div>	
 	</div>
