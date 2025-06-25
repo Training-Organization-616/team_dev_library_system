@@ -17,8 +17,10 @@ import javax.servlet.http.HttpSession;
 import la.bean.AddResultBean;
 import la.bean.EditResultBean;
 import la.bean.SearchResultsBean;
+import la.bean.StockBean;
 import la.dao.CatalogDAO;
 import la.dao.DAOException;
+import la.dao.LendDAO;
 
 
 @WebServlet("/CatalogServlet")
@@ -593,6 +595,30 @@ public class CatalogServlet extends HttpServlet {
         		String arrivalDate = request.getParameter("arrival_date");
         		String strDisposalDate = request.getParameter("disposal_date");
         		String memo = request.getParameter("memo");
+        		
+        		//在庫確認(貸出中かどうか)
+        		LendDAO lendDao = new LendDAO();
+        		
+        		StockBean stockBean = lendDao.getStock(Integer.parseInt(bookId));
+        		
+        		int stock = stockBean.getStock();
+        		
+        		if(stock == 0) {
+        			
+        			request.setAttribute("message", "この資料は貸出中です");
+        			gotoPage(request , response , "/catalog/catalog_delete_confirm.jsp");
+        			return;
+        		}
+        		
+        		// 資料の予約情報を確認
+				int reservation = stockBean.getReservation();
+				
+				if(reservation == 1) {
+        			
+        			request.setAttribute("message", "この資料は予約されています");
+        			gotoPage(request , response , "/catalog/catalog_delete_confirm.jsp");
+        			return;
+        		}
         		
         		//廃棄日の型をstringからsql.dateに変換する
         		Date disposalDate = setDate(strDisposalDate);
