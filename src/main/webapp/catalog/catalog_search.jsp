@@ -36,6 +36,12 @@
 				<input type="hidden" name="action" value="search">
 				<table>
 					<tr>
+				    	<th>資料ID</th>
+				    	<td>
+				    		<input class="input_form" type="text" size="40" name="book_id" value="${bookId}">
+				    	</td>
+				    </tr>
+					<tr>
 				    	<th>資料名</th>
 				    	<td>
 				    		<input class="input_form" type="text" size="40" name="title" value="${title}">

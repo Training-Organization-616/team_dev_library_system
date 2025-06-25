@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -89,7 +91,7 @@ public class CatalogServlet extends HttpServlet {
                 		if(flagIsbn == 2) {
                 			//数字以外が入力された場合
                 			request.setAttribute("title", title);
-                			//request.setAttribute("code", code);
+                			request.setAttribute("code", code);
                 			request.setAttribute("author", author);
                 			request.setAttribute("publicher", publicher);
                 			request.setAttribute("publicationDate", strPublicationDate);
@@ -101,7 +103,7 @@ public class CatalogServlet extends HttpServlet {
                 		}else if(flagIsbn == 1) {
                 			//桁数が多すぎる場合
                 			request.setAttribute("title", title);
-                			//request.setAttribute("code", code);
+                			request.setAttribute("code", code);
                 			request.setAttribute("author", author);
                 			request.setAttribute("publicher", publicher);
                 			request.setAttribute("publicationDate", strPublicationDate);
@@ -121,7 +123,7 @@ public class CatalogServlet extends HttpServlet {
             			if(isbn != null && isbn.length() != 0) {
             				request.setAttribute("isbn", isbn);
             			}
-            			//request.setAttribute("code", code);
+            			request.setAttribute("code", code);
             			request.setAttribute("author", author);
             			request.setAttribute("publicher", publicher);
             			request.setAttribute("publicationDate", strPublicationDate);
@@ -241,6 +243,7 @@ public class CatalogServlet extends HttpServlet {
             }else if(action.equals("search")) {
             	//actionの値が「search」の場合
             	//資料を検索する
+            	String bookId = request.getParameter("book_id");
             	String title = request.getParameter("title");
             	String code = request.getParameter("code");
             	String author = request.getParameter("author");
@@ -257,6 +260,31 @@ public class CatalogServlet extends HttpServlet {
             		code2 = "";
             	}
             	
+            	//資料IDが入力されているとき
+            	Pattern pattern = Pattern.compile("[0-9]+");
+				Matcher bookIdMatcher = pattern.matcher(bookId);
+				
+				if (bookIdMatcher.matches() == false) {
+					request.setAttribute("message", "数字で入力してください");
+					
+					request.setAttribute("title", title);
+					request.setAttribute("author", author);
+					request.setAttribute("publicher", publicher);
+					request.setAttribute("labelAuthor", authorHead);
+					request.setAttribute("volumeNumber", volumeNumber);
+					
+					if(code != null && code.length() != 0) {
+						request.setAttribute("code", code);
+					}
+					
+					if(code2 != null && code2.length() != 0) {
+						request.setAttribute("labelCode", code2);
+					}
+					
+					gotoPage(request, response, "/catalog/catalog_search.jsp");
+					return;
+				}
+            	
             	//資料名が入力されているとき
             	if(title != null && title.length() != 0) {
             		
@@ -266,6 +294,21 @@ public class CatalogServlet extends HttpServlet {
             		if(flagTitle) {
             			//入力が正しくない場合
             			request.setAttribute("message", "資料名は50文字以内で入力してください");
+            			
+            			request.setAttribute("bookId", bookId);
+    					request.setAttribute("author", author);
+    					request.setAttribute("publicher", publicher);
+    					request.setAttribute("labelAuthor", authorHead);
+    					request.setAttribute("volumeNumber", volumeNumber);
+    					
+    					if(code != null && code.length() != 0) {
+    						request.setAttribute("code", code);
+    					}
+    					
+    					if(code2 != null && code2.length() != 0) {
+    						request.setAttribute("labelCode", code2);
+    					}
+            			
                 		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
@@ -281,6 +324,21 @@ public class CatalogServlet extends HttpServlet {
             		if(flagAuthor) {
             			//入力が正しくない場合
             			request.setAttribute("message", "著者は50文字以内で入力してください");
+            			
+            			request.setAttribute("bookId", bookId);
+    					request.setAttribute("title", title);
+    					request.setAttribute("publicher", publicher);
+    					request.setAttribute("labelAuthor", authorHead);
+    					request.setAttribute("volumeNumber", volumeNumber);
+    					
+    					if(code != null && code.length() != 0) {
+    						request.setAttribute("code", code);
+    					}
+    					
+    					if(code2 != null && code2.length() != 0) {
+    						request.setAttribute("labelCode", code2);
+    					}
+            			
                 		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
@@ -296,6 +354,21 @@ public class CatalogServlet extends HttpServlet {
             		if(flagPublicher) {
             			//入力が正しくない場合
             			request.setAttribute("message", "出版社は100文字以内で入力してください");
+            			
+            			request.setAttribute("bookId", bookId);
+    					request.setAttribute("title", title);
+    					request.setAttribute("author", author);
+    					request.setAttribute("labelAuthor", authorHead);
+    					request.setAttribute("volumeNumber", volumeNumber);
+    					
+    					if(code != null && code.length() != 0) {
+    						request.setAttribute("code", code);
+    					}
+    					
+    					if(code2 != null && code2.length() != 0) {
+    						request.setAttribute("labelCode", code2);
+    					}
+            			
                 		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
@@ -316,6 +389,22 @@ public class CatalogServlet extends HttpServlet {
             			//入力が正しくない場合
             			request.setAttribute("message",
             					"背ラベルで検索する場合は、全て入力してください");
+            			
+            			request.setAttribute("bookId", bookId);
+    					request.setAttribute("title", title);
+    					request.setAttribute("author", author);
+    					request.setAttribute("publicher", publicher);
+    					request.setAttribute("labelAuthor", authorHead);
+    					request.setAttribute("volumeNumber", volumeNumber);
+    					
+    					if(code != null && code.length() != 0) {
+    						request.setAttribute("code", code);
+    					}
+    					
+    					if(code2 != null && code2.length() != 0) {
+    						request.setAttribute("labelCode", code2);
+    					}
+            			
                 		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
@@ -330,6 +419,14 @@ public class CatalogServlet extends HttpServlet {
                 				//分類コードと背ラベルのコードが同じでない場合
                     			request.setAttribute("message",
                     					"「分類コード」と「背ラベルの分類コード」には同じ内容を入力してください");
+                    			
+                    			request.setAttribute("bookId", bookId);
+            					request.setAttribute("title", title);
+            					request.setAttribute("author", author);
+            					request.setAttribute("publicher", publicher);
+            					request.setAttribute("labelAuthor", authorHead);
+            					request.setAttribute("volumeNumber", volumeNumber);
+                    			
                         		gotoPage(request , response , "/catalog/catalog_search.jsp");
                         		return;
                         		
@@ -345,6 +442,21 @@ public class CatalogServlet extends HttpServlet {
             			request.setAttribute("message",
             					"背ラベルは「分類コード - 著者の頭文字(１文字) - 著者の巻冊番号」"
             					+ "で入力してください");
+            			
+            			request.setAttribute("bookId", bookId);
+    					request.setAttribute("title", title);
+    					request.setAttribute("author", author);
+    					request.setAttribute("publicher", publicher);
+    					request.setAttribute("volumeNumber", volumeNumber);
+    					
+    					if(code != null && code.length() != 0) {
+    						request.setAttribute("code", code);
+    					}
+    					
+    					if(code2 != null && code2.length() != 0) {
+    						request.setAttribute("labelCode", code2);
+    					}
+            			
                 		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
@@ -357,6 +469,21 @@ public class CatalogServlet extends HttpServlet {
             			request.setAttribute("message",
             					"背ラベルは「分類コード - 著者の頭文字(１文字) - 著者の巻冊番号」"
             					+ "で入力してください");
+            			
+            			request.setAttribute("bookId", bookId);
+    					request.setAttribute("title", title);
+    					request.setAttribute("author", author);
+    					request.setAttribute("publicher", publicher);
+    					request.setAttribute("labelAuthor", authorHead);
+    					
+    					if(code != null && code.length() != 0) {
+    						request.setAttribute("code", code);
+    					}
+    					
+    					if(code2 != null && code2.length() != 0) {
+    						request.setAttribute("labelCode", code2);
+    					}
+            			
                 		gotoPage(request , response , "/catalog/catalog_search.jsp");
                 		return;
             		}
@@ -367,7 +494,7 @@ public class CatalogServlet extends HttpServlet {
             	
             	List<SearchResultsBean> list = new ArrayList<SearchResultsBean>();
             	
-            	list = dao.findBooks(title , code , author ,
+            	list = dao.findBooks(bookId , title , code , author ,
             			publicher , code2 , authorHead , volumeNumber);
             	
             	//検索内容を保持する
@@ -678,7 +805,7 @@ public class CatalogServlet extends HttpServlet {
         rd.forward(request, response);
     }
     
-    //有効なISBNが入力されたのかを確認するメソッド
+    //有効な数値が入力されたのかを確認するメソッド
     public int checkIsbn(String strIsbn) {
     	
     	int flag = 0;

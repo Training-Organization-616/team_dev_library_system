@@ -435,14 +435,20 @@ public class CatalogDAO {
     }
     
     //資料の検索
-    public List<SearchResultsBean> findBooks(String title , String code , String author , String publicher ,
-    		String code2 , String authorHead , String volumeNumber) throws DAOException {
+    public List<SearchResultsBean> findBooks(String bookId , String title , String code , String author ,
+    		String publicher , String code2 , String authorHead , String volumeNumber) throws DAOException {
     	
     	// SQL文の作成
         String sql = "SELECT s.book_id , s.isbn , s.title , c.code , c.author , c.publicher ,"
         		+ " c.publication_date , s.arrival_date , s.reservation_amount"
         		+ " FROM stock s JOIN catalog c ON s.title = c.title AND s.author = c.author"
         		+ " WHERE disposal_date IS NULL";
+        
+        //検索時、資料IDが入力されているとき
+        if(bookId != null && bookId.length() != 0) {
+        	
+        	sql += " AND s.book_id = ?";
+        }
         
         //検索時、資料名が入力されているとき
         if(title != null && title.length() != 0) {
@@ -482,6 +488,13 @@ public class CatalogDAO {
 			//プレースホルダに値を設定するための
         	//カウンタ変数
         	int i = 0;
+        	
+        	//検索時、資料IDが入力されているとき
+        	if(bookId != null && bookId.length() != 0) {
+            	
+            	i++;
+            	st.setInt(i, Integer.parseInt(bookId));
+            }
         	
         	//検索時、資料名が入力されているとき
             if(title != null && title.length() != 0) {
@@ -547,7 +560,7 @@ public class CatalogDAO {
 				//検索結果が存在するとき
 				while (rs.next()) {
 					//検索結果のデータを取得
-					int bookId = rs.getInt("book_id");
+					int resultBookId = rs.getInt("book_id");
 					Long resultIsbn = rs.getLong("isbn");
 					String resultTitle = rs.getString("title");
 					int resultCode = rs.getInt("code");
@@ -563,7 +576,7 @@ public class CatalogDAO {
 					}
 
 					SearchResultsBean bean = 
-							new SearchResultsBean(bookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
+							new SearchResultsBean(resultBookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
 									resultPublicher , resultPublicationDate , resultArrivalDate , reservationAmount);
 					list.add(bean);
 				}
