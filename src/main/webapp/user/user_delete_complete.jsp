@@ -28,7 +28,7 @@
 
 	<div class="container">
 		<div>
-			<p>　　　会員情報を削除しました</p>
+			<p class="message">　　　会員情報を削除しました</p>
 			<p>　　　検索画面へ遷移します</p>
 		</div>
 

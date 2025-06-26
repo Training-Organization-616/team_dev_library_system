@@ -84,7 +84,7 @@
 						<th>氏名</th>
 						<th>E-Mail</th>
 						<th>貸出冊数</th>
-						<th>予約中</th>
+						<th>予約</th>
 						<th>変更</th>
 						<th>削除</th>
 					</tr>
