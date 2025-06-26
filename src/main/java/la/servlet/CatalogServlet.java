@@ -599,7 +599,7 @@ public class CatalogServlet extends HttpServlet {
             	//actionの値が「update」の場合
             	//資料を更新する
             	String bookId = request.getParameter("book_id");
-        		String isbn = request.getParameter("isbn");
+        		String isbn = request.getParameter("isbn1");
         		String title = request.getParameter("title");
         		String code = request.getParameter("code");
         		String author = request.getParameter("author");
