@@ -186,6 +186,15 @@ public class CatalogServlet extends HttpServlet {
                 			//資料がなかった場合
                 			//入力内容が正しくないことを伝える
                 			request.setAttribute("message", "正しく資料を入力してください");
+                			request.setAttribute("isbn", isbn);
+                			request.setAttribute("title", title);
+                			request.setAttribute("code", code);
+                			request.setAttribute("author", author);
+                			request.setAttribute("publicher", publicher);
+                			request.setAttribute("publicationDate", strPublicationDate);
+                			request.setAttribute("arrivalDate", strArrivalDate);
+                			gotoPage(request , response , "/catalog/catalog_add.jsp");
+                			return;
                 			
                 		}
             		}
@@ -1019,6 +1028,16 @@ public class CatalogServlet extends HttpServlet {
     	if(volumeNumber.length() > 1) {
     		
     		flag = true;
+    	}
+    	
+    	try {
+    		@SuppressWarnings("unused")
+			int vm = Integer.parseInt(volumeNumber);
+    		
+    	}catch(NumberFormatException e) {
+    		
+    		flag = true;
+    		return flag;
     	}
     	
     	return flag;
