@@ -111,7 +111,8 @@ public class LendServlet extends HttpServlet {
 				StockBean stockBean = dao.getStock(bookId);
 
 				// 資料が存在するか確認
-				if (stockBean == null) {
+				int checkBookId = stockBean.getBookId();
+				if (checkBookId == 0) {
 					request.setAttribute("message", "この資料IDは登録されていません");
 					request.setAttribute("userId", paramUserId);
 					gotoPage(request, response, "/lend/lend_add.jsp");

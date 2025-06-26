@@ -312,7 +312,8 @@ public class LendDAO {
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
 			// プレースホルダーの設定
-			st.setInt(1, bookId);
+			st.setInt(1, reservationAmount);
+			st.setInt(2, bookId);
 			// SQLの実行
 			st.executeUpdate();
 		} catch (SQLException e) {
