@@ -203,6 +203,54 @@ public class UserDAO {
 
 	}
 
+	//完了画面用
+	public UserBean showUser(int userId) throws DAOException {
+		String sql = "SELECT * FROM users WHERE user_id = ?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql)) {
+			st.setInt(1, userId);
+			try (ResultSet rs = st.executeQuery()) {
+
+				if (rs.next()) {
+					int id = rs.getInt("user_id");
+					String name = rs.getString("name");
+					String userAddress = rs.getString("address");
+					String userTel = rs.getString("tel");
+					String userEmail = rs.getString("email");
+					String userBirthday = rs.getString("birthday");
+					if (userBirthday != null) {
+						userBirthday = makeDate(userBirthday);
+					}
+					String userAdmissionDate = rs.getString("admission_date");
+					if (userAdmissionDate != null) {
+						userAdmissionDate = makeDate(userAdmissionDate);
+					}
+					String useUpdateDate = rs.getString("update_date");
+					if (useUpdateDate != null) {
+						useUpdateDate = makeDate(useUpdateDate);
+					}
+					String userCancelDate = rs.getString("cancel_date");
+					if (userCancelDate != null) {
+						userCancelDate = makeDate(userCancelDate);
+					}
+					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday,
+							userAdmissionDate, useUpdateDate, userCancelDate);
+					return bean;
+				}
+				return null;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("データベース接続に失敗しました。");
+		}
+
+	}
+
 	//ユーザーが登録されているかどうか判定
 	public boolean isUserRegistered(String email) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
@@ -268,7 +316,9 @@ public class UserDAO {
 					String userTel = rs.getString("tel");
 					String userEmail = rs.getString("email");
 					String userBirthday = rs.getString("birthday");
+					userBirthday = makeDate(userBirthday);
 					String dateAdmission = rs.getString("admission_date");
+					dateAdmission = makeDate(dateAdmission);
 					UserBean bean = new UserBean(id, name, userAddress, userTel, userEmail, userBirthday,
 							dateAdmission);
 					list.add(bean);
@@ -356,6 +406,24 @@ public class UserDAO {
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
 
+	}
+
+	//年月日のフォーマット
+	public String makeDate(String date) {
+
+		String formatDate = date;
+
+		formatDate = formatDate.replaceFirst("-", "年");
+		formatDate = formatDate.replaceFirst("-", "月");
+
+		if (date.contains("日")) {
+
+			formatDate = formatDate.replace("日", "");
+		}
+
+		formatDate += "日";
+
+		return formatDate;
 	}
 
 }

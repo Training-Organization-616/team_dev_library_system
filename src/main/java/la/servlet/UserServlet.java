@@ -114,8 +114,10 @@ public class UserServlet extends HttpServlet {
 					gotoPage(request, response, "./user/user_add.jsp");
 					return;
 				} else {
+
 					List<UserBean> list = dao.addUser(userName, address, tel, email, birthday, today);
 					request.setAttribute("user", list);
+
 					gotoPage(request, response, "./user/user_add_complete.jsp");
 					return;
 				}
@@ -253,7 +255,9 @@ public class UserServlet extends HttpServlet {
 				}
 
 				dao.updateUser(userId, userName, address, tel, email, birthday, today);
-				UserBean list = dao.findOneUser(userId);
+
+				UserBean list = dao.showUser(userId);
+
 				request.setAttribute("user", list);
 				session.removeAttribute("users");
 				gotoPage(request, response, "./user/user_edit_complete.jsp");
@@ -261,7 +265,7 @@ public class UserServlet extends HttpServlet {
 				//削除確認画面
 				String userIdAttr = request.getParameter("user_id");
 				int userId = safeGetInt(userIdAttr);
-				UserBean list = dao.findOneUser(userId);
+				UserBean list = dao.showUser(userId);
 				request.setAttribute("user", list);
 				gotoPage(request, response, "./user/user_delete.jsp");
 
@@ -288,7 +292,7 @@ public class UserServlet extends HttpServlet {
 				}
 
 				dao.deleteUser(userId, today);
-				UserBean list = dao.findOneUser(userId);
+				UserBean list = dao.showUser(userId);
 				request.setAttribute("user", list);
 				session.removeAttribute("users");
 				gotoPage(request, response, "./user/user_delete_complete.jsp");
