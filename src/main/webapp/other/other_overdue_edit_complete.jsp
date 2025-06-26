@@ -29,6 +29,7 @@
 	<div class="container">
 		<div>
 			<p>　　　編集完了しました</p>
+			<p>　　　延滞者一覧画面へ遷移します</p>
 		</div>
 
 		<div>

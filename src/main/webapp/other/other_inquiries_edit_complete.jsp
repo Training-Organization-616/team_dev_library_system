@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>図書管理システム</title>
 	<link href="/team_dev_library_system/style.css" rel="stylesheet">
+	<meta http-equiv="refresh" content="5;url=/team_dev_library_system/other/other_inquiries_top.jsp">
 </head>
 
 <body>
