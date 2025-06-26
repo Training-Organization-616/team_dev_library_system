@@ -235,6 +235,7 @@ public class CatalogServlet extends HttpServlet {
             		request.setAttribute("isbn", isbn);
             		request.setAttribute("title", title);
         			request.setAttribute("author", author);
+        			request.setAttribute("publicher", publicher);
         			request.setAttribute("publicationDate", strPublicationDate);
         			request.setAttribute("arrivalDate", strArrivalDate);
             		gotoPage(request , response , "/catalog/catalog_add.jsp");
@@ -616,12 +617,26 @@ public class CatalogServlet extends HttpServlet {
                 		if(flagIsbn == 2) {
                 			//数字以外が入力されたとき
                 			request.setAttribute("message", "ISBN番号は数字で入力してください");
+                			request.setAttribute("bookId", bookId);
+                    		request.setAttribute("title", title);
+                    		request.setAttribute("code", code);
+                			request.setAttribute("author", author);
+                			request.setAttribute("publicher", publicher);
+                			request.setAttribute("publicationDate", strPublicationDate);
+                			request.setAttribute("arrivalDate", strArrivalDate);
                 			gotoPage(request , response , "/catalog/catalog_edit.jsp");
                     		return;
                     		
                 		}else if(flagIsbn == 1) {
                 			//桁数が多すぎるとき
                 			request.setAttribute("message", "ISBN番号は13桁以内で入力してください");
+                			request.setAttribute("bookId", bookId);
+                    		request.setAttribute("title", title);
+                    		request.setAttribute("code", code);
+                			request.setAttribute("author", author);
+                			request.setAttribute("publicher", publicher);
+                			request.setAttribute("publicationDate", strPublicationDate);
+                			request.setAttribute("arrivalDate", strArrivalDate);
                 			return;
                 		}
             		}
@@ -632,6 +647,13 @@ public class CatalogServlet extends HttpServlet {
             		if(flagTitle) {
             			//入力が正しくない場合
             			request.setAttribute("message", "資料名は50文字以内で入力してください");
+            			request.setAttribute("bookId", bookId);
+            			request.setAttribute("isbn", isbn);
+            			request.setAttribute("code", code);
+            			request.setAttribute("author", author);
+            			request.setAttribute("publicher", publicher);
+            			request.setAttribute("publicationDate", strPublicationDate);
+            			request.setAttribute("arrivalDate", strArrivalDate);
                 		gotoPage(request , response , "/catalog/catalog_edit.jsp");
                 		return;
             		}
@@ -642,6 +664,13 @@ public class CatalogServlet extends HttpServlet {
             		if(flagAuthor) {
             			//入力が正しくない場合
             			request.setAttribute("message", "著者は50文字以内で入力してください");
+            			request.setAttribute("bookId", bookId);
+            			request.setAttribute("isbn", isbn);
+            			request.setAttribute("code", code);
+            			request.setAttribute("title", title);
+            			request.setAttribute("publicher", publicher);
+            			request.setAttribute("publicationDate", strPublicationDate);
+            			request.setAttribute("arrivalDate", strArrivalDate);
                 		gotoPage(request , response , "/catalog/catalog_edit.jsp");
                 		return;
             		}
@@ -652,6 +681,13 @@ public class CatalogServlet extends HttpServlet {
             		if(flagPublicher) {
             			//入力が正しくない場合
             			request.setAttribute("message", "出版社は100文字以内で入力してください");
+            			request.setAttribute("bookId", bookId);
+            			request.setAttribute("isbn", isbn);
+            			request.setAttribute("code", code);
+            			request.setAttribute("title", title);
+            			request.setAttribute("author", author);
+            			request.setAttribute("publicationDate", strPublicationDate);
+            			request.setAttribute("arrivalDate", strArrivalDate);
                 		gotoPage(request , response , "/catalog/catalog_edit.jsp");
                 		return;
             		}
@@ -700,6 +736,13 @@ public class CatalogServlet extends HttpServlet {
         			//資料を変更するときに
             		//必要事項が入力されていないとき
             		request.setAttribute("message", "ISBN番号以外は入力必須です");
+            		request.setAttribute("isbn", isbn);
+            		request.setAttribute("title", title);
+            		request.setAttribute("code", code);
+        			request.setAttribute("author", author);
+        			request.setAttribute("publicher", publicher);
+        			request.setAttribute("publicationDate", strPublicationDate);
+        			request.setAttribute("arrivalDate", strArrivalDate);
             		gotoPage(request , response , "/catalog/catalog_edit.jsp");
         		}
             	
