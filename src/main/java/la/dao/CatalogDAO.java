@@ -404,6 +404,10 @@ public class CatalogDAO {
         		String resultPublicationDate = rs.getString("publication_date");
         		String resultArrivalDate = rs.getString("arrival_date");
         		
+        		//表示用フォーマット
+        		resultPublicationDate = makeDate(resultPublicationDate);
+        		resultArrivalDate = makeDate(resultArrivalDate);
+        		
         		AddResultBean bean = new AddResultBean
         				(resultBookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
         						resultPublicher , resultPublicationDate , resultArrivalDate);
@@ -420,6 +424,10 @@ public class CatalogDAO {
         		String resultPublicher = rs.getString("publicher");
         		String resultPublicationDate = rs.getString("publication_date");
         		String resultArrivalDate = rs.getString("arrival_date");
+        		
+        		//表示用フォーマット
+        		resultPublicationDate = makeDate(resultPublicationDate);
+        		resultArrivalDate = makeDate(resultArrivalDate);
         		
         		AddResultBean bean = new AddResultBean
         				(resultBookId , resultTitle , resultCode , resultAuthor ,
@@ -574,6 +582,10 @@ public class CatalogDAO {
 						
 						return null;
 					}
+					
+					//表示用フォーマット
+	        		resultPublicationDate = makeDate(resultPublicationDate);
+	        		resultArrivalDate = makeDate(resultArrivalDate);
 
 					SearchResultsBean bean = 
 							new SearchResultsBean(resultBookId , resultIsbn , resultTitle , resultCode , resultAuthor ,
@@ -817,7 +829,6 @@ public class CatalogDAO {
 		}
 	}
 	
-	
 	//catalogのstock_amount分割するメソッド
 	public String makeStockAmount(int bookId , String oldStockAmount) {
 		
@@ -834,5 +845,23 @@ public class CatalogDAO {
 		}
 		
 		return newStockAmount;
+	}
+	
+	//年月日のフォーマット
+	public String makeDate(String date) {
+		
+		String formatDate = date;
+		
+		formatDate = formatDate.replaceFirst("-", "年");
+		formatDate = formatDate.replaceFirst("-", "月");
+		
+		if(date.contains("日")) {
+			
+			formatDate = formatDate.replace("日", "");
+		}
+		
+		formatDate += "日";
+		
+		return formatDate;
 	}
 }

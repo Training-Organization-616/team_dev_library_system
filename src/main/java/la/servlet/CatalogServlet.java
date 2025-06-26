@@ -571,6 +571,10 @@ public class CatalogServlet extends HttpServlet {
         		String publicationDate = request.getParameter("publication_date");
         		String arrivalDate = request.getParameter("arrival_date");
         		
+        		//表示用からシステム用に
+        		publicationDate = makeDate(publicationDate);
+        		arrivalDate = makeDate(arrivalDate);
+        		
         		//資料変更画面に渡す値をbeanに保存
         		SearchResultsBean bean = new SearchResultsBean
         				(Integer.parseInt(bookId) , Long.parseLong(isbn) , title,
@@ -673,6 +677,10 @@ public class CatalogServlet extends HttpServlet {
                 		dao.updateCatalog(id , isbn , title ,
                 				code , author , publicher , publicationDate , arrivalDate);
             		}
+            		
+            		//年月日表示用に
+            		strPublicationDate = dao.makeDate(strPublicationDate);
+            		strArrivalDate = dao.makeDate(strArrivalDate);
             		
             		//資料変更完了画面に渡す値をbeanに保存
             		SearchResultsBean bean = new SearchResultsBean
@@ -794,6 +802,10 @@ public class CatalogServlet extends HttpServlet {
         				Long.parseLong(isbn) , title , Integer.parseInt(code) ,
         				author , publicher , publicationDate , arrivalDate);
         		
+        		//年月日表示用
+        		CatalogDAO dao = new CatalogDAO();
+        		disposalDate = dao.makeDate(disposalDate);
+        		
         		//リクエストスコープで送る
         		request.setAttribute("book", bean);
         		request.setAttribute("disposalDate", disposalDate);
@@ -822,6 +834,9 @@ public class CatalogServlet extends HttpServlet {
         		CatalogDAO dao = new CatalogDAO();
         		
         		dao.deleteCatalog(Integer.parseInt(bookId) , disposalDate , memo);
+        		
+        		//年月日表示用
+        		strDisposalDate = dao.makeDate(strDisposalDate);
         		
         		//結果出力用
         		EditResultBean bean = new EditResultBean
@@ -966,8 +981,26 @@ public class CatalogServlet extends HttpServlet {
     	return flag;
     }
 
+    //年月日表示用から-区切りに戻しメソッド
+    public String makeDate(String strDate) {
+    	
+    	strDate = strDate.replace("年", "-");
+		strDate = strDate.replace("月", "-");
+		strDate = strDate.replace("日", "");
+		
+		return strDate;
+    }
+    
+    
     //Stringの日付をsql.dateに変換するメソッド
     public Date setDate(String strDate) {
+    	
+    	if(strDate.contains("年")) {
+    		
+    		strDate = strDate.replace("年", "-");
+    		strDate = strDate.replace("月", "-");
+    		strDate = strDate.replace("日", "");
+    	}
     	
     	Date date = Date.valueOf(strDate);
     	
