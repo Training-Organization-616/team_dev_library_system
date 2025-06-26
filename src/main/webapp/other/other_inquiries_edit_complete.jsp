@@ -28,6 +28,7 @@
 	<div class="container">
 		<div>
 			<p>　　　編集完了しました</p>
+			<p>　　　お問い合わせ一覧画面へ遷移します</p>
 		</div>
 
 		<div>

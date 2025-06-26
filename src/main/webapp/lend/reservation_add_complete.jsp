@@ -39,8 +39,9 @@
 			</ul>
 		</div>
 		<br>
-		<div class="message_lend">				
-			<div class="message">${reservationAmount}</div>件目の予約です。
+		<div class="message_num_lend">				
+			<div class="message">${reservationAmount}</div>
+			<div class="message_num">件目の予約です。</div>
 		</div>
 	</div>
 

@@ -43,7 +43,6 @@
 				<li>備考：${memo}</li>
 			</ul>
 		</div>
-		<br>
 		<div>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="delete"> <input

@@ -39,7 +39,7 @@
 			</ul>
 		</div>
 		
-		<div class="message_lend">${message}</div>
+		<div class="message_lend_red">${message}</div>
 		<br>
 		<div class="transfar_link">
 			<form action="/team_dev_library_system/lend/return_add.jsp" method="post">

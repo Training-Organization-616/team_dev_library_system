@@ -129,9 +129,7 @@
    				<br>	
 				<button class="general_button edit_button">削除</button>
 			</form>
-			
 		</div>	
-
 		<div>
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="return_search">

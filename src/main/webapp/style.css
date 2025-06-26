@@ -140,7 +140,7 @@ img {
 
 /*--------------pタグ------------------*/
 p {
-	margin-left: 30px;
+	margin-left: 20px;
 }
 
 /*----------------pタグ----------------*/
@@ -153,17 +153,19 @@ button {
 	cursor: pointer;
 }
 
+.top{
+	position:relative;
+	place-items: center; /* 水平・垂直方向の中央揃え */
+}
+
 
 .top_container {
-	margin-bottom: 100px;
+	position:absolute;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	max-width: 1300px;
 	/* コンテナ幅を制限して広がりすぎないようにする */
-	margin: 100px auto;
-	/* 中央寄せ */
-
 }
 
 
@@ -321,7 +323,7 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	margin:0.5em;
+	margin: 0.5em;
 }
 
 
@@ -441,6 +443,18 @@ button {
 	text-align: center;
 }
 
+/**/
+.message_num_lend{
+	display:flex;
+	justify-content: center;
+}
+
+/*中央寄せ赤文字*/
+.message_lend_red{
+	color: red;
+	text-align: center;
+}
+
 /*------------メッセージ------------*/
 
 
@@ -468,14 +482,20 @@ input {
 
 /*--------------inout---------------*/
 
-
+select {
+	margin-bottom: 0.1em;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding: 5px;
+}
 
 /*-------------textarea---------------*/
 textarea {
 	width: 500px;
 	height: 100px;
-	margin-bottom: 0.8em;
-	margin-left: 1em;
+	margin-top:0.5em;
+	margin-bottom: 0.2em;
+	margin-left: 1.5em;
 	margin-right: 1em;
 	padding: 5px;
 
@@ -506,6 +526,7 @@ th,
 td {
 	border: 2px dashed white;
 	/* 点線 */
+	white-space: nowrap;
 }
 
 .input_table {
@@ -516,11 +537,11 @@ td {
 	/* 垂直方向の中央揃え */
 }
 
-.input_search_table_reservation tr:nth-of-type(4){
+.input_search_table_reservation tr:nth-of-type(4) {
 	text-align: center;
 }
 
-.input_search_table_catalog tr:nth-of-type(7){
+.input_search_table_catalog tr:nth-of-type(7) {
 	text-align: center;
 }
 
@@ -533,7 +554,7 @@ td {
 }
 
 .search_result_table_catalog {
-	width: 1200px;
+	width: 1400px;
 	height: 100px;
 	background-color: #Ffe8d6;
 	color: #6b422b;
