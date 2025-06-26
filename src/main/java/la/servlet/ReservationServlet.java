@@ -153,10 +153,14 @@ public class ReservationServlet extends HttpServlet {
 				// ここから予約処理
 
 				// 予約テーブルに登録する貸出状況を設定
-				int alreadyLent = 0;
+				int alreadyLent = 0; // 0なら返却待ち、1なら資料確保、2なら対応終了
 
-				// 資料が在庫有りの場合、（資料確保）に変更。貸出中の場合は0（返却待ち）のまま
-				if (stock == 1) {
+				// 資料が在庫有りで、予約もない場合、（資料確保）に変更。
+				// 在庫無し（貸出中）の場合や、在庫はあるが既に予約もある場合は、在庫0（返却待ち）のまま
+
+				int reservation = stockBean.getReservation();
+
+				if (stock == 1 && reservation == 0) {
 					alreadyLent = 1;
 				}
 
@@ -261,7 +265,12 @@ public class ReservationServlet extends HttpServlet {
 
 				// パラメータの取得
 				int reservationId = Integer.parseInt(request.getParameter("reservation_id"));
+
 				String reservationDate = request.getParameter("reservation_date");
+				reservationDate = reservationDate.replaceFirst("-", "年");
+				reservationDate = reservationDate.replaceFirst("-", "月");
+				reservationDate = reservationDate + "日";
+
 				int userId = Integer.parseInt(request.getParameter("userId"));
 				String name = request.getParameter("name");
 				String tel = request.getParameter("tel");

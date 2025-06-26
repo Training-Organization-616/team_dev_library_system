@@ -92,7 +92,7 @@
 					    <td>${reserve.title}</td>
 					    <td>
 						    <c:if test="${reserve.alreadyLent==0}">
-								貸出中
+								返却待ち
 							</c:if>
 							<c:if test="${reserve.alreadyLent==1}">
 								資料確保
