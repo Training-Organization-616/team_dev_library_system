@@ -20,7 +20,7 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/library_icon.png">
 		</div>
 		<div class="menu_name">新規予約</div>
 	</div>

@@ -22,7 +22,7 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/library_icon.png">
 			
 		</div>
 		<div class="menu_name">返却</div>
@@ -59,7 +59,8 @@
 				    		<input class="input_form" type="text" size="40" name="book_id" value="${bookId}">
 				    	</td>
 				    </tr>
-				</table>				
+				</table>
+				<br>
 				<button class="general_button">返却</button>
 			</form>
 		</div>	

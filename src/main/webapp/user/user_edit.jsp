@@ -20,14 +20,14 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/user_icon.png">
 		</div>
-		<div class="menu_name">会員情報変更</div>
+		<div class="menu_name">会員情報編集</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>　　　変更項目を入力してください</p>
+			<p>　　　編集する項目を入力してください</p>
 		</div>
 
 		<div class="message">　　　　${message}</div>
@@ -75,7 +75,8 @@
 						</td>
 					</tr>
 				</table>
-				<button class="general_button edit_button">変更</button>
+				<br>
+				<button class="general_button edit_button">編集</button>
 			</form>
 		</div>
 

@@ -20,10 +20,11 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/book_icon.png">
 		</div>
 		<div class="menu_name">資料削除</div>
 	</div>
+	<br>
 	<br>
 	<div class="container">
 		<div class="message">　　　以下の資料の情報を削除しますか？</div>

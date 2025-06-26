@@ -20,14 +20,14 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/other_icon.png">
 		</div>
 		<div class="menu_name">お問い合わせ登録</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>必要事項に入力してください</p>
+			<p>　　　必要事項に入力してください</p>
 		</div>
 
 		<div class="message">${message}</div>
@@ -71,6 +71,7 @@
 						<td><textarea name = "memo">${memo}</textarea></td>
 					</tr>
 				</table>
+				<br>
 				<button class="general_button">登録</button>
 			</form>
 		</div>

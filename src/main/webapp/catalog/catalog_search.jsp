@@ -21,7 +21,7 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/book_icon.png">
 		</div>
 		<div class="menu_name">資料検索</div>
 	</div>
@@ -34,7 +34,7 @@
 		<div class="input_table">
 			<form action="/team_dev_library_system/CatalogServlet" method="post">
 				<input type="hidden" name="action" value="search">
-				<table>
+				<table class="input_search_table_catalog">
 					<tr>
 				    	<th>資料ID</th>
 				    	<td>

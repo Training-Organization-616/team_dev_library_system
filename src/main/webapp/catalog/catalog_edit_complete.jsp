@@ -21,14 +21,14 @@
 
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/book_icon.png">
 		</div>
-		<div class="menu_name">資料情報変更</div>
+		<div class="menu_name">資料情報編集</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>　　　資料の情報を変更しました</p>
+			<p>　　　資料の情報を編集しました</p>
 			<p>　　　検索画面へ遷移します</p>
 		</div>
 
@@ -45,7 +45,7 @@
 			</ul>
 		</div>
 		<br>
-		<div class="transfar_link">				
+		<div class="transfar_link_top">				
 			<form action="/team_dev_library_system/catalog/catalog_search.jsp" method="post">
  				<button>自動で遷移しない場合はこちらをクリック</button>
 				<input type="hidden" name="action" value="">

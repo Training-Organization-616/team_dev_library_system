@@ -7,7 +7,7 @@ body {
 	background-color: white;
 }
 
-/*----------------header-----------------*/
+/*--------------header----------------*/
 
 /*headerの背景*/
 .top_link {
@@ -26,11 +26,11 @@ body {
 	font-size: 50px;
 }
 
-/*----------------header-----------------*/
+/*----------------header--------------*/
 
 
 
-/*----------------footer-----------------*/
+/*----------------footer--------------*/
 
 /*フッター背景色*/
 html {
@@ -50,7 +50,7 @@ body {
 	top: 100vh;
 }
 
-/*----------------footer-----------------*/
+/*---------------footer----------------*/
 
 
 
@@ -71,7 +71,7 @@ body {
 /*menu背景*/
 .menu_container {
 	width: 75%;
-	height: 1000px;
+	height: 10000px;
 	background-color: #Cb997e;
 	color: white;
 	font-size: 25px;
@@ -138,15 +138,15 @@ img {
 /*----------------menu-----------------*/
 
 
-/*--------------pタグ----------------*/
+/*--------------pタグ------------------*/
 p {
 	margin-left: 30px;
 }
 
-/*--------------pタグ----------------*/
+/*----------------pタグ----------------*/
 
 
-/*-------------ボタン-------------*/
+/*----------------ボタン---------------*/
 
 button {
 	/*カーソルが指さしの手になる*/
@@ -520,6 +520,10 @@ td {
 	text-align: center;
 }
 
+.input_search_table_catalog tr:nth-of-type(7){
+	text-align: center;
+}
+
 .search_result_table_container {
 	display: flex;
 	justify-content: space-around;
@@ -598,7 +602,7 @@ caption {
 /*返却・貸出リスト*/
 
 .ul_container {
-	width: 800px;
+	width: 1000px;
 	/* 親要素の幅 */
 	height: 700px;
 	/* 親要素の高さ */

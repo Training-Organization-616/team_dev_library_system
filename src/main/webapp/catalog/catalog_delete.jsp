@@ -21,7 +21,7 @@
 	
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/book_icon.png">
 		</div>
 		<div class="menu_name">資料削除</div>
 	</div>
@@ -125,7 +125,8 @@
    				<input type="hidden" name="author" value="${book.author}">
    				<input type="hidden" name="publicher" value="${book.publicher}">
    				<input type="hidden" name="publication_date" value="${book.publicationDate}">
-   				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">		
+   				<input type="hidden" name="arrival_date" value="${book.arrivalDate}">	
+   				<br>	
 				<button class="general_button edit_button">削除</button>
 			</form>
 			

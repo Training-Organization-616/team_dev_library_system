@@ -21,15 +21,15 @@
 	</div>
 	<div class="holder">
 		<div class="menu_image">
-			<img src="/team_dev_library_system/image/menu_icon.png">
+			<img src="/team_dev_library_system/image/user_icon.png">
 
 		</div>
-		<div class="menu_name">会員情報変更</div>
+		<div class="menu_name">会員情報編集</div>
 	</div>
 
 	<div class="container">
 		<div>
-			<p>　　　会員情報を変更しました</p>
+			<p>　　　会員情報を編集しました</p>
 			<p>　　　検索画面へ遷移します</p>
 		</div>
 
