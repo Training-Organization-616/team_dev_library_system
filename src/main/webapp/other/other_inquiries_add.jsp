@@ -27,7 +27,7 @@
 
 	<div class="container">
 		<div>
-			<p>　　　必要事項に入力してください</p>
+			<p>　　　必要事項を入力してください</p>
 		</div>
 
 		<div class="message">${message}</div>
