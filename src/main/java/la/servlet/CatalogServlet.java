@@ -548,6 +548,8 @@ public class CatalogServlet extends HttpServlet {
             	
             	if(list == null) {
             		//検索結果が存在しなかった場合
+            		session.removeAttribute("books");
+            		
             		request.setAttribute("message", "検索結果がありません");
             		gotoPage(request , response , "/catalog/catalog_search.jsp");
             		
@@ -764,7 +766,7 @@ public class CatalogServlet extends HttpServlet {
             		request.setAttribute("book", bean);
             		
         			request.setAttribute("message", "この資料は貸出中です");
-        			gotoPage(request , response , "/catalog/catalog_delete_confirm.jsp");
+        			gotoPage(request , response , "/catalog/catalog_delete.jsp");
         			return;
         		}
         		
@@ -782,7 +784,7 @@ public class CatalogServlet extends HttpServlet {
             		request.setAttribute("book", bean);
             		
         			request.setAttribute("message", "この資料は予約されています");
-        			gotoPage(request , response , "/catalog/catalog_delete_confirm.jsp");
+        			gotoPage(request , response , "/catalog/catalog_delete.jsp");
         			return;
         		}
         		
