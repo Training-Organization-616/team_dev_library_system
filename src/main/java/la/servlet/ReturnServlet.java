@@ -123,9 +123,11 @@ public class ReturnServlet extends HttpServlet {
 						String title = bean.getTitle();
 						request.setAttribute("title", title);
 
-						// 予約件数を取得
-						int reservationAmount = bean.getReservationAmount();
-						request.setAttribute("reservationAmount", reservationAmount);
+						// 予約有無を取得
+						int reservation = bean.getReservation();
+						if (reservation == 1) {
+							request.setAttribute("message", "この資料は予約されています");
+						}
 
 						gotoPage(request, response, "/lend/return_complete.jsp");
 

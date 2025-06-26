@@ -40,7 +40,7 @@
 		</div>
 		
 		<div class="message_lend">${message}</div>
-
+		<br>
 		<div class="transfar_link">
 			<form action="/team_dev_library_system/lend/return_add.jsp" method="post">
  				<button>続けて返却</button>

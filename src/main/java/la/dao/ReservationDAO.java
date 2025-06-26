@@ -96,7 +96,7 @@ public class ReservationDAO {
 
 		// lend_idを返す
 		// SQL文の作成
-		sql = "SELECT * FROM reservation ORDER BY lend_id DESC LIMIT 1";
+		sql = "SELECT * FROM reservation ORDER BY reservation_id DESC LIMIT 1";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
