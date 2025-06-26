@@ -72,7 +72,7 @@
 					</tr>
 				</table>
 				<br>
-				<button class="general_button">登録</button>
+				<button class="general_button_add">登録</button>
 			</form>
 		</div>
 
