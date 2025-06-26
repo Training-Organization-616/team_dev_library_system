@@ -84,13 +84,13 @@ public class UserDAO {
 					String userBirthday = rs.getString("birthday");
 
 					//ユーザが借りている本のIDを取得
-					int lendBooks = findLendBooks(id);
+					String lendIds = findLendBooks(id);
 
 					//ユーザが予約している本のIDを取得
 					String reservationBooks = findReservationBooks(id);
 
 					UserBean bean = new UserBean(id, name, userAddress, userTel,
-							userEmail, userBirthday, lendBooks, reservationBooks);
+							userEmail, userBirthday, lendIds, reservationBooks);
 					list.add(bean);
 				}
 				return list.isEmpty() ? Collections.emptyList() : list;//ヒットしなければ空のlistを送信
@@ -106,10 +106,11 @@ public class UserDAO {
 	}
 
 	//ユーザーが借りている本のidを検索
-	public int findLendBooks(int userId)
+	public String findLendBooks(int userId)
 			throws DAOException {
 
-		String sql = "SELECT book_id FROM lend WHERE user_id = ? AND return_date IS NULL";
+		String sql = "SELECT lend_id FROM lend WHERE user_id = ? AND return_date IS NULL"
+				+ " ORDER BY lend_id";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql)) {
@@ -118,13 +119,18 @@ public class UserDAO {
 
 			try (ResultSet rs = st.executeQuery()) {
 
-				int lendBooks = 0;
+				String lendIds = "";
 
 				while (rs.next()) {
 
-					lendBooks++;
+					lendIds += ",";
+					lendIds += rs.getInt("lend_id");
 				}
-				return lendBooks;
+				
+				lendIds = lendIds.replaceFirst(",", "");
+				
+				return lendIds;
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
@@ -136,7 +142,7 @@ public class UserDAO {
 		}
 	}
 
-	//ユーザーが借りている本のidを検索
+	//ユーザーの予約有無確認
 	public String findReservationBooks(int userId) throws DAOException {
 
 		String sql = "SELECT book_id FROM reservation"

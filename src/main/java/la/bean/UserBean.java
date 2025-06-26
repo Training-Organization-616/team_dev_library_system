@@ -10,7 +10,7 @@ public class UserBean {
 	private String admissionDate;
 	private String updateDate;
 	private String cancelDate;
-	private int lendBooks;
+	private String lendBooks;
 	private String reservationBooks;
 
 	public UserBean() {
@@ -55,7 +55,7 @@ public class UserBean {
 	
 	//検索結果
 		public UserBean(int userId, String userName, String address, String tel, String email, String birthday,
-				int lendBooks , String reservationBooks) {
+				String lendBooks , String reservationBooks) {
 			this.userId = userId;
 			this.userName = userName;
 			this.address = address;
@@ -69,11 +69,11 @@ public class UserBean {
 
 	//ゲッターセッター
 
-	public int getLendBooks() {
+	public String getLendBooks() {
 		return lendBooks;
 	}
 
-	public void setLendBooks(int lendBooks) {
+	public void setLendBooks(String lendBooks) {
 		this.lendBooks = lendBooks;
 	}
 
