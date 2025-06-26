@@ -570,11 +570,6 @@ public class CatalogDAO {
 					String resultArrivalDate = rs.getString("arrival_date");
 					String reservationAmount = rs.getString("reservation_amount");
 					
-					if(resultIsbn == 0) {
-						
-						resultIsbn = null;
-					}
-					
 					if(resultTitle == null || resultTitle.length() == 0) {
 						
 						return null;

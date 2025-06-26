@@ -708,6 +708,7 @@ public class CatalogServlet extends HttpServlet {
         		String publicationDate = request.getParameter("publication_date");
         		String arrivalDate = request.getParameter("arrival_date");
         		
+        		
         		//資料変更画面に渡す値をbeanに保存
         		SearchResultsBean bean = new SearchResultsBean(Integer.parseInt(bookId) ,
         				Long.parseLong(isbn) , title , Integer.parseInt(code) ,
