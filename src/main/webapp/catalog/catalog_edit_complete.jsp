@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -35,9 +35,21 @@
 		<div>
 			<ul>
 				<li>資料ID：${book.bookId}</li>
-				<li>ISBN番号：${book.isbn}</li>
+				<li>ISBN番号：<c:if test = "${book.isbn != 0}">${book.isbn}</c:if></li>
 				<li>資料名：${book.title}</li>
-				<li>分類コード：${book.code}</li>
+				<li>
+					分類コード：
+					<c:if test = "${book.code == 0 }">総記</c:if>
+					<c:if test = "${book.code == 1 }">哲学</c:if>
+					<c:if test = "${book.code == 2 }">歴史</c:if>
+					<c:if test = "${book.code == 3 }">社会科学</c:if>
+					<c:if test = "${book.code == 4 }">自然科学</c:if>
+					<c:if test = "${book.code == 5 }">技術</c:if>
+					<c:if test = "${book.code == 6 }">産業</c:if>
+					<c:if test = "${book.code == 7 }">芸術</c:if>
+					<c:if test = "${book.code == 8 }">言語</c:if>
+					<c:if test = "${book.code == 9 }">文学</c:if>
+				</li>
 				<li>著者：${book.author}</li>
 				<li>出版社：${book.publicher}</li>
 				<li>出版日：${book.publicationDate}</li>

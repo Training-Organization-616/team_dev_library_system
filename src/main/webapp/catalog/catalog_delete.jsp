@@ -49,7 +49,7 @@
 				    	<th>ISBN番号</th>
 				    	<td>
 				    		<span>&nbsp</span>
-				    		${book.isbn}
+				    		<c:if test = "${book.isbn != 0}">${book.isbn}</c:if>
 				    	</td>
 				    </tr>
 				    <tr>

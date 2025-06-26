@@ -123,7 +123,9 @@
 					<c:forEach items="${books}" var="book">
 					    <tr>
 					    	<td>${book.bookId}</td>
-					    	<td>${book.isbn}</td>
+					    	<td>
+					    		<c:if test = "${book.isbn != 0}">${book.isbn }</c:if>
+					    	</td>
 					    	<td>${book.title}</td>
 					    	<td>${book.author}</td>
 					    	<td>${book.publicher}</td>

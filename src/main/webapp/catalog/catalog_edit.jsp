@@ -45,7 +45,8 @@
 					<tr>
 				    	<th>ISBN番号</th>
 				    	<td>
-				    		<input class="input_form" type="text" size="40" name="isbn" value="${book.isbn}">
+				    		<input class="input_form" type="text" size="40" name="isbn1" <c:if test = "${book.isbn != 0 }">value="${book.isbn}"</c:if>>
+				    		<input type = "hidden" name = "isbn" value = "${book.isbn }">
 				    	</td>
 				    </tr>
 				    <tr>
