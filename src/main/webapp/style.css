@@ -161,10 +161,11 @@ button {
 
 .top_container {
 	position:absolute;
+	transform: translate(15%, 50%);
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
-	max-width: 1300px;
+	justify-content:space-between;
+	max-width: 2000px;
 	/* コンテナ幅を制限して広がりすぎないようにする */
 }
 
@@ -181,7 +182,8 @@ button {
 	border: none;
 	width: 270px;
 	height: 200px;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
+	margin-right:20px;
 }
 
 
@@ -222,10 +224,25 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	display: flex;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
+	margin-bottom: 0.1em;
 }
 
+.general_button_add {
+	/*背景色*/
+	background-color: #Ffe8d6;
+	/*文字の色*/
+	color: #6b422b;
+	/*枠線なし*/
+	border: none;
+	width: 230px;
+	height: 55px;
+	/*ボタン丸くする*/
+	border-radius: 100px;
+	font-size: 25px;
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
+	margin-bottom: 0.5em;
+}
 
 /*戻るボタン　右寄せ*/
 .return_button {
@@ -241,7 +258,18 @@ button {
 	border-radius: 100px;
 	font-size: 25px;
 	display: flex;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+
+.general_button_add,
+.return_button {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	max-width: 1000px;
+	margin: 11px auto;
 }
 
 
@@ -275,7 +303,7 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 /*テーブル内の変更・削除ボタン*/
@@ -307,7 +335,7 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 /*検索ボタン*/
@@ -362,7 +390,7 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 /*自動遷移しないときのボタン*/
@@ -374,7 +402,7 @@ button {
 	/* 中央寄せ */
 	/*ボタン丸くする*/
 	border-radius: 100px;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .transfar_link_top button {
@@ -389,7 +417,7 @@ button {
 	/*ボタン丸くする*/
 	border-radius: 100px;
 	font-size: 25px;
-	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 /*詳細ボタン*/
