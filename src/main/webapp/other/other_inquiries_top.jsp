@@ -80,7 +80,7 @@
 		<br>
 		<div>	
 			<form action="/team_dev_library_system/other/other_inquiries_add.jsp" method="post">
-				<button class="general_button">登録</button>
+				<button class="general_button_add">登録</button>
 			</form>
 		</div>
 		<div>
