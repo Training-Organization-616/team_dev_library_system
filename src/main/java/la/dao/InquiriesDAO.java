@@ -71,6 +71,9 @@ public class InquiriesDAO {
 					String contents = rs.getString("contents");
 					int handling = rs.getInt("handling");
 					String memo = rs.getString("memo");
+					
+					//年月日表示用
+					receptionDate = makeDate(receptionDate);
 
 					InquiriesBean bean = 
 							new InquiriesBean(inquiriesId , receptionDate , title ,
@@ -187,4 +190,22 @@ public class InquiriesDAO {
 			
 		}	
 	}
+	
+	//年月日のフォーマット
+		public String makeDate(String date) {
+			
+			String formatDate = date;
+			
+			formatDate = formatDate.replaceFirst("-", "年");
+			formatDate = formatDate.replaceFirst("-", "月");
+			
+			if(date.contains("日")) {
+				
+				formatDate = formatDate.replace("日", "");
+			}
+			
+			formatDate += "日";
+			
+			return formatDate;
+		}
 }

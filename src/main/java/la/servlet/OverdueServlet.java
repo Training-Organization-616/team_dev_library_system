@@ -93,6 +93,8 @@ public class OverdueServlet extends HttpServlet {
             	String secondReminder = request.getParameter("second_reminder");
             	String memo = request.getParameter("memo");
             	
+            	//年月日システム用
+            	strDueDate = makeDate(strDueDate);
             	
             	//現在の日付と返却期限を計算する
             	
@@ -104,6 +106,10 @@ public class OverdueServlet extends HttpServlet {
             	
             	//日にちの差を取得
             	long daysBetween = ChronoUnit.DAYS.between(dueDate , dateNow);
+            	
+            	//年月日表示用
+            	OverdueDAO dao = new OverdueDAO();
+            	strDueDate = dao.makeDate(strDueDate);
             	
             	//延滞者更新完了画面に渡す値をbeanに保存
         		OverdueBean bean = new OverdueBean
@@ -162,6 +168,9 @@ public class OverdueServlet extends HttpServlet {
         		session10days.setAttribute("overdue10days", list10days);
         		session30days.setAttribute("overdue30days", list30days);
         		
+        		//年月日システム用
+        		strDueDate = makeDate(strDueDate);
+        		
         		//現在の日付と返却期限を計算する
             	
             	//現在の日付を取得
@@ -172,6 +181,9 @@ public class OverdueServlet extends HttpServlet {
             	
             	//日にちの差を取得
             	long daysBetween = ChronoUnit.DAYS.between(dueDate , dateNow);
+            	
+            	//年月日表示用
+            	strDueDate = dao.makeDate(strDueDate);
             	
             	//延滞者更新完了画面に渡す値をbeanに保存
         		OverdueBean bean = new OverdueBean
@@ -227,9 +239,26 @@ public class OverdueServlet extends HttpServlet {
     	
     	return flag;
     }
+    
+  //年月日表示用から-区切りに戻しメソッド
+    public String makeDate(String strDate) {
+    	
+    	strDate = strDate.replace("年", "-");
+		strDate = strDate.replace("月", "-");
+		strDate = strDate.replace("日", "");
+		
+		return strDate;
+    }
 
     //Stringの日付をsql.dateに変換するメソッド
     public Date setDate(String strDate) {
+    	
+    	if(strDate.contains("年")) {
+    		
+    		strDate = strDate.replace("年", "-");
+    		strDate = strDate.replace("月", "-");
+    		strDate = strDate.replace("日", "");
+    	}
     	
     	Date date = Date.valueOf(strDate);
     	

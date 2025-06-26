@@ -101,6 +101,9 @@ public class OverdueDAO {
 					int firstReminder = rs.getInt("first_reminder");
 					int secondReminder = rs.getInt("second_reminder");
 					String memo = rs.getString("memo");
+					
+					//年月日表示用
+					dueDate = makeDate(dueDate);
 
 					OverdueBean bean = 
 							new OverdueBean(lendId , userId , name , email , tel , bookId ,
@@ -172,6 +175,9 @@ public class OverdueDAO {
 					int firstReminder = rs.getInt("first_reminder");
 					int secondReminder = rs.getInt("second_reminder");
 					String memo = rs.getString("memo");
+					
+					//年月日表示用
+					dueDate = makeDate(dueDate);
 
 					OverdueBean bean = 
 							new OverdueBean(lendId , userId , name , email , tel , bookId ,
@@ -237,4 +243,22 @@ public class OverdueDAO {
 			
 		}	
 	}
+	
+	//年月日のフォーマット
+		public String makeDate(String date) {
+			
+			String formatDate = date;
+			
+			formatDate = formatDate.replaceFirst("-", "年");
+			formatDate = formatDate.replaceFirst("-", "月");
+			
+			if(date.contains("日")) {
+				
+				formatDate = formatDate.replace("日", "");
+			}
+			
+			formatDate += "日";
+			
+			return formatDate;
+		}
 }

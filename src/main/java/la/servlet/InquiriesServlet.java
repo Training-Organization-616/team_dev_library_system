@@ -121,6 +121,9 @@ public class InquiriesServlet extends HttpServlet {
             		
             		session.setAttribute("inquiries", list);
             		
+            		//年月日表示用
+            		strReceptionDate = dao.makeDate(strReceptionDate);
+            		
             		//追加完了画面表示用
             		InquiriesBean bean = new InquiriesBean(strReceptionDate , title , contents ,
             				Integer.parseInt(handling) , memo);
@@ -233,8 +236,25 @@ public class InquiriesServlet extends HttpServlet {
     	return flag;
     }
 
+  //年月日表示用から-区切りに戻しメソッド
+    public String makeDate(String strDate) {
+    	
+    	strDate = strDate.replace("年", "-");
+		strDate = strDate.replace("月", "-");
+		strDate = strDate.replace("日", "");
+		
+		return strDate;
+    }
+    
     //Stringの日付をsql.dateに変換するメソッド
     public Date setDate(String strDate) {
+    	
+    	if(strDate.contains("年")) {
+    		
+    		strDate = strDate.replace("年", "-");
+    		strDate = strDate.replace("月", "-");
+    		strDate = strDate.replace("日", "");
+    	}
     	
     	Date date = Date.valueOf(strDate);
     	
