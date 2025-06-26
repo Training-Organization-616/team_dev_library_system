@@ -86,13 +86,34 @@ public class ReturnServlet extends HttpServlet {
 					int lendId = Integer.parseInt(paramLendId);
 					int userId = Integer.parseInt(paramUserId);
 					int bookId = Integer.parseInt(paramBookId);
-
+					
+					//有効な貸出IDかどうか
+					if(dao.isLendId(lendId)) {
+						
+						request.setAttribute("message", "この貸出IDは登録されていません");
+						request.setAttribute("userId", paramUserId);
+						request.setAttribute("bookId", paramBookId);
+						gotoPage(request, response, "/lend/return_add.jsp");
+						return;
+					}
+					
+					//貸出中の貸出IDかどうか
+					if(dao.isAlreadyReturn(lendId)) {
+						
+						request.setAttribute("message", "この貸出は既に返却処理済みです");
+						request.setAttribute("userId", paramUserId);
+						request.setAttribute("bookId", paramBookId);
+						gotoPage(request, response, "/lend/return_add.jsp");
+						return;
+					}
+					
 					// 入力された貸出情報が登録されているか確認
 					try {
 
 						LendBean bean = dao.findByUserIdAndBookId(lendId);
 						int checkUserId = bean.getUserId();
 						int checkBookId = bean.getBookId();
+						
 						if (userId != checkUserId || bookId != checkBookId) {
 							request.setAttribute("message", "貸出情報が一致しません");
 							gotoPage(request, response, "/lend/return_add.jsp");

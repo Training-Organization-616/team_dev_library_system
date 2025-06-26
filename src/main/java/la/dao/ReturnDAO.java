@@ -46,6 +46,7 @@ public class ReturnDAO {
 					String dueDate = rs.getString("due_date");
 					String returnDate = rs.getString("return_date");
 					String memo = rs.getString("memo");
+					
 					bean = new LendBean(lendId, userId, bookId, lendDate, dueDate, returnDate, memo);
 				}
 				return bean;
@@ -58,7 +59,73 @@ public class ReturnDAO {
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
 	}
+	
+	//有効な貸出IDか
+	public boolean isLendId(int id) throws DAOException {
 
+		String sql = "select * from lend where lend_id = ?;";
+
+		try (
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			
+			st.setInt(1, id);
+			
+			try (ResultSet rs = st.executeQuery()) {
+				
+				if(rs.next()) {
+					
+					return false;
+					
+				}else {
+					
+					return true;
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+	}
+
+		//返却されていない貸出IDか
+		public boolean isAlreadyReturn(int id) throws DAOException {
+
+			String sql = "select * from lend where lend_id = ? AND return_date IS NULL";
+
+			try (
+					Connection con = DriverManager.getConnection(url, user, pass);
+					// PreparedStatementオブジェクトの取得
+					PreparedStatement st = con.prepareStatement(sql);) {
+				
+				st.setInt(1, id);
+				
+				try (ResultSet rs = st.executeQuery()) {
+					
+					if(rs.next()) {
+						
+						return false;
+						
+					}else {
+						
+						return true;
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+					throw new DAOException("レコードの取得に失敗しました。");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		}
+	
 	public void returnCatalog(int lendId, int userId, int bookId) throws DAOException, SQLException {
 
 		// SQL文の作成
