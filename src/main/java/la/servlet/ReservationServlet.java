@@ -133,7 +133,8 @@ public class ReservationServlet extends HttpServlet {
 				StockBean stockBean = lendDao.getStock(bookId);
 
 				// 資料が存在するか確認
-				if (stockBean == null) {
+				int checkBookId = stockBean.getBookId();
+				if (bookId != checkBookId) {
 					request.setAttribute("message", "この資料IDは登録されていません");
 					request.setAttribute("userId", paramUserId);
 					gotoPage(request, response, "/lend/reservation_add.jsp");
