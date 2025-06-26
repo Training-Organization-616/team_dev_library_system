@@ -727,6 +727,11 @@ public class CatalogServlet extends HttpServlet {
             		strPublicationDate = dao.makeDate(strPublicationDate);
             		strArrivalDate = dao.makeDate(strArrivalDate);
             		
+            		if(isbn == null || isbn.length() == 0) {
+            			
+            			isbn = "0";
+            		}
+            		
             		//資料変更完了画面に渡す値をbeanに保存
             		SearchResultsBean bean = new SearchResultsBean
             				(Integer.parseInt(bookId) , Long.parseLong(isbn) , title,
