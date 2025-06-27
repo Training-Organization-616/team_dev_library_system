@@ -117,7 +117,7 @@
 				    	<th>著者</th>
 				    	<th>出版社</th>
 				    	<th>出版日</th>
-				    	<th>変更</th>
+				    	<th>編集</th>
 				    	<th>削除</th>
 				    </tr>
 					<c:forEach items="${books}" var="book">
@@ -132,7 +132,7 @@
 					    	<td>${book.publicationDate}</td>
 					    	<td>
 					    		<form action="/team_dev_library_system/CatalogServlet" method="post">
-				    				<button class="table_edit_button">変更</button>
+				    				<button class="table_edit_button">編集</button>
 				    				<input type="hidden" name="action" value="edit_page">
 				    				<input type="hidden" name="book_id" value="${book.bookId}">
 				    				<input type="hidden" name="isbn" value="${book.isbn}">

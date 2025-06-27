@@ -23,7 +23,7 @@
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/book_icon.png">
 		</div>
-		<div class="menu_name">資料情報編集</div>
+		<div class="menu_name">資料編集</div>
 	</div>
 
 	<div class="container">

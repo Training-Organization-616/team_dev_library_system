@@ -22,7 +22,7 @@
 		<div class="menu_image">
 			<img src="/team_dev_library_system/image/user_icon.png">
 		</div>
-		<div class="menu_name">会員情報編集</div>
+		<div class="menu_name">会員編集</div>
 	</div>
 
 	<div class="container">

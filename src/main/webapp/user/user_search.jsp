@@ -85,7 +85,7 @@
 						<th>E-Mail</th>
 						<th>貸出ID</th>
 						<th>予約</th>
-						<th>変更</th>
+						<th>編集</th>
 						<th>削除</th>
 					</tr>
 					<c:forEach items="${users}" var="user">
@@ -98,7 +98,7 @@
 							<td>
 								<form action="/team_dev_library_system/UserServlet"
 									method="post">
-									<button class="table_edit_button">変更</button>
+									<button class="table_edit_button">編集</button>
 									<input type="hidden" name="action" value="edit_page"> <input
 										type="hidden" name="user_id" value="${user.userId}">
 								</form>
